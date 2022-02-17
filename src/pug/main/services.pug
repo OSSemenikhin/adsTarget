@@ -8,48 +8,56 @@ include ../layout/variables
       description: 'Во всех популярных социальных сетях: ВКонтакте, Facebook и Instagram',
       link: '#',
       icon: 'target.png',
+      modal: 'target',
     },
     {
       title: 'Контент, дизайн и ведение сообществ от 20тр',
       description: 'Чтобы ваше сообщество в социальной сети работало на вас',
       link: '#',
       icon: 'content.png',
+      modal: 'content',
     },
     {
       title: 'Комплексное продвижение бренда от 50тр',
       description: 'Когда нужно все и сразу',
       link: '#',
       icon: 'complex.png',
+      modal: 'complex',
     },
     {
       title: 'Консультация по настройке от 3тр',
       description: '',
       link: '#',
       icon: 'sovet.png',
+      modal: 'sovet',
     },
     {
       title: 'Составление стратегии продвижения от 15тр',
       description: '',
       link: '#',
       icon: 'strateg.png',
+      modal: 'strateg',
     },
     {
       title: 'Programmatic',
       description: 'Автоматизированная медийная реклама по демографическим и социальным признакам',
       link: '#',
       icon: 'programmatic.png',
+      modal: 'programmatic',
     },
     {
       title: 'Создания лендингов и сайтов',
       description: '',
       link: '#',
       icon: 'lending.png',
+      modal: 'lending',
     },
     {
       title: 'Контекстная реклама',
       description: 'Целевые посетители для вашего сайта из Яндекс.Директ и Google Ads',
       link: '#',
       icon: 'context.png',
+      modal: 'context',
     },
   ];
 
@@ -59,7 +67,7 @@ mixin serviceCard(item)
     h3.services__title= item.title
     p.services__text= item.description
     .services__actions
-      button.services__button Заказать
+      button.services__button(data-modal-type=item.modal data-goody-path="services" data-goody-animation="fadeInUp" data-goody-speed-in="300" data-goody-speed-out="300") Заказать
       br
       a.services__link(href=item.link) Узнать подробнее
 

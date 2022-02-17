@@ -1,0 +1,48 @@
+
+section.modal.modal-call#modal
+  .modal__container(data-goody-target="call")
+    .modal__header
+      button.modal__close
+        svg.modal__icon-close(aria-hidden="true")
+          use(xlink:href="img/svg/sprite.svg#close")
+    .modal__content.modal-call__content
+      h2.modal-call__title Заказать звонок
+      p.modal-call__description Обычно, наш менеджеры перезванивают в течение двух часов в рабочее время
+      form.modal-call__form
+        input.modal-call__input(placeholder="Номер телефона")
+        button.modal-call__button Заказать звонок
+      p.modal-call__errors
+      p.modal-call__prevention Нажимая на кнопку «Заказать звонок» вы соглашаетесь с
+        a.modal-call__privacy(href="#")  правилами обработки персональных данных.
+
+  .modal__container(data-goody-target="services")
+    .modal__header
+      button.modal__close
+        svg.modal__icon-close(aria-hidden="true")
+          use(xlink:href="img/svg/sprite.svg#close")
+    .modal__content
+      form.modal-services__form
+        label.modal-services__label Опишите нишу и прикрепите ссылки наваши соц. сети и/или сайт
+          br
+          textarea.modal-services__input.modal-services__input--textarea
+        label.modal-services__label Ваше имя
+          br
+          input.modal-services__input
+        label.modal-services__label Ваш телефон
+          br
+          input.modal-services__input
+        .modal-service-socials
+          p.modal-service-socials__title
+          label.modal-service-socials__label
+            input.modal-service-socials__input(type="radio" name="socials" value="WhatsApp")
+            br
+            |WhatsApp
+          label.modal-service-socials__label
+            input.modal-service-socials__input(type="radio" name="socials" value="Telegramm")
+            br
+            |Telegramm
+          label.modal-service-socials__label
+            input.modal-service-socials__input(type="radio" name="socials" value="Vk")
+            br
+            |Vk
+        button.modal-service__button Заказать

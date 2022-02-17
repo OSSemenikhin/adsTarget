@@ -1,0 +1,103 @@
+.modal {
+  &__header {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  &__close {
+    @include transition(color);
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    color: $colorPrimary_1;
+    cursor: pointer;
+
+    &:hover {
+      color: $colorPrimary_2;
+    }
+    // &:focus {
+    //   color: $colorPrimary_2;
+    // }
+    &:active {
+      color: $colorPrimary_2-dark;
+    }
+  }
+  &__icon-close {
+    @include svgIcon;
+    @include transition(fill);
+  }
+}
+
+.modal-call {
+  &__content {
+    width: 560px;
+    padding: 340px 45px 45px 45px;
+    background-image: url(../img/call.webp);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 100% 10%;
+  }
+
+  &__title {
+    margin-bottom: 15px;
+    font-size: 36px;
+    line-height: 1.23;
+    font-weight: 600;
+  }
+  &__description {
+    margin-bottom: 25px;
+    font-size: 16px;
+    line-height: 1.55;
+    font-weight: 400;
+  }
+
+  &__form {
+    margin-bottom: 35px;
+    display: flex;
+  }
+
+  &__input {
+    width: 55%;
+    margin-right: auto;
+    height: 60px;
+    padding: 0 20px;
+    background-color: $colorLight_1;
+    border: none;
+    border-radius: 5px;
+
+    &::placeholder {
+      color: $colorDark;
+      font-size: 16px;
+      opacity: 0.5;
+    }
+  }
+
+  &__button {
+    @include buttonPrimary('2');
+    width: 40%;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  &__prevention {
+    line-height: 1.55;
+  }
+
+  &__privacy {
+    @include transition(color);
+    @include linkStates('1');
+  }
+}
+
+.modal-services{
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.modal-service-socials {
+  display: flex;
+}

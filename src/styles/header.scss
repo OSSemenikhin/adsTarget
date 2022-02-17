@@ -5,12 +5,15 @@
 .header {
   position: fixed;
   width: 100%;
-  padding: 15px 40px;
-  display: flex;
-  align-items: center;
   background-color: $colorLightOpacity;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
-  z-index: 9999;
+  z-index: 99;
+
+  &__wrapper {
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+  }
 }
 
 .header-nav {
@@ -30,7 +33,7 @@
   }
   &__link {
     @include transition(color);
-    @include linkStates('');
+    @include linkStates("");
     padding: 5px 0;
     font-weight: 600;
   }
@@ -39,13 +42,13 @@
 .header-tel {
   &__link {
     @include transition(color);
-    @include linkStates('');
+    @include linkStates("");
     margin-right: 35px;
     padding: 5px 0;
     font-weight: 800;
   }
   &__button {
-    @include buttonPrimary('1');
+    @include buttonPrimary("1");
     padding: 10px 30px;
     border-radius: 20px;
     font-weight: 600;
