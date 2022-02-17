@@ -1,0 +1,50 @@
+.feedback {
+  padding-top: 50px;
+  padding-bottom: 80px;
+  background-image: url(../img/svg/sprite.svg#feedback_BG);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .container {
+    padding: 0 16.8%;
+  }
+  &__form {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  &__label {
+    font-size: 20px;
+    line-height: 1.55;
+  }
+  &__input {
+    width: 100%;
+    height: 56px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 0 20px;
+
+    &::placeholder {
+      opacity: 0.5;
+    }
+  }
+  &__button {
+    @include buttonPrimary('1');
+    margin-top: 20px;
+    padding: 16px 0;
+  }
+  &__prevention {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  &__business-card {
+    width: max-content;
+    margin: auto;
+    display: block;
+  }
+  &__link {
+    @include transition(color);
+    @include linkStates('1');
+  }
+}

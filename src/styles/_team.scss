@@ -1,0 +1,57 @@
+.team {
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+    row-gap: 40px;
+    list-style: none;
+  }
+
+  &__item {
+    position: relative;
+    min-height: 450px;
+    background-repeat: no-repeat;
+    background-size: 120% 100%;
+    background-position: center;
+  }
+  &__item:hover > &__gradient,
+  &__item:hover > &__text {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  &__gradient,
+  &__text {
+    $prop: opacity, transform;
+    @include transition($prop);
+  }
+
+  &__gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.7));
+    opacity: 0;
+  }
+  &__text {
+    position: absolute;
+    bottom: 35px;
+    padding: 0 40px;
+    color: $colorLight;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  &__name {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  &__position {
+    font-size: 14px;
+    line-height: 1.55;
+    font-weight: 400;
+  }
+}

@@ -1,0 +1,29 @@
+include mixins
+include variables
+
+-
+  var navListItems = [
+    {name: 'Услуги', href: '#',},
+    {name: 'Кейсы', href: '/cases',},
+    {name: 'Отзывы', href: '#',},
+    {name: 'Брифы', href: '/brief',},
+  ];
+
+
+mixin headerLinkItem(obj, className)
+  -
+    var classNameItem = 'header-' + className + '__item';
+    var classNameLink = 'header-' + className + '__link';
+  li(class=classNameItem)
+    a(class=classNameLink, href= obj.href)= obj.name
+
+
+header.header
+  +logo('header')
+  nav.header-nav
+    ul.header-nav__list
+      for link in navListItems
+        +headerLinkItem(link, 'nav')
+  .header-tel
+    a.header-tel__link(href="tel:+7 (812) 956–42–99") +7 (812) 956–42–99
+    button.header-tel__button Заказать звонок

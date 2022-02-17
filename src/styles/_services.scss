@@ -1,0 +1,48 @@
+.services {
+  margin-bottom: 120px;
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+    row-gap: 40px;
+    list-style: none;
+  }
+  &__item {
+    position: relative;
+    min-height: 250px;
+    padding-bottom: 95px;
+    background-repeat: no-repeat;
+    background-size: 35%;
+    background-position: 100% 100%;
+  }
+  &__title {
+    width: 95%;
+  }
+  &__actions {
+    position: absolute;
+    bottom: 0;
+    width: 60%;
+  }
+  &__button,
+  &__link {
+    width: 100%;
+    text-align: center;
+  }
+  &__button {
+    @include buttonPrimary('2');
+    height: 50px;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  &__link {
+    @include buttonPrimary('3');
+    display: inline-block;
+    padding: 5px 0;
+    color: $colorPrimary_1;
+    border-radius: 20px;
+    font-size: 14px;
+  }
+}

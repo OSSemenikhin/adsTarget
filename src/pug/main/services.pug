@@ -1,0 +1,69 @@
+include ../layout/mixins
+include ../layout/variables
+
+-
+  var services = [
+    {
+      title: 'Таргетированная реклама от 25тр',
+      description: 'Во всех популярных социальных сетях: ВКонтакте, Facebook и Instagram',
+      link: '#',
+      icon: 'target.png',
+    },
+    {
+      title: 'Контент, дизайн и ведение сообществ от 20тр',
+      description: 'Чтобы ваше сообщество в социальной сети работало на вас',
+      link: '#',
+      icon: 'content.png',
+    },
+    {
+      title: 'Комплексное продвижение бренда от 50тр',
+      description: 'Когда нужно все и сразу',
+      link: '#',
+      icon: 'complex.png',
+    },
+    {
+      title: 'Консультация по настройке от 3тр',
+      description: '',
+      link: '#',
+      icon: 'sovet.png',
+    },
+    {
+      title: 'Составление стратегии продвижения от 15тр',
+      description: '',
+      link: '#',
+      icon: 'strateg.png',
+    },
+    {
+      title: 'Programmatic',
+      description: 'Автоматизированная медийная реклама по демографическим и социальным признакам',
+      link: '#',
+      icon: 'programmatic.png',
+    },
+    {
+      title: 'Создания лендингов и сайтов',
+      description: '',
+      link: '#',
+      icon: 'lending.png',
+    },
+    {
+      title: 'Контекстная реклама',
+      description: 'Целевые посетители для вашего сайта из Яндекс.Директ и Google Ads',
+      link: '#',
+      icon: 'context.png',
+    },
+  ];
+
+mixin serviceCard(item)
+  -var bg = "background-image: url(./img/services/" + item.icon;
+  li.services__item(style=bg)
+    h3.services__title= item.title
+    p.services__text= item.description
+    .services__actions
+      button.services__button Заказать
+      br
+      a.services__link(href=item.link) Узнать подробнее
+
+section.services.container
+  ul.services__list
+    for item in services
+       +serviceCard(item)

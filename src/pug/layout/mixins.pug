@@ -1,0 +1,138 @@
+mixin logo(blockClass, mod)
+  -
+    var classNameWrapper = blockClass + '-logo logo';
+    var classNameLink = blockClass + '-logo__link logo__link';
+    var classNameLogoImage = blockClass + '-logo__image logo__image';
+  if mod > ''
+    - var classNameWrapperFull = classNameWrapper + ' ' + classNameWrapper + mod;
+    div(class=classNameWrapperFull)
+      a(class=classNameLink href="#" aria-label="Главная")
+        img(class=classNameLogoImage loading="lazy" src= "./img/logo.webp" alt="Ads Target")
+  else
+    div(class=classNameWrapper)
+      a(class=classNameLink href="#" aria-label="Главная")
+        img(class=classNameLogoImage loading="lazy" src= "./img/logo.webp" alt="Ads Target")
+
+
+mixin picture(obj, ind, type, ariaHidden = false)
+  -
+    var pathWebp= obj.path + obj.name + '.webp';
+    var pathImg = obj.path + obj.name + '.' + type;
+    var pathImgSet = '';
+
+  if ind != ''
+    if obj.mod
+      -var uniqueClassNamePicture = obj.classNamePicture + '--' + ind;
+      -var classNamePictureFull = obj.classNamePicture + ' ' + uniqueClassNamePicture + ' ' + obj.mod;
+    else
+      -var uniqueClassNamePicture = obj.classNamePicture + '--' + ind;
+      -var classNamePictureFull = obj.classNamePicture + ' ' + uniqueClassNamePicture;
+  else
+    if obj.mod
+      -var classNamePictureFull = obj.classNamePicture + ' ' + obj.mod;
+    else
+      -var classNamePictureFull = obj.classNamePicture;
+
+  if ariaHidden === true
+    picture(class=classNamePictureFull aria-hidden="true")
+      if obj.breakPoints
+        for w in obj.breakPoints
+          -
+            var name = obj.name + '_' + w;
+            var pathWebp = obj.path + name + '.webp';
+            var minWidth = '(min-width: ' + w + 'px)';
+
+          source(srcset=pathWebp type="image/webp" media=minWidth)
+      source(srcset=pathWebp type="image/webp")
+      if pathImgSet != ''
+        img(class=obj.classNameImg loading="lazy" srcset=pathImgSet src=pathImg alt=obj.alt)
+      else
+        img(class=obj.classNameImg loading="lazy" src=pathImg alt=obj.alt)
+  else
+    picture(class=classNamePictureFull)
+      if obj.breakPoints
+        for w in obj.breakPoints
+          -
+            var name = obj.name + '_' + w;
+            var pathWebp = obj.path + name + '.webp';
+            var minWidth = '(min-width: ' + w + 'px)';
+
+          source(srcset=pathWebp type="image/webp" media=minWidth)
+      source(srcset=pathWebp type="image/webp")
+      if pathImgSet != ''
+        img(class=obj.classNameImg loading="lazy" srcset=pathImgSet src=pathImg alt=obj.alt)
+      else
+        img(class=obj.classNameImg loading="lazy" src=pathImg alt=obj.alt)
+
+mixin itemMerchCard(card, path, ind)
+  -
+    var classNameArticle = card.className + '-article';
+    var classNameArticleUnique = classNameArticle + '--' + ind;
+    var classNameArticleBig = card.big ? classNameArticle + '--big' : '';
+    var classNameArticleFull = classNameArticle + ' ' + classNameArticleUnique + ' ' + classNameArticleBig;
+
+    var classNameSale = classNameArticle + '-sale';
+    var classNameSaleBig =  card.big ? classNameSale + '--big' : '';
+    var classNameSaleFull = classNameSale + ' ' + classNameSaleBig;
+
+    var classNameRating = classNameArticle + '-rating';
+    var classNameRatingBig =  card.big ? classNameRating + '--big' : '';
+    var classNameRatingFull = classNameRating + ' ' + classNameRatingBig;
+
+    var classNameText = classNameArticle + '__text';
+    var classNameTextBig =  card.big ? classNameText + '--big' : '';
+    var classNameTextFull = classNameText + ' ' + classNameTextBig;
+
+    var classNameTitle = classNameArticle + '__title';
+    var classNameTitleBig =  card.big ? classNameTitle + '--big' : '';
+    var classNameTitleFull = classNameTitle + ' ' + classNameTitleBig;
+
+    var classNameButton = classNameArticle + '__button';
+    var classNameButtonBig =  card.big ? classNameButton + '--big' : '';
+    var classNameButtonFull = classNameButton + ' ' + classNameButtonBig;
+
+
+  if card.breakPoints
+    -
+      var pic = {
+        name: card.name,
+        classNamePicture: classNameArticle + '__picture',
+        classNameImg: card.big ? classNameArticle + '__img' + ' ' + classNameArticle + '__img--big' : classNameArticle + '__img',
+        path: path,
+        breakPoints: card.breakPoints,
+        mod: card.big ? classNameArticle + '__picture--big' : '',
+        alt: card.alt ? card.alt : '',
+      }
+  else
+    -
+      var pic = {
+        name: card.name,
+        classNamePicture: classNameArticle + '__picture',
+        classNameImg: card.big ? classNameArticle + '__img' + ' ' + classNameArticle + '__img--big' : classNameArticle + '__img',
+        path: path,
+        mod: card.big ? classNameArticle + '__picture--big' : '',
+        alt: card.alt ? card.alt : '',
+      }
+
+  article(class=classNameArticleFull)
+    if card.offerSale
+      div(class=classNameSaleFull)
+        div(class=classNameArticle + '-sale__bacground' + ' ' + classNameArticle + '-sale__bacground--square')
+          span(class=classNameArticle + '-sale__sum' aria-label="Скидка")= card.offerSale
+    else if card.rating
+      div(class=classNameRatingFull)
+          span(class=classNameArticle + '-rating__icon')
+            svg(aria-hidden="true")
+              use(xlink:href="img/svg/sprite.svg#star")
+          span(class=classNameArticle + '-rating__indicator' aria-label="Рэйтинг")= card.rating
+    +picture(pic, ind, 'png')
+    div(class=classNameTextFull)
+      h3(class=classNameTitleFull)
+        a(class=classNameArticle + '__link' href='#')
+          span(class=classNameArticle + '__name')=card.title
+          if card.model
+            span(class=classNameArticle + '__model')=card.model
+      p(class=classNameArticle + '__price' + ' ' + classNameArticle + '__price--relevant' aria-label="Актуальная цена")= card.relevant + ' руб'
+      if card.oldPrice
+        p(class=classNameArticle + '__price' + ' ' + classNameArticle + '__price--old' aria-label="Старая цена")= card.oldPrice + ' руб'
+    a(class=classNameButtonFull href='#') Купить

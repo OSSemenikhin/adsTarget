@@ -1,0 +1,78 @@
+include ../layout/mixins
+include ../layout/variables
+
+-
+  var teamData = [
+    {
+      name: 'Александр',
+      position: 'Основатель',
+      photo: 'img-26',
+      alt: 'Основатель Александр'
+    },
+    {
+      name: 'Мария',
+      position: 'Ведущий таргетолог',
+      photo: 'img-16',
+      alt: 'Ведущий таргетолог Мария'
+    },
+    {
+      name: 'Дарья',
+      position: 'Таргетолог',
+      photo: 'img-00',
+      alt: 'Таргетолог Дарья'
+    },
+    {
+      name: 'Марк',
+      position: 'Таргетолог',
+      photo: 'img-08',
+      alt: 'Таргетолог Марк'
+    },
+    {
+      name: 'Надежда',
+      position: 'Старший контент-менеджер',
+      photo: 'img-31',
+      alt: 'Старший контент-менеджер Надежда'
+    },
+    {
+      name: 'Сергей',
+      position: 'Таргетолог',
+      photo: 'img-21',
+      alt: 'Таргетолог Сергей'
+    },
+    {
+      name: 'Алена',
+      position: 'Аккаунт Менеджер',
+      photo: 'img-15',
+      alt: 'Аккаунт Менеджер Алена'
+    },
+    {
+      name: 'Маректолог',
+      position: 'Маректолог',
+      photo: 'img-03',
+      alt: 'Маректолог Маректолог'
+    }
+  ]
+
+mixin teamItem(item)
+  -
+    var pic = {
+      name: item.photo,
+      classNamePicture: 'team__picture',
+      classNameImg: 'team__img',
+      path: '/img/team/',
+      alt: item.alt ? item.alt : ''
+    }
+    var bg = 'background-image: url(/img/team/' + item.photo + '.webp)'
+
+  li.team__item(style=bg)
+    .team__gradient
+    .team__text
+      h4.team__name= item.name
+      p.team__position= item.position
+    //- +picture(pic, '', 'jpg')
+
+section.team.container
+  h2.title Наша команда
+  ul.team__list
+    for item in teamData
+      +teamItem(item)

@@ -1,0 +1,43 @@
+include ../layout/mixins
+include ../layout/variables
+
+-
+  var cases = [
+    {
+      title: 'Поиск персонала',
+      description: 'Соискатели по 144 руб. и объявления с рейтингом 9.9',
+      image: '1.webp',
+      link: '#'
+    },
+    {
+      title: 'ТК «Китай Город»',
+      description: 'Как сменить имидж бренда с помощью визуального контента',
+      image: '2.webp',
+      link: '#'
+
+    },
+    {
+      title: 'Studio Context Диана Вишнёва',
+      description: 'Как научить танцевать всю страну во время пандемии?',
+      image: '3.webp',
+      link: '#'
+    }
+  ];
+
+mixin caseItem(item, ind)
+  -var bg = "img/cases/" + item.image;
+  -var modClass = "cases__image--" + ind
+  article.cases__item
+    a.cases__link(href=item.link)
+    img.cases__image(class=modClass src=bg, alt="image: girl")
+    h3.cases__title= item.title
+    p.cases__text= item.description
+
+section.cases.container
+  h2.title Наши кейсы
+  .cases__list
+    -var ind = 0;
+    for item in cases
+      - ind++
+      +caseItem(item, ind)
+  button.cases__button Все кейсы

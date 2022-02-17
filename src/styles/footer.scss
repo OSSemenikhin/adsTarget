@@ -1,0 +1,44 @@
+@import "mixins";
+@import "variables";
+
+.footer {
+  padding: 15px 40px;
+  display: flex;
+  align-items: center;
+  background-color: $colorLightOpacity;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
+
+  &__copyright {
+    flex-grow: 1;
+    text-align: center;
+  }
+}
+.footer-socials {
+  display: flex;
+  list-style: none;
+
+  &__link {
+    width: 60px;
+    height: 40px;
+    padding: 5px 15px;
+    display: inline-block;
+  }
+  &__link:hover >  &__icon {
+    fill: $colorPrimary_1;
+  }
+  &__link:focus >  &__icon {
+    outline: none;
+    fill: $colorPrimary_1;
+  }
+  &__link:focus-visible >  &__icon {
+    outline: none;
+    fill: $colorPrimary_1;
+  }
+  &__link:active >  &__icon {
+    fill: $colorPrimary_1-dark;
+  }
+  &__icon {
+    @include transition(fill);
+    @include svgIcon;
+  }
+}

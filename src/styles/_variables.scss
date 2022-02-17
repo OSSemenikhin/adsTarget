@@ -1,0 +1,54 @@
+@use "sass:math";
+
+$arrowDownSvg: '<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M5.65674 5.80521L10.5593 0.902607L11.3136 1.65685L5.65674 7.31371L-0.000115871 1.65685L0.754131 0.902607L5.65674 5.80521Z" fill="currentColor"/> </svg>';
+
+// COLORS
+$colorLight: rgba(250,250,250);
+$colorLightOpacity: rgba(250,250,250,0.80);
+$colorDark: #080808;
+$colorPrimary_1: #d63772;
+$colorPrimary_1-light: #e98aad;
+$colorPrimary_1-dark: #962851;
+$colorPrimary_2: #1dcfc3;
+$colorPrimary_2-dark: #1ca39a;
+
+
+
+
+$colorBackWhite: #ffffff;
+$colorBackBlack: #333333;
+$colorBackLight: #f6f6f6;
+$colorBackLight1: #f7f7f7;
+$colorBackMdGrey: #eaeaea;
+$colorBackGrey: #999999;
+$colorBackGrey1: #666666;
+$colorPrimary: #a65cf0;
+$colorPrimaryLight: #c998fb;
+$colorPrimaryShade: #7033ac;
+$colorPrimaryBone: #f8efff;
+$colorPinkViolet: #ebd1ff;
+$colorPinkLight: #f8efff;
+$colorSecondary: #ff862f;
+$colorSecondaryLight: #ffbd59;
+$colorSecondaryBone: #fff5d1;
+$colorSecondaryShade: #bb370e;
+$colorLime: #DAFFD1;
+$colorBone: #FFF5D1;
+$colorSecondaryShade: #bb370e;
+$colorPromo: #d5b986;
+
+// LOGO
+$logoWidth: 187px;
+$logoHeight: 27px;
+
+// Container
+$containerWidth320: 92.5%;
+$containerWidth768: 81.25%;
+$containerWidth1024: 92.875%;
+$containerDesktop: 1200px;
+
+// containerPadding
+$containerPadding320: math.div(100% - $containerWidth320, 2);
+$containerPadding768: math.div(100% - $containerWidth768, 2);
+$containerPadding1024: math.div(100% - $containerWidth1024, 2);
+$containerPaddingDesktop: calc((100% - 1280px) / 2);

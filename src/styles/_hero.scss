@@ -1,0 +1,39 @@
+@import "variables";
+@import "mixins";
+
+.hero {
+  position: relative;
+  height: 600px;
+  padding-top: 100px;
+  background-image: url(../img/svg/sprite.svg#BG);
+  background-repeat: no-repeat;
+  background-position: 75% 15%;
+  background-size: 85%;
+}
+
+.hero-content {
+  position: relative∂;
+  top: 25%;
+
+  &__title,
+  &__text {
+    width: 810px;
+  }
+  &__title {
+    margin-bottom: 38px;
+    font-size: 48px;
+    line-height: 1;
+    font-weight: 500;
+  }
+  &__text {
+    padding-right: 30%;
+    margin-bottom: 30px;
+    font-size: 22px;
+    line-height: 1.55;
+  }
+  &__button {
+    @include buttonPrimary('1');
+    padding: 18px 60px;
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,34 @@
+include mixins
+include variables
+
+-
+  var socials = [
+    {
+      link: '#',
+      id: 'whatsapp',
+    },
+    {
+      link: '#',
+      id: 'telegram',
+    },
+    {
+      link: '#',
+      id: 'vk',
+    },
+  ];
+
+mixin socLink(obj)
+  -var path = 'img/svg/sprite.svg#' + obj.id;
+  a.footer-socials__link(href=obj.link)
+    svg.footer-socials__icon
+      use(xlink:href=path)
+
+
+footer.footer
+  +logo('footer')
+  p.footer__copyright ©AdsTarget 2017-2021
+    ul.footer-socials
+      for link in socials
+        li.footer-socials__item
+          +socLink(link)
+
