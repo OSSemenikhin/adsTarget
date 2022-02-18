@@ -1,1 +1,55 @@
-section.technologies.container
+include ../layout/mixins
+include ../layout/variables
+
+
+-
+  var cards = [
+    {
+      image: 'VK_business.webp',
+      link: 'vk.com/business',
+      alt: 'logo вконтакте бизнес'
+    },
+    {
+      image: 'elama.webp',
+      link: 'https://elama.ru/',
+      alt: 'logo elama'
+    },
+    {
+      image: 'tilda.webp',
+      link: 'https://jeweller-karat.ru/',
+      alt: 'logo tilda publishing'
+    },
+    {
+      image: 'target_hunter.webp',
+      link: 'targethunter.ru',
+      alt: 'logo target hunter'
+    },
+    {
+      image: 'livedune.webp',
+      link: 'https://livedune.ru?from=c5cbacc48c',
+      alt: 'logo livedune'
+    },
+    {
+      image: 'deeplinkr.webp',
+      link: 'https://deeplinkr.ru/?referral=7b114cab67719eca528b7c2a9415218b',
+      alt: 'logo deeplinkr'
+    },
+  ];
+
+section.technologies
+  h2.title.title--hidden.container Технологии
+  .technologies__wrapper
+    .container
+      .technologies-slider.swiper
+        .technologies-slider__wrapper.swiper-wrapper
+          each card in cards
+            - var src = "../img/technologies/" + card.image;
+            .technologies-slider__item.swiper-slide
+              a.technologies-slider__link(href=card.link)
+                img.technologies-slider__image(src=src, alt=card.alt)
+    button.technologies-slider-buttons__prev(class='slider-buttons__prev')
+      svg.technologies-slider-buttons__icon.slider-buttons__icon
+        use(xlink:href="img/svg/sprite.svg#arrow")
+    button.technologies-slider-buttons__next(class='slider-buttons__next')
+      svg.technologies-slider-buttons__icon.slider-buttons__icon
+        use(xlink:href="img/svg/sprite.svg#arrow")

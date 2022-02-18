@@ -146,4 +146,34 @@ document.addEventListener("DOMContentLoaded", () => {
       // },
     });
   }
+  if (document.querySelector(".technologies-slider")) {
+    const technologiesSlider = new Swiper(".technologies-slider", {
+      a11y: ariaButtonsSwiperMessage,
+      loop: true,
+      navigation: {
+        prevEl: ".technologies-slider-buttons__prev",
+        nextEl: ".technologies-slider-buttons__next",
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 33,
+        },
+        1300: {
+          slidesPerView: 5,
+          slidesPerGroup: 5,
+          spaceBetween: 33,
+        },
+        1400: {
+          slidesPerView: 6,
+          slidesPerGroup: 6,
+          spaceBetween: 33,
+        },
+      },
+    });
+  }
 });

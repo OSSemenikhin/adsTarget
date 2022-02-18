@@ -1,3 +1,11 @@
 .technologies {
-  margin-bottom: 120px;
+  margin-bottom: 70px;
+
+  &__wrapper {
+    position: relative;
+  }
+}
+
+.technologies-slider {
+  @include logoSlider;
 }
