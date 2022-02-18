@@ -1,5 +1,134 @@
 include ../layout/mixins
 include ../layout/variables
 
-section.clients.container
-  h2.title Наши клиенты
+-
+  var cards = [
+    {
+      image: 'sberbank.webp',
+      link: 'https://www.sberbank.ru',
+      alt: 'logo sberbank'
+    },
+    {
+      image: 'sbermarket.webp',
+      link: 'https://sbermarket.ru/',
+      alt: 'logo sbermarket'
+    },
+    {
+      image: 'jeweller.webp',
+      link: 'https://jeweller-karat.ru/',
+      alt: 'logo jeweller karat'
+    },
+    {
+      image: 'hh.webp',
+      link: 'https://vr.hh.ru/',
+      alt: 'logo sberbank'
+    },
+    {
+      image: 'perekrestok.webp',
+      link: 'https://www.perekrestok.ru/',
+      alt: 'logo perekrestok'
+    },
+    {
+      image: '5chka.webp',
+      link: 'https://5ka.ru/',
+      alt: 'логотип пятёрочка'
+    },
+    {
+      image: 'kitay.webp',
+      link: 'https://www.kitgorod.ru/',
+      alt: 'logo kitay gorod'
+    },
+    {
+      image: 'evrasia.webp',
+      link: 'evrasia.spb.ru/',
+      alt: 'logo evrasia'
+    },
+    {
+      image: 'mouse.webp',
+      link: 'https://m-house.ru/',
+      alt: 'logo mouse house'
+    },
+    {
+      image: 'sdv.webp',
+      link: 'https://studiocontext.ru/',
+      alt: 'logo Studio Context Диана Вишнёва'
+    },
+    {
+      image: 'kidkort.webp',
+      link: 'https://vk.com/kidkort',
+      alt: 'logo kid kort'
+    },
+    {
+      image: 'smartyacht.webp',
+      link: 'https://smart-yacht.ru/',
+      alt: 'logo smart yacht'
+    },
+    {
+      image: 'stakedavai.webp',
+      link: '#',
+      alt: 'logo стэйк давай'
+    },
+    {
+      image: 'content_kaskad.webp',
+      link: '#',
+      alt: 'logo заневский каскад'
+    },
+    {
+      image: 'cb2019.webp',
+      link: '#',
+      alt: 'logo СБ2019'
+    },
+    {
+      image: 'mandarin.webp',
+      link: '#',
+      alt: 'logo мандарин'
+    },
+    {
+      image: 'kidClub.webp',
+      link: '#',
+      alt: 'logo Детский клуб'
+    },
+    {
+      image: 'v-mart.webp',
+      link: '#',
+      alt: 'logo v-mart'
+    },
+    {
+      image: 'kannon.webp',
+      link: '#',
+      alt: 'logo kannon dance'
+    },
+    {
+      image: 'kontinent.webp',
+      link: '#',
+      alt: 'logo continent'
+    },
+    {
+      image: 'severnyolen.webp',
+      link: '#',
+      alt: 'logo антикафе олень'
+    },
+    {
+      image: 'nord.webp',
+      link: '#',
+      alt: 'logo торгово-развлекательный комплекс nord'
+    }
+  ];
+
+section.clients
+  h2.title.clients__title.container Наши клиенты
+  .clients__wrapper
+    .container
+      .clients-slider.swiper
+        .clients-slider__wrapper.swiper-wrapper
+          each card in cards
+            - var src = "../img/clients/" + card.image;
+            .clients-slider__item.swiper-slide
+              a.clients-slider__link(href=card.link)
+                img.clients-slider__image(src=src, alt=card.alt)
+    button.clients-slider-buttons__prev(class='slider-buttons__prev')
+      svg.clients-slider-buttons__icon.slider-buttons__icon
+        use(xlink:href="img/svg/sprite.svg#arrow")
+    button.clients-slider-buttons__next(class='slider-buttons__next')
+      svg.clients-slider-buttons__icon.slider-buttons__icon
+        use(xlink:href="img/svg/sprite.svg#arrow")

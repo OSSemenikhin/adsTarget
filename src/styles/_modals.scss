@@ -17,9 +17,9 @@
     &:hover {
       color: $colorPrimary_2;
     }
-    // &:focus {
-    //   color: $colorPrimary_2;
-    // }
+    &:focus-visible {
+      color: $colorPrimary_2;
+    }
     &:active {
       color: $colorPrimary_2-dark;
     }
@@ -29,6 +29,7 @@
     @include transition(fill);
   }
 }
+
 
 .modal-call {
   &__content {
@@ -92,12 +93,195 @@
   }
 }
 
+$servicesInputHeight: 50px;
+$servicesInputborder: 1px solid #000;
+$servicesInputborderRadius: 10px;
+
 .modal-services{
+  &__content {
+    padding: 60px;
+  }
   &__form {
     display: flex;
     flex-direction: column;
   }
+
+  &__label {
+    width: 100%;
+    padding-bottom: 15px;
+    font-weight: 600;
+  }
+  &__input {
+    width: 100%;
+    height: $servicesInputHeight;
+    margin-top: 10px;
+    padding: 10px;
+    border: $servicesInputborder;
+    border-radius: $servicesInputborderRadius;
+    font-size: 16px;
+
+    &--textarea {
+      height: 135px;
+      resize: none;
+    }
+    &::placeholder {
+      font-family: "Geometria", "Arial";
+      font-size: 16px;
+      color: $colorDark;
+      opacity: 0.5;
+    }
+  }
+  &__button {
+    @include buttonPrimary('2');
+    padding: 20px;
+    font-size: 16px;
+  }
 }
-.modal-service-socials {
-  display: flex;
+
+.modal-services-select,
+.modal-services-select__label {
+  display: none;
+  &._visible {
+    display: block;
+  }
+}
+
+.modal-services-select {
+  width: 100%;
+  margin-bottom: 25px;
+
+  $paddingHorizont: 10px;
+  &__header {
+    height: $servicesInputHeight;
+    padding: 15px $paddingHorizont;
+    border: $servicesInputborder;
+    border-radius: $servicesInputborderRadius;
+  }
+  &__icon {
+    position: absolute;
+    right: 25px;
+  }
+  &__list {
+    padding-top: 20px;
+    border-left: $servicesInputborder;
+    border-right: $servicesInputborder;
+    border-bottom: $servicesInputborder;
+    border-bottom-left-radius: $servicesInputborderRadius;
+    border-bottom-right-radius: $servicesInputborderRadius;
+    transform: translateY(-13px);
+    transition: opacity 0.2s;
+  }
+  &__item,
+  &__option {
+    width: 100%;
+    transition: color 0.3s, background-color 0.3s;
+  }
+  &__item {
+    padding: 5px $paddingHorizont;
+
+    &:hover {
+      background-color: $colorPrimary_1;
+      color: $colorLight;
+    }
+    &:active {
+      background-color: $colorPrimary_1-dark;
+      color: $colorLight;
+    }
+    &.focused {
+      background-color: $colorPrimary_2;
+    }
+  }
+  &__option {
+    color: inherit;
+  }
+}
+
+.modal-services-socials {
+  margin-bottom: 50px;
+
+  &__title {
+    width: 100%;
+    padding-bottom: 15px;
+    font-weight: 600;
+  }
+  &__wrapper {
+    display: flex;
+    row-gap: 10px;
+  }
+  &__label {
+    @include transition(color);
+    width: 90px;
+    height: 90px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+  }
+  &__input {
+    opacity: 0;
+  }
+  &__input:checked + &__icon::before,
+  &__input:checked + &__icon::after {
+    opacity: 1;
+  }
+  &__icon {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      display: inline-block;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    &::before {
+      top: -5px;
+      left: -10px;
+      width: 30px;
+      height: 30px;
+      background-color: $colorPrimary_1;
+      border-radius: 100%;
+    }
+    &::after {
+      top: 3px;
+      left: -3px;
+      width: 15px;
+      height: 10px;
+      border-bottom: 2px solid #fafafa;
+      border-left: 2px solid #fafafa;
+      transform: rotate(-50deg);
+    }
+  }
+  &__label:hover,
+  &__label:hover &__svg {
+    fill: $colorPrimary_1;
+    color: $colorPrimary_1;
+  }
+  &__label:focus,
+  &__label:focus &__svg {
+    fill: $colorPrimary_1;
+    color: $colorPrimary_1;
+  }
+  &__label:focus-visible,
+  &__label:focus-visible &__svg {
+    fill: $colorPrimary_1;
+    color: $colorPrimary_1;
+  }
+  &__label:active,
+  &__label:active &__svg {
+    fill: $colorPrimary_1-dark;
+    color: $colorPrimary_1-dark;
+  }
+
+  &__svg {
+    @include transition(fill);
+    @include svgIcon;
+  }
 }

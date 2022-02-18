@@ -63,6 +63,7 @@
 .choozzie__option {
   margin: 0;
   padding: 0;
+  display: inline-block;
   background-color: transparent;
   border: none;
   font-family: inherit;
@@ -70,7 +71,9 @@
   font-size: inherit;
   cursor: pointer;
 }
-
+[data-choozzie_hidden="true"] {
+  display: none;
+}
 .choozzie__name,
 .choozzie__checkbox--hidden,
 .choozzie__checkbox {

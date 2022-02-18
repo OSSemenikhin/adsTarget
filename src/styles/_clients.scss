@@ -1,1 +1,29 @@
+.clients {
+  margin-bottom: 70px;
 
+  &__wrapper {
+    position: relative;
+  }
+
+  &__title {
+    margin-bottom: 50px;
+  }
+
+
+}
+.clients-slider {
+  max-width: 90%;
+
+  &__wrapper {
+    align-items: center;
+  }
+  &__link {
+    max-width: 100%;
+    max-height: 100%;
+    display: inline-block;
+  }
+  &__image {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}

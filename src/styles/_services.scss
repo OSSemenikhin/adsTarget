@@ -13,13 +13,21 @@
   &__item {
     position: relative;
     min-height: 250px;
-    padding-bottom: 95px;
+    padding-bottom: 105px;
     background-repeat: no-repeat;
     background-size: 35%;
     background-position: 100% 100%;
   }
+  &__title,
+  &__text,
+  &__button  {
+    margin-bottom: 20px;
+  }
+
   &__title {
     width: 95%;
+    color: $colorPrimary_1;
+    text-decoration: underline;
   }
   &__actions {
     position: absolute;
@@ -35,7 +43,6 @@
     @include buttonPrimary('2');
     height: 50px;
     font-size: 18px;
-    margin-bottom: 15px;
   }
   &__link {
     @include buttonPrimary('3');

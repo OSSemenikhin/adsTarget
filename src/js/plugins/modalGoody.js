@@ -12,6 +12,8 @@ class ModalGoody {
     this.isOpen = false;
     this.modalContainer = false;
     this.previosActiveElement = false;
+    this.typeInfo = false;
+    this.selectEl = false;
     this.focusElements = [
       'a[href]',
       'input',
@@ -31,10 +33,14 @@ class ModalGoody {
           let animation = clickedElement.dataset.goodyAnimation;
           let speed = clickedElement.dataset.goodySpeedIn;
           let speedOut = clickedElement.dataset.goodySpeedOut;
+          let typeInfo = clickedElement.dataset.modalType;
+          let select = clickedElement.dataset.modalSelect;
           this.animation = animation ?? 'fade';
           this.speed = speed ? parseInt(speed) : 300;
           this.speedOut = speedOut ? parseInt(speedOut) : 100;
           this.modalContainer = document.querySelector(`[data-goody-target="${target}"]`);
+          this.typeInfo = typeInfo ?? false;
+          this.select = select === "true" ? true : false;
           if (this.modalContainer) this.open();
           return;
         }

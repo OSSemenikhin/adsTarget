@@ -7,48 +7,18 @@ $colorLight: rgba(250,250,250);
 $colorLight_1: #e6e6e6;
 $colorLightOpacity: rgba(250,250,250,0.80);
 $colorDark: #080808;
+$colorDark_1: #222;
+$colorDark_1-opacity: rgba(34, 34, 34, 0.734);
+$colorGrey_1: rgba(232,232,232);
+$colorGrey_1-opacity: rgba(232,232,232,1);
 $colorPrimary_1: #d63772;
 $colorPrimary_1-light: #e98aad;
 $colorPrimary_1-dark: #962851;
 $colorPrimary_2: #1dcfc3;
 $colorPrimary_2-dark: #1ca39a;
 
-
-
-$colorBackWhite: #ffffff;
-$colorBackBlack: #333333;
-$colorBackLight: #f6f6f6;
-$colorBackLight1: #f7f7f7;
-$colorBackMdGrey: #eaeaea;
-$colorBackGrey: #999999;
-$colorBackGrey1: #666666;
-$colorPrimary: #a65cf0;
-$colorPrimaryLight: #c998fb;
-$colorPrimaryShade: #7033ac;
-$colorPrimaryBone: #f8efff;
-$colorPinkViolet: #ebd1ff;
-$colorPinkLight: #f8efff;
-$colorSecondary: #ff862f;
-$colorSecondaryLight: #ffbd59;
-$colorSecondaryBone: #fff5d1;
-$colorSecondaryShade: #bb370e;
-$colorLime: #DAFFD1;
-$colorBone: #FFF5D1;
-$colorSecondaryShade: #bb370e;
-$colorPromo: #d5b986;
-
-// LOGO
-$logoWidth: 187px;
-$logoHeight: 27px;
-
 // Container
 $containerWidth320: 92.5%;
 $containerWidth768: 81.25%;
 $containerWidth1024: 92.875%;
 $containerDesktop: 1200px;
-
-// containerPadding
-$containerPadding320: math.div(100% - $containerWidth320, 2);
-$containerPadding768: math.div(100% - $containerWidth768, 2);
-$containerPadding1024: math.div(100% - $containerWidth1024, 2);
-$containerPaddingDesktop: calc((100% - 1280px) / 2);

@@ -1,5 +1,48 @@
 include ../layout/mixins
 include ../layout/variables
+-
+  var responses = [
+    {
+      photo: '1.webp',
+      link: 'http://rukala.ru',
+      name: 'Евгений Калатушкин',
+      position: 'Частный SEO специалист',
+      response: 'Спасибо за приятное сотрудничество, индивидуальный подход и отличную работу! Приятным моментом является ценовая политика и внимание к мелочам. '
+    },
+    {
+      photo: '2.webp',
+      link: 'https://vk.com/bergdenis',
+      name: 'Денис Крейцберг',
+      position: 'Генеральный директор «Берг-туризм»',
+      response: 'Компания «Берг-туризм» благодарна за многолетнее сотрудничество., отличные результаты и качественную работу. Спасибо большое!'
+    },
+    {
+      photo: '3.webp',
+      link: 'https://vk.com/bergdenis',
+      name: 'Ирина Бурданова',
+      position: 'Маркетолог школы танца Каннон Данс',
+      response: 'Пришла к Александру Провоторову по рекомендации, после первой встречи сомнений не осталось, он настоящий профессионал! Александр подсказывает что нужно улучшить на страницах посадки, а то свой глаз уже замылился. В нише танцев клик получался от 10р, что очень радует. '
+    },
+  ];
 
-section.responses.container
-  h2.title Клиенты о нашей работе
+section.responses
+  h2.title.responses__title.container Клиенты о нашей работе
+  .responses__wrapper
+    .container
+      .responses-slider.swiper
+        .responses-slider__wrapper.swiper-wrapper
+          each item in responses
+            -var styles = "background-image: url(../img/responses/" + item.photo + ")";
+            .responses-slider__item.swiper-slide
+              .responses-slider__photo(style=styles)
+              .responses-slider__content
+                p.responses-slider__respose= item.response
+                a.responses-slider__link(href=item.link)= item.name
+                p.responses-slider__position= item.position
+        .responses-slider__pagination.swiper-pagination
+    button.responses-slider-buttons__prev(class='slider-buttons__prev')
+      svg.responses-slider-buttons__icon.slider-buttons__icon
+        use(xlink:href="img/svg/sprite.svg#arrow")
+    button.responses-slider-buttons__next(class='slider-buttons__next')
+      svg.responses-slider-buttons__icon.slider-buttons__icon
+        use(xlink:href="img/svg/sprite.svg#arrow")

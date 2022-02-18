@@ -1,4 +1,7 @@
 .team {
+  &__title {
+    margin-bottom: 30px;
+  }
   &__list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -6,7 +9,6 @@
     row-gap: 40px;
     list-style: none;
   }
-
   &__item {
     position: relative;
     min-height: 450px;
@@ -19,13 +21,11 @@
     opacity: 1;
     transform: translateY(0px);
   }
-
   &__gradient,
   &__text {
     $prop: opacity, transform;
     @include transition($prop);
   }
-
   &__gradient {
     position: absolute;
     top: 0;

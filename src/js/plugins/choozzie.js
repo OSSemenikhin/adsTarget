@@ -19,10 +19,12 @@ $$.choozzie = {
           current: num,*                                   --* current || placeholder
           placeholder: '',*                                --* current || placeholder
           icon: 'svg',*
+          currentHidden: true,
           dataSet: { data: '', value: '', },
           items: [
             {
               name: '',
+              secondName: '',
               dataSet: { data: '', value: '' },
               onClick: function,
             },
@@ -40,13 +42,17 @@ $$.choozzie = {
       ${itemDataSet} - for options.items.dataSet
       data-choozzie_value=${item.name}_${options.element} - for add options.items.onClick to addEventListener
       data-choozzie_target=${options.element} <> data-choozzie_current="${options.element}" - push data from target to current
-
-      METh
-
+      data-choozzie_hidden="true" - hide current option element
     */
     if(!options.hasOwnProperty('collapse')) options.collapse = true;
 
-    const createItem = (opt, ind, item) => {
+    const createItem = (opt, ind, item, sel = false) => {
+      const selected = sel
+        ? `aria-selected="true"`
+        : "";
+      const hideCurrent = sel
+        ? opt.currentHidden ? `data-choozzie_hidden="true"` : ""
+        : "";
       const itemDataSet = item.dataSet
         ? `data-${item.dataSet.data} = ${item.dataSet.value}`
         : "";
@@ -96,6 +102,7 @@ $$.choozzie = {
       } else {
         return /*html*/ `<li id=${opt.element}_${ind + 1}
                             class="${classNameItem} choozzie__item"
+                            ${hideCurrent}
                             >
                               <button class="${classNameOption} choozzie__option"
                                       ${itemDataSet}
@@ -103,6 +110,7 @@ $$.choozzie = {
                                       data-choozzie_value=${item.secondName ? item.secondName : item.name}_${opt.element}
                                       role="option"
                                       tabindex="-1"
+                                      ${selected}
                                     >
                                       ${item.name}
                               </button>
@@ -115,7 +123,11 @@ $$.choozzie = {
     const createItems = () => {
       let items = "";
       for (let i = 0; i < options.items.length; i++) {
-        items = items + createItem(options, i, options.items[i]);
+        if (options.current && options.current == (i + 1)) {
+          items = items + createItem(options, i, options.items[i], true);
+        } else {
+          items = items + createItem(options, i, options.items[i]);
+        }
       }
       return items;
     };
@@ -199,6 +211,7 @@ $$.choozzie = {
     }
     const choozzie = {
       opt: options,
+      wrapper: wrapper,
       button: wrapper.querySelector(`#${options.element}_button`),
       list: list,
 
@@ -236,12 +249,14 @@ $$.choozzie = {
         const checkSelected = wrapper.querySelector('[aria-selected="true"]');
         if (checkSelected) checkSelected.removeAttribute("aria-selected");
         element.setAttribute("aria-selected", "true");
+        if (choozzie.opt.currentHidden) {
+          const checkHidden = wrapper.querySelector('[data-choozzie_hidden="true"]');
+          checkHidden.removeAttribute("data-choozzie_hidden");
+          element.parentElement.setAttribute("data-choozzie_hidden", "true");
+        };
         const current = wrapper.querySelector(`[data-choozzie_current=${element.dataset.choozzie_target}]`);
         if (!choozzie.opt.holdPlaceholder) current.textContent = element.textContent.trim();
-        choozzie.list.setAttribute(
-          `aria-activedescendant`,
-          element.parentElement.id
-        );
+        choozzie.list.setAttribute(`aria-activedescendant`, element.parentElement.id);
       },
 
       reset(element) {
@@ -284,6 +299,16 @@ $$.choozzie = {
         choozzie.button.removeAttribute("aria-expanded");
         document.removeEventListener("click", choozzie.onClick);
         choozzie.state.open = false;
+      },
+
+      destroy() {
+        choozzie.button.removeEventListener("click", choozzie.open);
+        choozzie.button.removeEventListener("keydown", (e) => {
+          choozzie.onKey(e);
+        });
+        choozzie.list.removeEventListener("keydown", choozzie.onKey);
+        choozzie.wrapper.classList.remove('choozzie');
+        choozzie.wrapper.innerHTML = '';
       },
 
       focusItem(element) {
@@ -371,9 +396,7 @@ $$.choozzie = {
             else if (choozzie.state.open && !focused)
               choozzie.checkLastFocusedItem();
             else {
-              let newCurrent = document.getElementById(
-                choozzie.state.activeDescendant
-              );
+              let newCurrent = document.getElementById(choozzie.state.activeDescendant);
               newCurrent = newCurrent.nextElementSibling;
               if (newCurrent) {
                 choozzie.choseNewCurrent(newCurrent);
@@ -386,9 +409,7 @@ $$.choozzie = {
             else if (choozzie.state.open && !focused)
               choozzie.checkLastFocusedItem();
             else {
-              let newCurrent = document.getElementById(
-                choozzie.state.activeDescendant
-              );
+              let newCurrent = document.getElementById(choozzie.state.activeDescendant);
               newCurrent = newCurrent.previousSibling;
               if (newCurrent) {
                 choozzie.choseNewCurrent(newCurrent);

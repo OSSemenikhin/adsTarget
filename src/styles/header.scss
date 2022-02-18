@@ -16,9 +16,14 @@
   }
 }
 
+.header-logo,
+.header-tel {
+  width: 25%;
+}
+
 .header-nav {
+  width: 50%;
   padding-left: 50px;
-  flex-grow: 1;
 
   &__list {
     margin: 0;

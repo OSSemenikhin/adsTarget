@@ -13,6 +13,13 @@ html {
   box-sizing: inherit;
 }
 
+*:focus {
+  outline: none;
+}
+*:focus-visible {
+  outline: 2px solid $colorPrimary_2;
+}
+
 body {
   font-family: "Geometria", "Arial";
   color: $colorDark;
@@ -49,7 +56,7 @@ input {
   margin: 0;
 }
 
-.main-title {
+.title--hidden {
   height: 0;
   margin: 0;
   padding: 0;
@@ -80,8 +87,7 @@ input {
 
 .choozzie {
   &__list {
-    background-color: $colorBackWhite;
-    border: 2px solid $colorBackLight;
+    background-color: $colorLight;
   }
   &__button {
     padding: 0;
@@ -91,44 +97,65 @@ input {
 }
 
 .slider {
+  $horizontalStep: 2%;
   &-buttons {
-    position: absolute;
-    bottom: -59px;
-    left: 50%;
-    transform: translateX(-50%);
-    @media (min-width: 768px) {
-      position: absolute;
-      bottom: unset;
-      left: unset;
-      top: -3px;
-      right: -3px;
-      transform: translateX(0%);
-    }
-    @media (min-width: 768px) {
-      top: -6px;
-      right: -7px;
-    }
-    @media (min-width: 1300px) {
-      top: -4px;
-      right: -4px;
-    }
-
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
     &__prev,
     &__next {
-      width: 43px;
-      height: 43px;
-      color: $colorPrimary;
+      position: absolute;
+      top: 50%;
+      width: 60px;
+      height: 60px;
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid transparent;
       border-radius: 100%;
+      background-color: transparent;
+      color: $colorPrimary_2;
       fill: transparent;
-      stroke: $colorPrimary;
       stroke-width: 2px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+      transform: translateY(-50%);
+
+      &:hover {
+        background-color: $colorGrey_1-opacity;
+        color: $colorPrimary_1;
+      }
+      &:focus {
+        background-color: $colorGrey_1-opacity;
+        color: $colorPrimary_1;
+      }
+      &:active {
+        border-color: $colorPrimary_1;
+        background-color: $colorGrey_1;
+        color: $colorPrimary_1-dark;
+      }
     }
 
     &__prev {
-      transform: rotate(180deg);
+      left: $horizontalStep;
+
+      .slider-buttons__icon {
+        transform: rotate(180deg) translateX(2px);
+      }
+    }
+    &__next {
+      right: $horizontalStep;
+
+      .slider-buttons__icon {
+        transform: translateX(2px);
+      }
     }
     &__icon {
       @include svgIcon;
+      max-width: 50%;
+      max-height: 50%;
+      position: absolute;
     }
   }
 }
@@ -136,4 +163,8 @@ input {
 .swiper-button-disabled {
   filter: grayscale(100%);
   pointer-events: none;
+}
+.swiper-pagination-bullet,
+.swiper-pagination-bullet-active {
+  background: $colorDark_1;
 }

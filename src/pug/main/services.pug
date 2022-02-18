@@ -4,35 +4,37 @@ include ../layout/variables
 -
   var services = [
     {
-      title: 'Таргетированная реклама от 25тр',
+      title: 'Таргетированная реклама от 25 000₽',
       description: 'Во всех популярных социальных сетях: ВКонтакте, Facebook и Instagram',
       link: '#',
       icon: 'target.png',
       modal: 'target',
+      select: "true",
     },
     {
-      title: 'Контент, дизайн и ведение сообществ от 20тр',
+      title: 'Контент, дизайн и ведение сообществ от 20 000₽',
       description: 'Чтобы ваше сообщество в социальной сети работало на вас',
       link: '#',
       icon: 'content.png',
       modal: 'content',
+      select: "true",
     },
     {
-      title: 'Комплексное продвижение бренда от 50тр',
+      title: 'Комплексное продвижение бренда от 50 000₽',
       description: 'Когда нужно все и сразу',
       link: '#',
       icon: 'complex.png',
       modal: 'complex',
     },
     {
-      title: 'Консультация по настройке от 3тр',
+      title: 'Консультация по настройке от 3 000₽',
       description: '',
       link: '#',
       icon: 'sovet.png',
       modal: 'sovet',
     },
     {
-      title: 'Составление стратегии продвижения от 15тр',
+      title: 'Составление стратегии продвижения от 15 000₽',
       description: '',
       link: '#',
       icon: 'strateg.png',
@@ -58,6 +60,7 @@ include ../layout/variables
       link: '#',
       icon: 'context.png',
       modal: 'context',
+      select: "true",
     },
   ];
 
@@ -67,11 +70,12 @@ mixin serviceCard(item)
     h3.services__title= item.title
     p.services__text= item.description
     .services__actions
-      button.services__button(data-modal-type=item.modal data-goody-path="services" data-goody-animation="fadeInUp" data-goody-speed-in="300" data-goody-speed-out="300") Заказать
+      button.services__button(data-modal-select=item.select data-modal-type=item.modal data-goody-path="services" data-goody-animation="fadeInUp" data-goody-speed-in="300" data-goody-speed-out="300") Заказать
       br
       a.services__link(href=item.link) Узнать подробнее
 
 section.services.container
+  h2.title.title--hidden Наши услуги
   ul.services__list
     for item in services
        +serviceCard(item)
