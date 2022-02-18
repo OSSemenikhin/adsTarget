@@ -176,4 +176,39 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     });
   }
+
+  // BURGER
+  const burger = {
+    openState: false,
+    button: document.getElementById('burger'),
+    background: document.getElementById('burger_background'),
+    nav: document.getElementById('nav'),
+    icon: document.getElementById('burger_icon'),
+
+    open() {
+      [
+        this.button,
+        this.background,
+        this.nav,
+        this.icon,
+      ].forEach(element => element.classList.add('open'));
+      this.openState = true;
+      document.body.classList.add('disable-scroll');
+    },
+    close() {
+      [
+        this.button,
+        this.background,
+        this.nav,
+        this.icon,
+      ].forEach(element => element.classList.remove('open'));
+      this.openState = false;
+      document.body.classList.remove('disable-scroll');
+    },
+  };
+
+  burger.button.addEventListener('click', e => {
+    if (burger.openState) burger.close();
+    else burger.open();
+  });
 });

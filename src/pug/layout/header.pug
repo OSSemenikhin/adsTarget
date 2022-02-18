@@ -5,26 +5,43 @@ include variables
   var navListItems = [
     {name: 'Услуги', href: '#',},
     {name: 'Кейсы', href: '/cases',},
+    {name: 'Клиенты', href: '#', mod: 'hidden-desktop'},
     {name: 'Отзывы', href: '#',},
+    {name: 'Команда', href: '#', mod: 'hidden-desktop'},
     {name: 'Брифы', href: '/brief',},
   ];
 
 
 mixin headerLinkItem(obj, className)
+  - var classNameItem = 'header-' + className + '__item'
+  if obj.mod
+    - var classNameMod = ' ' + classNameItem + '--' + obj.mod;
+  else
+    - var classNameMod = '';
   -
-    var classNameItem = 'header-' + className + '__item';
+    var classNameItemFull = 'header-' + className + '__item' + classNameMod;
     var classNameLink = 'header-' + className + '__link';
-  li(class=classNameItem)
+
+
+
+  li(class=classNameItemFull)
     a(class=classNameLink, href= obj.href)= obj.name
 
 
 header.header.fix-block
   .header__wrapper
     +logo('header')
-    nav.header-nav
-      ul.header-nav__list
-        for link in navListItems
-          +headerLinkItem(link, 'nav')
+    .header-burger#burger
+      .header-burger__background#burger_background
+      button.header-burger__button
+        span.header-burger__icon#burger_icon
+    .header-nav#nav
+      nav.header-nav__nav
+        ul.header-nav__list
+          for link in navListItems
+            +headerLinkItem(link, 'nav')
+      .header-nav__socials
+        include socials
     .header-tel
       a.header-tel__link(href="tel:+7 (812) 956–42–99") +7 (812) 956–42–99
       button.header-tel__button(data-goody-path="call" data-goody-animation="fadeInUp" data-goody-speed-in="300" data-goody-speed-out="300") Заказать звонок

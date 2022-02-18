@@ -13,32 +13,4 @@
     text-align: center;
   }
 }
-.footer-socials {
-  display: flex;
-  list-style: none;
 
-  &__link {
-    width: 60px;
-    height: 40px;
-    padding: 5px 15px;
-    display: inline-block;
-  }
-  &__link:hover >  &__icon {
-    fill: $colorPrimary_1;
-  }
-  &__link:focus >  &__icon {
-    outline: none;
-    fill: $colorPrimary_1;
-  }
-  &__link:focus-visible >  &__icon {
-    outline: none;
-    fill: $colorPrimary_1;
-  }
-  &__link:active >  &__icon {
-    fill: $colorPrimary_1-dark;
-  }
-  &__icon {
-    @include transition(fill);
-    @include svgIcon;
-  }
-}
