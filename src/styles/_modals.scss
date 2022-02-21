@@ -1,4 +1,8 @@
 .modal {
+
+  &__container {
+    max-width: 90%;
+  }
   &__header {
     position: absolute;
     top: 20px;
@@ -96,10 +100,16 @@
 $servicesInputHeight: 50px;
 $servicesInputborder: 1px solid #000;
 $servicesInputborderRadius: 10px;
+@media(max-width: 768px) {
+  $servicesInputHeight: min-content;
+}
 
 .modal-services{
   &__content {
     padding: 60px;
+    @media(max-width:1024px) {
+      padding: 35px;
+    }
   }
   &__form {
     display: flex;
@@ -110,6 +120,12 @@ $servicesInputborderRadius: 10px;
     width: 100%;
     padding-bottom: 15px;
     font-weight: 600;
+    @media(max-width:1024px) {
+      padding-bottom: 10px;
+    }
+    @media(max-width:768px) {
+      font-size: 12px;
+    }
   }
   &__input {
     width: 100%;
@@ -123,6 +139,9 @@ $servicesInputborderRadius: 10px;
     &--textarea {
       height: 135px;
       resize: none;
+      @media(max-width:768px) {
+        height: 90px;
+      }
     }
     &::placeholder {
       font-family: "Geometria", "Arial";
@@ -135,6 +154,10 @@ $servicesInputborderRadius: 10px;
     @include buttonPrimary('2');
     padding: 20px;
     font-size: 16px;
+    @media(max-width: 768px) {
+      padding: 10px;
+      font-size: 12px;
+    }
   }
 }
 
@@ -149,6 +172,12 @@ $servicesInputborderRadius: 10px;
 .modal-services-select {
   width: 100%;
   margin-bottom: 25px;
+  @media(max-width:1024px) {
+    padding-bottom: 15px;
+  }
+  @media(max-width:768px) {
+    padding-bottom: 0px;
+  }
 
   $paddingHorizont: 10px;
   &__header {
@@ -156,6 +185,11 @@ $servicesInputborderRadius: 10px;
     padding: 15px $paddingHorizont;
     border: $servicesInputborder;
     border-radius: $servicesInputborderRadius;
+    @media(max-width:768px) {
+      padding: 8px $paddingHorizont;
+      padding-right: 50px;
+      font-size: 12px;
+    }
   }
   &__icon {
     position: absolute;
@@ -198,11 +232,17 @@ $servicesInputborderRadius: 10px;
 
 .modal-services-socials {
   margin-bottom: 50px;
+  @media(max-width:1024px) {
+    margin-bottom: 0px;
+  }
 
   &__title {
     width: 100%;
     padding-bottom: 15px;
     font-weight: 600;
+    @media(max-width: 768px) {
+      font-size: 12px;
+    }
   }
   &__wrapper {
     display: flex;
@@ -219,6 +259,15 @@ $servicesInputborderRadius: 10px;
     align-items: center;
     text-align: center;
     cursor: pointer;
+    @media(max-width:1024px) {
+      width: 60px;
+      height: 60px;
+    }
+    @media(max-width:768px) {
+      width: 50px;
+      height: 50px;
+      font-size: 12px;
+    }
   }
   &__input {
     opacity: 0;
@@ -232,6 +281,16 @@ $servicesInputborderRadius: 10px;
     width: 50px;
     height: 50px;
     margin-bottom: 15px;
+    @media(max-width:1024px) {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 0px;
+    }
+    @media(max-width: 768px) {
+      width: 35px;
+      height: 35px;
+      margin-bottom: 0px;
+    }
 
     &::before,
     &::after {

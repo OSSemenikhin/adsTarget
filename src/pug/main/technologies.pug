@@ -43,7 +43,7 @@ section.technologies
       .technologies-slider.swiper
         .technologies-slider__wrapper.swiper-wrapper
           each card in cards
-            - var src = "../img/technologies/" + card.image;
+            - var src = "./img/technologies/" + card.image;
             .technologies-slider__item.swiper-slide
               a.technologies-slider__link(href=card.link)
                 img.technologies-slider__image(src=src, alt=card.alt)

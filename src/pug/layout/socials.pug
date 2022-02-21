@@ -15,7 +15,7 @@
   ];
 
 mixin socLink(obj)
-  -var path = 'img/svg/sprite.svg#' + obj.id;
+  -var path = './img/svg/sprite.svg#' + obj.id;
   a.socials__link(href=obj.link)
     svg.socials__icon
       use(xlink:href=path)

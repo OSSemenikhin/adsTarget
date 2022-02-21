@@ -24,6 +24,7 @@ include ../layout/variables
       response: 'Пришла к Александру Провоторову по рекомендации, после первой встречи сомнений не осталось, он настоящий профессионал! Александр подсказывает что нужно улучшить на страницах посадки, а то свой глаз уже замылился. В нише танцев клик получался от 10р, что очень радует. '
     },
   ];
+  ind = 0;
 
 section.responses
   h2.title.responses__title.container Клиенты о нашей работе
@@ -32,9 +33,11 @@ section.responses
       .responses-slider.swiper
         .responses-slider__wrapper.swiper-wrapper
           each item in responses
-            -var styles = "background-image: url(../img/responses/" + item.photo + ")";
+            - var styles = "background-image: url(./img/responses/" + item.photo + ")";
+            - ind++;
+            - var classIndex = "responses-slider__photo--" + ind;
             .responses-slider__item.swiper-slide
-              .responses-slider__photo(style=styles)
+              .responses-slider__photo(class=classIndex style=styles)
               .responses-slider__content
                 p.responses-slider__respose= item.response
                 a.responses-slider__link(href=item.link)= item.name

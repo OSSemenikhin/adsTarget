@@ -16,8 +16,8 @@ mixin logo(blockClass, mod)
 
 mixin picture(obj, ind, type, ariaHidden = false)
   -
-    var pathWebp= obj.path + obj.name + '.webp';
-    var pathImg = obj.path + obj.name + '.' + type;
+    var pathWebp= '.' + obj.path + obj.name + '.webp';
+    var pathImg = '.' + obj.path + obj.name + '.' + type;
     var pathImgSet = '';
 
   if ind != ''
@@ -39,7 +39,7 @@ mixin picture(obj, ind, type, ariaHidden = false)
         for w in obj.breakPoints
           -
             var name = obj.name + '_' + w;
-            var pathWebp = obj.path + name + '.webp';
+            var pathWebp = '.' + obj.path + name + '.webp';
             var minWidth = '(max-width: ' + w + 'px)';
 
           source(srcset=pathWebp type="image/webp" media=minWidth)
@@ -54,7 +54,7 @@ mixin picture(obj, ind, type, ariaHidden = false)
         for w in obj.breakPoints
           -
             var name = obj.name + '_' + w;
-            var pathWebp = obj.path + name + '.webp';
+            var pathWebp = '.' + obj.path + name + '.webp';
             var minWidth = '(max-width: ' + w + 'px)';
 
           source(srcset=pathWebp type="image/webp" media=minWidth)
