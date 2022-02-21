@@ -40,7 +40,7 @@ mixin picture(obj, ind, type, ariaHidden = false)
           -
             var name = obj.name + '_' + w;
             var pathWebp = obj.path + name + '.webp';
-            var minWidth = '(min-width: ' + w + 'px)';
+            var minWidth = '(max-width: ' + w + 'px)';
 
           source(srcset=pathWebp type="image/webp" media=minWidth)
       source(srcset=pathWebp type="image/webp")
@@ -55,7 +55,7 @@ mixin picture(obj, ind, type, ariaHidden = false)
           -
             var name = obj.name + '_' + w;
             var pathWebp = obj.path + name + '.webp';
-            var minWidth = '(min-width: ' + w + 'px)';
+            var minWidth = '(max-width: ' + w + 'px)';
 
           source(srcset=pathWebp type="image/webp" media=minWidth)
       source(srcset=pathWebp type="image/webp")

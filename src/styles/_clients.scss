@@ -3,6 +3,11 @@
 
   &__wrapper {
     position: relative;
+    & .container {
+      @media(max-width: 512px) {
+        padding-top: 30px;
+      }
+    }
   }
 
   &__title {
@@ -11,4 +16,12 @@
 }
 .clients-slider {
   @include logoSlider;
+  &-buttons {
+    &__prev,
+    &__next {
+      @media(max-width: 512px) {
+        top: 0%;
+      }
+    }
+  }
 }

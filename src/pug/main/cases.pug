@@ -34,7 +34,7 @@ mixin caseItem(item, ind)
     p.cases__text= item.description
 
 section.cases.container
-  h2.title Наши кейсы
+  h2.title.cases__title Наши кейсы
   .cases__list
     -var ind = 0;
     for item in cases

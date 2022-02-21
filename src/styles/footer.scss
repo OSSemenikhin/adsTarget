@@ -7,10 +7,15 @@
   align-items: center;
   background-color: $colorLightOpacity;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
+  overflow: hidden;
 
   &__copyright {
     flex-grow: 1;
     text-align: center;
+  }
+  @media(max-width: 512px) {
+    flex-direction: column;
+    gap: 10px;
   }
 }
 

@@ -1,78 +1,121 @@
 include ../layout/mixins
 include ../layout/variables
 
+//-  IMAGES WIDTH
+//- > 1300 285
+//- 1300 400
+//- 1024 470
+//- 768 310
+//- 512 470
+
+
 -
+  var breakPoints = [
+    512,
+    768,
+    1024,
+    1300,
+  ];
   var teamData = [
     {
       name: 'Александр',
       position: 'Основатель',
       photo: 'img-26',
-      alt: 'Основатель Александр'
+      alt: 'Основатель Александр',
+      breakPoints: breakPoints,
     },
     {
       name: 'Мария',
       position: 'Ведущий таргетолог',
       photo: 'img-16',
-      alt: 'Ведущий таргетолог Мария'
+      alt: 'Ведущий таргетолог Мария',
+      breakPoints: breakPoints,
     },
     {
       name: 'Дарья',
       position: 'Таргетолог',
       photo: 'img-00',
-      alt: 'Таргетолог Дарья'
+      alt: 'Таргетолог Дарья',
+      breakPoints: breakPoints,
     },
     {
       name: 'Марк',
       position: 'Таргетолог',
       photo: 'img-08',
-      alt: 'Таргетолог Марк'
+      alt: 'Таргетолог Марк',
+      breakPoints: breakPoints,
     },
     {
       name: 'Надежда',
       position: 'Старший контент-менеджер',
       photo: 'img-31',
-      alt: 'Старший контент-менеджер Надежда'
+      alt: 'Старший контент-менеджер Надежда',
+      breakPoints: breakPoints,
     },
     {
       name: 'Сергей',
       position: 'Таргетолог',
       photo: 'img-21',
-      alt: 'Таргетолог Сергей'
+      alt: 'Таргетолог Сергей',
+      breakPoints: breakPoints,
     },
     {
       name: 'Алена',
       position: 'Аккаунт Менеджер',
       photo: 'img-15',
-      alt: 'Аккаунт Менеджер Алена'
+      alt: 'Аккаунт Менеджер Алена',
+      breakPoints: breakPoints,
     },
     {
       name: 'Маректолог',
       position: 'Маректолог',
       photo: 'img-03',
-      alt: 'Маректолог Маректолог'
+      alt: 'Маректолог Маректолог',
+      breakPoints: breakPoints,
     }
   ]
 
-mixin teamItem(item)
+mixin teamItem(item, type = 0)
   -
     var pic = {
       name: item.photo,
       classNamePicture: 'team__picture',
       classNameImg: 'team__img',
       path: '/img/team/',
-      alt: item.alt ? item.alt : ''
+      alt: item.alt ? item.alt : '',
+      breakPoints: item.breakPoints,
     }
     var bg = 'background-image: url(/img/team/' + item.photo + '.webp)'
 
-  li.team__item(style=bg)
-    .team__gradient
-    .team__text
-      h4.team__name= item.name
-      p.team__position= item.position
-    //- +picture(pic, '', 'jpg')
+  if type = 0
+    li.team__item
+      .team__gradient
+      .team__text
+        h4.team__name= item.name
+        p.team__position= item.position
+      +picture(pic, '', 'jpg')
+  else if type = 1
+    .team__item
+      .team__gradient
+      .team__text
+        h4.team__name= item.name
+        p.team__position= item.position
+      +picture(pic, '', 'jpg')
 
 section.team.container
   h2.title.team__title Наша команда
-  ul.team__list
+  ul.team__list.team__list--desktop
     for item in teamData
       +teamItem(item)
+  .team__wrapper.team__wrapper--mobile
+    .team-slider.swiper
+      .team-slider__wrapper.swiper-wrapper
+        each item in teamData
+          .team-slider__item.swiper-slide
+            +teamItem(item, 1)
+    button.team-slider-buttons__prev(class='slider-buttons__prev')
+      svg.team-slider-buttons__icon.slider-buttons__icon
+        use(xlink:href="img/svg/sprite.svg#arrow")
+    button.team-slider-buttons__next(class='slider-buttons__next')
+      svg.team-slider-buttons__icon.slider-buttons__icon
+        use(xlink:href="img/svg/sprite.svg#arrow")

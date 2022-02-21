@@ -10,50 +10,133 @@
     column-gap: 20px;
     row-gap: 40px;
     list-style: none;
+    @media(max-width: 1300px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media(max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media(max-width: 512px) {
+      display: none;
+    }
+  }
+  &__wrapper {
+    position: relative;
+    display: none;
+
+    @media(max-width: 512px) {
+      padding-top: 80px;
+      display: block;
+    }
   }
   &__item {
     position: relative;
-    min-height: 450px;
-    background-repeat: no-repeat;
-    background-size: 120% 100%;
-    background-position: center;
+    text-align: center;
   }
-  &__item:hover > &__gradient,
-  &__item:hover > &__text {
+  &__item:hover &__gradient {
+    opacity: 1;
+  }
+  &__item:hover &__text {
     opacity: 1;
     transform: translateY(0px);
   }
-  &__gradient,
-  &__text {
-    $prop: opacity, transform;
-    @include transition($prop);
-  }
   &__gradient {
+    @include transition(opacity);
     position: absolute;
     top: 0;
-    left: 0;
+    left: 50%;
     width: 100%;
     height: 100%;
     background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.7));
     opacity: 0;
+    transform: translatex(-50%);
+    pointer-events: none;
+
+    // @media(max-width: 1024px) {
+    //   width: 300px;
+    // }
+    // @media(max-width: 768px) {
+    //   width: 280px;
+    // }
+    // @media(max-width: 512px) {
+    //   width: 100%;
+    // }
+  }
+  &__gradient,
+  &__text {
+    @media(max-width: 1300px) {
+      opacity: 1;
+    }
   }
   &__text {
+    $prop: opacity, transform;
+    @include transition($prop);
     position: absolute;
     bottom: 35px;
     padding: 0 40px;
     color: $colorLight;
+    text-align: left;
     opacity: 0;
     transform: translateY(40px);
+    @media(max-width: 1300px) {
+      padding: 0 20px;
+      bottom: 20px;
+      opacity: 1;
+      transform: translateY(0px);
+    }
   }
   &__name {
     margin-bottom: 10px;
     font-size: 20px;
     font-weight: 600;
     line-height: 1.35;
+    @media(max-width: 1300px) {
+      font-size: 16px;
+    }
   }
   &__position {
     font-size: 14px;
     line-height: 1.55;
     font-weight: 400;
+    @media(max-width: 1300px) {
+      font-size: 12px;
+    }
+  }
+  &__gradient,
+  &__text,
+  &__name,
+  &__position {
+    z-index: 1;
+  }
+  &__picture {
+    width: 100%;
+  }
+  &__img {
+    width: 100%;
+    position: relative;
+    bottom: -6px;
+  }
+}
+.team-slider {
+  height: min-content;
+
+  &-buttons {
+    $horizontalStep: 50%;
+    $verticalTranslate: 10px;
+    $translateNext: calc(50% + 30px);
+    $translatePrev: calc(-50% - 30px);
+    &__next,
+    &__prev {
+      top: 0;
+    }
+    &__next {
+      right: $horizontalStep;
+      transform: translateY($verticalTranslate) translateX($translateNext);
+
+    }
+    &__prev {
+      left: $horizontalStep;
+      transform: translateY($verticalTranslate) translateX($translatePrev);
+    }
   }
 }

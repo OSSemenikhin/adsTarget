@@ -4,7 +4,8 @@ include ../layout/variables
 -
   var services = [
     {
-      title: 'Таргетированная реклама от 25 000₽',
+      title: 'Таргетированная реклама ',
+      price: 'от 25 000₽',
       description: 'Во всех популярных социальных сетях: ВКонтакте, Facebook и Instagram',
       link: '#',
       icon: 'target.png',
@@ -12,7 +13,8 @@ include ../layout/variables
       select: "true",
     },
     {
-      title: 'Контент, дизайн и ведение сообществ от 20 000₽',
+      title: 'Контент, дизайн и ведение сообществ ',
+      price: 'от 20 000₽',
       description: 'Чтобы ваше сообщество в социальной сети работало на вас',
       link: '#',
       icon: 'content.png',
@@ -20,42 +22,48 @@ include ../layout/variables
       select: "true",
     },
     {
-      title: 'Комплексное продвижение бренда от 50 000₽',
+      title: 'Комплексное продвижение бренда ',
+      price: 'от 50 000₽',
       description: 'Когда нужно все и сразу',
       link: '#',
       icon: 'complex.png',
       modal: 'complex',
     },
     {
-      title: 'Консультация по настройке от 3 000₽',
+      title: 'Консультация по настройке ',
+      price: 'от 3 000₽',
       description: '',
       link: '#',
       icon: 'sovet.png',
       modal: 'sovet',
     },
     {
-      title: 'Составление стратегии продвижения от 15 000₽',
+      title: 'Составление стратегии продвижения ',
+      price: 'от 15 000₽',
       description: '',
       link: '#',
       icon: 'strateg.png',
       modal: 'strateg',
     },
     {
-      title: 'Programmatic',
+      title: 'Programmatic ',
       description: 'Автоматизированная медийная реклама по демографическим и социальным признакам',
+      price: '',
       link: '#',
       icon: 'programmatic.png',
       modal: 'programmatic',
     },
     {
-      title: 'Создания лендингов и сайтов',
+      title: 'Создания лендингов и сайтов ',
+      price: '',
       description: '',
       link: '#',
       icon: 'lending.png',
       modal: 'lending',
     },
     {
-      title: 'Контекстная реклама',
+      title: 'Контекстная реклама ',
+      price: '',
       description: 'Целевые посетители для вашего сайта из Яндекс.Директ и Google Ads',
       link: '#',
       icon: 'context.png',
@@ -68,6 +76,7 @@ mixin serviceCard(item)
   -var bg = "background-image: url(./img/services/" + item.icon;
   li.services__item(style=bg)
     h3.services__title= item.title
+      span.services__price= item.price
     p.services__text= item.description
     .services__actions
       button.services__button(data-modal-select=item.select data-modal-type=item.modal data-goody-path="services" data-goody-animation="fadeInUp" data-goody-speed-in="300" data-goody-speed-out="300") Заказать

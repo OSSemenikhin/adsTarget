@@ -1,11 +1,51 @@
 .technologies {
-  margin-bottom: 70px;
+  padding-bottom: 80px;
+  @media(max-width: 768px) {
+    padding-bottom: 40px;
+  }
+  @media(max-width: 512px) {
+    padding-bottom: 50px;
+  }
 
   &__wrapper {
     position: relative;
+    @media(max-width: 1300px) {
+      .container {
+        padding: 0 30px;
+      }
+    }
+    @media(max-width: 512px) {
+      padding-bottom: 70px;
+
+      .container {
+        padding: 0 0px;
+      }
+    }
   }
 }
 
 .technologies-slider {
   @include logoSlider;
+
+  @media(max-width: 512px) {
+    &-buttons {
+      $horizontalStep: 50%;
+      $verticalTranslate: 10px;
+      $translateNext: calc(50% + 30px);
+      $translatePrev: calc(-50% - 30px);
+      &__next,
+      &__prev {
+        bottom: 0;
+      }
+      &__next {
+        right: $horizontalStep;
+        transform: translateY($verticalTranslate) translateX($translateNext);
+
+      }
+      &__prev {
+        left: $horizontalStep;
+        transform: translateY($verticalTranslate) translateX($translatePrev);
+      }
+    }
+  }
 }

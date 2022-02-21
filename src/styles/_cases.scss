@@ -1,18 +1,32 @@
 .cases {
   margin-bottom: 120px;
 
+  // &__title {
+  //   margin-bottom: 20px;
+  // }
+
   &__list {
     margin-bottom: 50px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: 20px;
+    @media(max-width: 1024px) {
+      grid-template-columns: repeat(1, 1fr);
+      row-gap: 20px;
+    }
   }
   &__item {
     position: relative;
     max-width: 100%;
-    min-height: 400px;
-    padding-top: 420px;
+    padding-top: 40px;
     overflow: hidden;
+    @media(max-width:1024px) {
+      max-width: 70%;
+      margin: 0 auto;
+    }
+    @media(max-width: 768px) {
+      max-width: 100%;
+    }
   }
   &__link {
     position: absolute;
@@ -28,20 +42,20 @@
     }
   }
   &__image {
-    position: absolute;
-    top: 30px;
+    // top: 30px;
     transition-property: transform;
     transition-timing-function: ease-in-out;
     transition-duration: 0.5s;
 
     &--1 {
-      width: 107%;
+      width: 98%;
+      right: 2%;
     }
 
     &--2,
     &--3 {
-      width: 145%;
-      right: -25%;
+      width: 100%;
+      margin-bottom: 30px;
     }
   }
   &__title,

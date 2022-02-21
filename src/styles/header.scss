@@ -2,6 +2,8 @@
 @import "mixins";
 @import "variables";
 
+$burgerTransition: 0.3s;
+
 .header {
   position: fixed;
   width: 100%;
@@ -17,6 +19,7 @@
 }
 
 .header-burger {
+
   display: none;
 
   &__background {
@@ -26,9 +29,9 @@
     width: 100vw;
     height: 100vh;
     background-color: $colorLightOpacity;
-    // background-color: rgba(255, 255, 255, 0.4);
     opacity: 0;
     visibility: hidden;
+    transition: opacity $burgerTransition, visibility $burgerTransition;
     z-index: 1;
   }
 
@@ -45,28 +48,36 @@
     z-index: 3;
 
   }
-  &__button:hover > &__icon,
-  &__button:hover > &__icon::before,
-  &__button:hover > &__icon::after {
-    border-color: $colorPrimary_1;
-  }
-  &__button:focus-visible > &__icon,
-  &__button:focus-visible > &__icon::before,
-  &__button:focus-visible > &__icon::after {
-    border-color: $colorPrimary_1;
-  }
-  &__button:active > &__icon,
-  &__button:active > &__icon::before,
-  &__button:active > &__icon::after {
-    border-color: $colorPrimary_1-dark;
-  }
-  &__button:hover > &__icon.open,
-  &__button:focus > &__icon.open,
-  &__button:focus-visible > &__icon.open,
-  &__button:active > &__icon.open {
-    border-color: transparent;
-  }
+  // &__button:hover > &__icon,
+  // &__button:hover > &__icon::before,
+  // &__button:hover > &__icon::after {
+  //   border-color: $colorPrimary_1;
+  //   // @media(max-width: 1024px) {
+  //   //   border-color: $colorDark;
+  //   // }
+  // }
+  // &__button:focus-visible > &__icon,
+  // &__button:focus-visible > &__icon::before,
+  // &__button:focus-visible > &__icon::after {
+  //   border-color: $colorPrimary_1;
+  //   @media(max-width: 1024px) {
+  //     border-color: $colorDark;
+  //   }
+  // }
+  // &__button:active > &__icon,
+  // &__button:active > &__icon::before,
+  // &__button:active > &__icon::before,
+  // &__button:active > &__icon::after {
+  //   border-color: $colorPrimary_1-dark;
+  // }
+  // &__button:hover > &__icon.open,
+  // &__button:focus > &__icon.open,
+  // &__button:focus-visible > &__icon.open,
+  // &__button:active > &__icon.open {
+  //   border-color: transparent;
+  // }
   &__icon {
+    $transitionSpeed: $burgerTransition;
     $borderWidth: 3px;
     position: relative;
     width: 90%;
@@ -90,7 +101,7 @@
     &::before,
     &::after {
       border-bottom: $borderWidth solid $colorDark;
-      transition: border-color 0.2s, opacity 0.2s, transform 0.2s;
+      transition: border $transitionSpeed, opacity $transitionSpeed, transform $transitionSpeed;
     }
 
     &.open {
@@ -102,6 +113,12 @@
       &::after {
         transform: rotate(45deg);
       }
+    }
+
+    &--active,
+    &--active::before,
+    &--active::after {
+      border-color: $colorPrimary_1;
     }
   }
 }
@@ -183,7 +200,7 @@
     background-color: $colorLight;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    transition: opacity $burgerTransition, visibility $burgerTransition, transform $burgerTransition;
     transform: translateX(300px);
     z-index: 2;
 
@@ -210,8 +227,16 @@
     }
     &__socials {
       position: absolute;
-      bottom: 30px;
+      bottom: 60px;
       display: block;
+    }
+  }
+}
+@media (max-width: 512px) {
+  .header {
+
+    &__wrapper {
+      padding: 15px 20px;
     }
   }
 }

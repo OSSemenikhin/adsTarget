@@ -112,7 +112,7 @@ include ../layout/variables
       image: 'nord.webp',
       link: '#',
       alt: 'logo торгово-развлекательный комплекс nord'
-    }
+    },
   ];
 
 section.clients
@@ -126,9 +126,9 @@ section.clients
             .clients-slider__item.swiper-slide
               a.clients-slider__link(href=card.link)
                 img.clients-slider__image(src=src, alt=card.alt)
-    button.clients-slider-buttons__prev(class='slider-buttons__prev')
+    button.clients-slider-buttons__prev.slider-buttons__prev
       svg.clients-slider-buttons__icon.slider-buttons__icon
         use(xlink:href="img/svg/sprite.svg#arrow")
-    button.clients-slider-buttons__next(class='slider-buttons__next')
+    button.clients-slider-buttons__next.slider-buttons__next
       svg.clients-slider-buttons__icon.slider-buttons__icon
         use(xlink:href="img/svg/sprite.svg#arrow")

@@ -88,27 +88,39 @@ document.addEventListener("DOMContentLoaded", () => {
         nextEl: ".clients-slider-buttons__next",
       },
       a11y: ariaButtonsSwiperMessage,
-      loop: true,
-
 
       breakpoints: {
-        768: {
+        320: {
           slidesPerView: 2,
-          spaceBetween: 30,
+          slidesPerGroup: 2,
+          spaceBetween: 20,
+          loop: false,
+          grid: {
+            rows: 2,
+            fill: 'row',
+          },
         },
         1024: {
           slidesPerView: 3,
+          slidesPerGroup: 3,
           spaceBetween: 33,
+          loop: false,
+          grid: {
+            rows: 2,
+            fill: 'row',
+          },
         },
         1300: {
           slidesPerView: 5,
           slidesPerGroup: 5,
           spaceBetween: 33,
+          loop: true,
         },
         1400: {
           slidesPerView: 6,
           slidesPerGroup: 6,
           spaceBetween: 33,
+          loop: true,
         },
       },
     });
@@ -120,6 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
       loop: true,
       slidesPerView: 1,
       slidesPerGroup: 1,
+      autoHeight: false,
       navigation: {
         prevEl: ".responses-slider-buttons__prev",
         nextEl: ".responses-slider-buttons__next",
@@ -129,27 +142,23 @@ document.addEventListener("DOMContentLoaded", () => {
         type: 'bullets',
         clickable: true,
       },
-      // breakpoints: {
-      //   768: {
-      //     slidesPerView: 2,
-      //     spaceBetween: 30,
-      //   },
-      //   1024: {
-      //     slidesPerView: 3,
-      //     spaceBetween: 33,
-      //   },
-      //   1300: {
-      //     slidesPerView: 5,
-      //     slidesPerGroup: 5,
-      //     spaceBetween: 33,
-      //   },
-      // },
+      breakpoints: {
+        320: {
+          autoHeight: true,
+        },
+        768: {
+          autoHeight: false,
+        },
+      },
     });
   }
   if (document.querySelector(".technologies-slider")) {
     const technologiesSlider = new Swiper(".technologies-slider", {
       a11y: ariaButtonsSwiperMessage,
       loop: true,
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      spaceBetween: 15,
       navigation: {
         prevEl: ".technologies-slider-buttons__prev",
         nextEl: ".technologies-slider-buttons__next",
@@ -157,10 +166,12 @@ document.addEventListener("DOMContentLoaded", () => {
       breakpoints: {
         768: {
           slidesPerView: 2,
+          slidesPerGroup: 2,
           spaceBetween: 30,
         },
         1024: {
           slidesPerView: 3,
+          slidesPerGroup: 3,
           spaceBetween: 33,
         },
         1300: {
@@ -173,6 +184,18 @@ document.addEventListener("DOMContentLoaded", () => {
           slidesPerGroup: 6,
           spaceBetween: 33,
         },
+      },
+    });
+  }
+  if (document.querySelector(".team-slider")) {
+    const teamSlider = new Swiper(".team-slider", {
+      a11y: ariaButtonsSwiperMessage,
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 0,
+      navigation: {
+        prevEl: ".team-slider-buttons__prev",
+        nextEl: ".team-slider-buttons__next",
       },
     });
   }
@@ -205,10 +228,19 @@ document.addEventListener("DOMContentLoaded", () => {
       this.openState = false;
       document.body.classList.remove('disable-scroll');
     },
-  };
-
-  burger.button.addEventListener('click', e => {
-    if (burger.openState) burger.close();
-    else burger.open();
-  });
+    addListeners() {
+      this.button.addEventListener('click', e => {
+        if (this.openState) this.close();
+        else this.open();
+      });
+      this.button.addEventListener('touchstart', e => {
+        this.icon.classList.add('header-burger__icon--active');
+      });
+      this.button.addEventListener('touchend', e => {
+        this.icon.classList.add('header-burger__icon--time');
+        setTimeout(() => this.icon.classList.remove('header-burger__icon--active'), 150);
+      });
+    }
+  }
+  burger.addListeners();
 });
