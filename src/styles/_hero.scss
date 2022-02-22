@@ -102,6 +102,7 @@
       font-size: 40px;
     }
     @media (max-width: 512px) {
+      max-width: 100%;
       font-size: 26px;
     }
   }
@@ -118,8 +119,8 @@
     @media (max-width: 768px) {
       max-width: 455px;
     }
-    @media (max-width: 768px) {
-      max-width: 333px;
+    @media (max-width: 512px) {
+      max-width: 100%;
       font-size: 16px;
     }
   }

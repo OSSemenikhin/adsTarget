@@ -35,6 +35,9 @@ const assetsFolder = './src/assets';
 const watchFolder = './src/**/*.*';
 
 
+const backgroundFeedback = './src/assets/img/feedback/background.svg';
+
+
 const path = {
   dev: {
     html: devFolder + '/',
@@ -44,6 +47,7 @@ const path = {
     svg: devFolder + '/img/svg/',
     fonts: devFolder + '/fonts/',
     favicon: devFolder + '/favicon/',
+    bgFeedback: devFolder + '/img/feedback/',
   },
   dist: {
     html: distFolder + '/',
@@ -53,6 +57,7 @@ const path = {
     svg: distFolder + '/img/svg/',
     fonts: distFolder + '/fonts/',
     favicon: distFolder + '/favicon/',
+    bgFeedback: distFolder + '/img/feedback/',
   },
   src: {
     pug: srcFolder + '/pug/**/index.pug',
@@ -64,6 +69,7 @@ const path = {
     svg: assetsFolder + '/img/svg/**/*.svg',
     fonts: assetsFolder + '/fonts/**/*.ttf',
     favicon: assetsFolder + '/favicon/*.ico',
+    bgFeedback: backgroundFeedback,
   },
   watch: {
     pug: srcFolder + '/pug/**/*.pug',
@@ -299,18 +305,32 @@ const svgSpritesDev = () => {
 }
 const svgSprites = () => {
   return src(path.src.svg)
-    .pipe(svgSprite({
-      mode: {
-        stack: {
-          sprite: '../sprite.svg',
-        },
+  .pipe(svgSprite({
+    mode: {
+      stack: {
+        sprite: '../sprite.svg',
       },
-    }))
-    .pipe(dest(path.dist.svg))
+    },
+  }))
+  .pipe(dest(path.dist.svg))
 }
+// FEEDBACK BACKGROUND
+const bgFeedbackDev = () => {
+  return src(path.src.bgFeedback)
+    .pipe(dest(path.dev.bgFeedback))
+}
+const bgFeedback = () => {
+  return src(path.src.bgFeedback)
+    .pipe(dest(path.dist.bgFeedback))
+}
+
 const faviconDev = () => {
   return src(path.src.favicon)
     .pipe(dest(path.dev.favicon))
+}
+const favicon = () => {
+  return src(path.src.favicon)
+    .pipe(dest(path.dist.favicon))
 }
 
 
@@ -380,6 +400,7 @@ const dev = gulp.series(
     imagesPngDev,
     imagesDev,
     svgSpritesDev,
+    bgFeedbackDev,
     scriptsDev,
     stylesDev,
     fontsDev,
@@ -395,7 +416,8 @@ const build = gulp.series(
     styles,
     scripts,
     svgSprites,
-    faviconDev,
+    bgFeedback,
+    favicon,
     images,
     pug2html,
     fonts,
