@@ -151,6 +151,9 @@ $burgerTransition: 0.3s;
     @include linkStates("");
     padding: 5px 0;
     font-weight: 600;
+    &.active {
+      color: $colorPrimary_2;
+    }
   }
   &__socials {
     display: none;

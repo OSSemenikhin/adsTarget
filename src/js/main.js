@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (modal.select && modal.typeInfo) {
         selectLable.classList.add("_visible");
         selectElement.classList.add("_visible");
-        switch(modal.typeInfo) {
+        switch (modal.typeInfo) {
           case 'target':
             selectOpt.items = [...targetItems];
             break;
@@ -203,6 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   // NAV MENU
+  // Scroll to anchor
   const links = document.querySelectorAll('.header-nav__link');
   const header = document.querySelector('.header');
   links.forEach(link => {
@@ -217,6 +218,21 @@ document.addEventListener("DOMContentLoaded", () => {
         top: scrollPosY,
         behavior: "smooth"
       });
+    });
+  });
+
+  // Add active class when scroll
+  const sections = ['services', 'cases', 'clients', 'responses', 'team',];
+  window.addEventListener('scroll', function (e) {
+    sections.forEach(section => {
+      const headerHeight = header.offsetHeight;
+      const element = document.getElementById(section);
+      const elementHeight = -element.offsetHeight;
+      const posY = element.getBoundingClientRect().y - headerHeight - 5;
+      const linkId = section + "_link";
+      const link = document.getElementById(linkId);
+      if (posY <= 0 && posY > elementHeight) link.classList.add('active');
+      else link.classList.remove('active');
     });
   });
 

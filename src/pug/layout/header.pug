@@ -3,12 +3,12 @@ include variables
 
 -
   var navListItems = [
-    {name: 'Услуги', href: '#services',},
-    {name: 'Кейсы', href: '/cases',},
-    {name: 'Клиенты', href: '#', mod: 'hidden-desktop'},
-    {name: 'Отзывы', href: '#',},
-    {name: 'Команда', href: '#', mod: 'hidden-desktop'},
-    {name: 'Брифы', href: '/brief',},
+    {name: 'Услуги', href: '#services', id: 'services_link',},
+    {name: 'Кейсы', href: '/cases', id: 'cases_link',},
+    {name: 'Клиенты', href: '#clients', mod: 'hidden-desktop', id: 'clients_link',},
+    {name: 'Отзывы', href: '#responses', id: 'responses_link',},
+    {name: 'Команда', href: '#team', mod: 'hidden-desktop', id: 'team_link',},
+    {name: 'Брифы', href: '/brief', id: 'brief_link',},
   ];
 
 
@@ -25,7 +25,7 @@ mixin headerLinkItem(obj, className)
 
 
   li(class=classNameItemFull)
-    a(class=classNameLink, href= obj.href)= obj.name
+    a(id=obj.id class=classNameLink, href= obj.href)= obj.name
 
 
 header.header.fix-block
