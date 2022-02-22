@@ -88,6 +88,9 @@ document.addEventListener("DOMContentLoaded", () => {
         nextEl: ".clients-slider-buttons__next",
       },
       a11y: ariaButtonsSwiperMessage,
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      spaceBetween: 20,
 
       breakpoints: {
         320: {
@@ -191,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const teamSlider = new Swiper(".team-slider", {
       a11y: ariaButtonsSwiperMessage,
       loop: true,
-      slidesPerView: 1,
+      slidesPerscrollSpeediew: 1,
       spaceBetween: 0,
       navigation: {
         prevEl: ".team-slider-buttons__prev",
@@ -199,6 +202,23 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     });
   }
+  // NAV MENU
+  const links = document.querySelectorAll('.header-nav__link');
+  const header = document.querySelector('.header');
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const toSection = document.querySelector(link.hash);
+      const sectionPosY = window.pageYOffset + toSection.getBoundingClientRect().top;
+      const headerHeight = header.offsetHeight;
+      const scrollPosY = sectionPosY - headerHeight;
+      history.pushState(null, null, link.hash);
+      window.scrollTo({
+        top: scrollPosY,
+        behavior: "smooth"
+      });
+    });
+  });
 
   // BURGER
   const burger = {
@@ -207,6 +227,8 @@ document.addEventListener("DOMContentLoaded", () => {
     background: document.getElementById('burger_background'),
     nav: document.getElementById('nav'),
     icon: document.getElementById('burger_icon'),
+    links: links,
+    linksSocials: document.querySelectorAll('.socials__link'),
 
     open() {
       [
@@ -217,6 +239,9 @@ document.addEventListener("DOMContentLoaded", () => {
       ].forEach(element => element.classList.add('open'));
       this.openState = true;
       document.body.classList.add('disable-scroll');
+      [...this.links, ...this.linksSocials].forEach(link => {
+        link.addEventListener('click', e => this.close());
+      });
     },
     close() {
       [
@@ -227,6 +252,9 @@ document.addEventListener("DOMContentLoaded", () => {
       ].forEach(element => element.classList.remove('open'));
       this.openState = false;
       document.body.classList.remove('disable-scroll');
+      [...this.links, ...this.linksSocials].forEach(link => {
+        link.removeEventListener('click', e => this.close());
+      });
     },
     addListeners() {
       this.button.addEventListener('click', e => {
