@@ -17,10 +17,26 @@
 .clients-slider {
   @include logoSlider;
   &-buttons {
-    &__prev,
-    &__next {
-      @media(max-width: 512px) {
-        top: 0%;
+    // &__prev,
+    // &__next {
+    // }
+    @media(max-width: 512px) {
+      $horizontalStep: 50%;
+      $verticalTranslate: -20px;
+      $translateNext: calc(50% + 30px);
+      $translatePrev: calc(-50% - 30px);
+      &__next,
+      &__prev {
+        top: 0;
+      }
+      &__next {
+        right: $horizontalStep;
+        transform: translateY($verticalTranslate) translateX($translateNext);
+
+      }
+      &__prev {
+        left: $horizontalStep;
+        transform: translateY($verticalTranslate) translateX($translatePrev);
       }
     }
   }

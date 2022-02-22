@@ -202,7 +202,9 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     });
   }
+
   // NAV MENU
+
   // Scroll to anchor
   const links = document.querySelectorAll('.header-nav__link');
   const header = document.querySelector('.header');
@@ -228,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const headerHeight = header.offsetHeight;
       const element = document.getElementById(section);
       const elementHeight = -element.offsetHeight;
-      const posY = element.getBoundingClientRect().y - headerHeight - 5;
+      const posY = element.getBoundingClientRect().y - headerHeight - 50;
       const linkId = section + "_link";
       const link = document.getElementById(linkId);
       if (posY <= 0 && posY > elementHeight) link.classList.add('active');
