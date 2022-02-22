@@ -197,6 +197,8 @@ $burgerTransition: 0.3s;
     width: 300px;
     height: 100vh;
     padding: 68px 40px 38px;
+    display: flex;
+    flex-direction: column;
     background-color: $colorLight;
     opacity: 0;
     visibility: hidden;
@@ -209,6 +211,10 @@ $burgerTransition: 0.3s;
       opacity: 1;
       visibility: visible;
       transform: translateX(0px);
+    }
+
+    &__nav {
+      margin-bottom: auto;
     }
 
     &__list {
@@ -226,8 +232,6 @@ $burgerTransition: 0.3s;
       font-weight: 400;
     }
     &__socials {
-      position: absolute;
-      bottom: 60px;
       display: block;
     }
   }
