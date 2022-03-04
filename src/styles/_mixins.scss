@@ -137,6 +137,59 @@
       color: $colorPrimary_2-dark;
     }
   }
+  @if $type== "4" {
+    border: 2px solid $colorGrey_2;
+    background-color: $colorGrey_2;
+    color: $colorLight;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      border-color: $colorPrimary_2;
+      background-color: $colorPrimary_2;
+      color: $colorLight;
+    }
+
+    &:focus-visible {
+      outline: none;
+      border-color: $colorPrimary_2;
+      background-color: $colorPrimary_2;
+      color: $colorLight;
+    }
+
+    &:active {
+      border-color: $colorPrimary_2-dark;
+      background-color: $colorPrimary_2-dark;
+      color: $colorLight;
+    }
+  }
+  @if $type== "5" {
+    border: 2px solid $colorGrey_2;
+    background-color: transparent;
+    color: $colorLight;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      border-color: $colorPrimary_2;
+      color: $colorPrimary_2;
+    }
+
+    &:focus-visible {
+      outline: none;
+      border-color: $colorPrimary_2;
+      color: $colorPrimary_2;
+    }
+
+    &:active {
+      border-color: $colorPrimary_2-dark;
+      color: $colorPrimary_2-dark;
+    }
+  }
 }
 
 @mixin svgIcon {

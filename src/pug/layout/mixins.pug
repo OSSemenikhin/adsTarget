@@ -1,19 +1,71 @@
-mixin logo(blockClass, mod)
+mixin infoCard(item, className)
+  - var bg = "background-image: url(" + item.path + item.icon + ")";
+  - var itemClassName = className + "__item";
+  - var classNameTitle = className + "__title";
+  - var classNameText = className + "__text";
+
+  li(class=itemClassName style=bg)
+    h3(class=classNameTitle)= item.title
+    p(class=classNameText)= item.description
+//- HERO BLOCK
+mixin heroBlock(data)
+  -
+  section.hero.section
+    .hero__background
+    .hero-content.container
+      h2.hero-content__title=data.title
+      p.hero-content__text= data.text
+      button.hero-content__button= data.button
+
+//- MODAL WINDOW GET CALL
+mixin callModal(path="main")
+  .modal__container(data-goody-target="call")
+    .modal__header
+      button.modal__close
+        svg.modal__icon-close(aria-hidden="true")
+          if path == "main"
+            use(xlink:href="img/svg/sprite.svg#close")
+          if path =="other"
+            use(xlink:href="../img/svg/sprite.svg#close")
+    .modal__content.modal-call__content
+      h2.modal-call__title Заказать звонок
+      p.modal-call__description Обычно, наш менеджеры перезванивают в течение двух часов в рабочее время
+      form.modal-call__form
+        input.modal-call__input(placeholder="Номер телефона")
+        button.modal-call__button Заказать звонок
+      p.modal-call__errors
+      p.modal-call__prevention Нажимая на кнопку «Заказать звонок» вы соглашаетесь с
+        a.modal-call__privacy(href="#")  правилами обработки персональных данных.
+
+
+
+//- LOGO
+mixin logo(blockClass, path = "main", mod = '')
   -
     var classNameWrapper = blockClass + '-logo logo';
     var classNameLink = blockClass + '-logo__link logo__link';
     var classNameLogoImage = blockClass + '-logo__image logo__image';
+    //- var srcPath = "./img/logo.webp";
+    //- if path == "other"
+    //-   srcPath = "../img/logo.webp";
   if mod > ''
     - var classNameWrapperFull = classNameWrapper + ' ' + classNameWrapper + mod;
     div(class=classNameWrapperFull)
       a(class=classNameLink href="#" aria-label="Главная")
-        img(class=classNameLogoImage loading="lazy" src= "./img/logo.webp" alt="Ads Target")
+        if path == "main"
+          img(class=classNameLogoImage loading="lazy" src="./img/logo.webp" alt="Ads Target")
+        else
+          img(class=classNameLogoImage loading="lazy" src="../img/logo.webp" alt="Ads Target")
   else
     div(class=classNameWrapper)
-      a(class=classNameLink href="#" aria-label="Главная")
-        img(class=classNameLogoImage loading="lazy" src= "./img/logo.webp" alt="Ads Target")
+      a(class=classNameLink href="/" aria-label="Главная")
+        if path == "main"
+          img(class=classNameLogoImage loading="lazy" src="./img/logo.webp" alt="Ads Target")
+        else
+          img(class=classNameLogoImage loading="lazy" src="../img/logo.webp" alt="Ads Target")
+          //- img(class=classNameLogoImage loading="lazy" src=srcPath alt="Ads Target")
 
-
+//- PICTURES
 mixin picture(obj, ind, type, ariaHidden = false)
   -
     var pathWebp= '.' + obj.path + obj.name + '.webp';
@@ -63,6 +115,39 @@ mixin picture(obj, ind, type, ariaHidden = false)
         img(class=obj.classNameImg loading="lazy" srcset=pathImgSet src=pathImg alt=obj.alt)
       else
         img(class=obj.classNameImg loading="lazy" src=pathImg alt=obj.alt)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 mixin itemMerchCard(card, path, ind)
   -

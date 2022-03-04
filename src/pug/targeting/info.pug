@@ -1,0 +1,39 @@
+-
+  var cards = [
+    {
+      title: 'Геолокация',
+      description: 'По месту жительства или работы ',
+      icon: 'radar.svg',
+    },
+    {
+      title: 'Конкуренты',
+      description: 'По активностям в сообществах конкурентов',
+      icon: 'network.svg',
+    },
+    {
+      title: 'Группы интересов',
+      description: 'По интересам целевой аудитории',
+      icon: 'signal.svg',
+    },
+    {
+      title: 'Ретаргет',
+      description: 'По активностям на вашем сайте',
+      icon: 'scheme.svg',
+    },
+    {
+      title: 'Уровень жизни',
+      description: 'По социальному статусу пользователей',
+      icon: 'customer.svg',
+    },
+  ];
+  var path = '../img/target/info/';
+
+for item in cards
+  - item.path = path;
+
+section.section.info.container
+  h2.title.info__title Таргетированная реклама
+  p.info__text Таргетированная реклама найдет именно тех людей, которые заинтересованы вашим предложением. Ваши объявления, размещенные в социальных сетях, позволят получить поток целевых клиентов. Благодаря гибкому таргетингу можно воздействовать на узкую группу целевой аудитории, найдя ее по любым параметрам, таким как:
+  ul.info__list
+    for item in cards
+      +infoCard(item, "info")

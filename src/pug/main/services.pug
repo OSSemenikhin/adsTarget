@@ -4,37 +4,20 @@ include ../layout/variables
 -
   var services = [
     {
-      title: 'Таргетированная реклама ',
-      price: 'от 25 000₽',
-      description: 'Во всех популярных социальных сетях: ВКонтакте, Facebook и Instagram',
-      link: '#',
-      icon: 'target.png',
-      modal: 'target',
-      select: "true",
-    },
-    {
       title: 'Контент, дизайн и ведение сообществ ',
       price: 'от 20 000₽',
       description: 'Чтобы ваше сообщество в социальной сети работало на вас',
       link: '#',
-      icon: 'content.png',
+      icon: 'content.webp',
       modal: 'content',
       select: "true",
-    },
-    {
-      title: 'Комплексное продвижение бренда ',
-      price: 'от 50 000₽',
-      description: 'Когда нужно все и сразу',
-      link: '#',
-      icon: 'complex.png',
-      modal: 'complex',
     },
     {
       title: 'Консультация по настройке ',
       price: 'от 3 000₽',
       description: '',
       link: '#',
-      icon: 'sovet.png',
+      icon: 'sovet.webp',
       modal: 'sovet',
     },
     {
@@ -42,7 +25,7 @@ include ../layout/variables
       price: 'от 15 000₽',
       description: '',
       link: '#',
-      icon: 'strateg.png',
+      icon: 'strateg.webp',
       modal: 'strateg',
     },
     {
@@ -50,7 +33,7 @@ include ../layout/variables
       description: 'Автоматизированная медийная реклама по демографическим и социальным признакам',
       price: '',
       link: '#',
-      icon: 'programmatic.png',
+      icon: 'programmatic.webp',
       modal: 'programmatic',
     },
     {
@@ -58,7 +41,7 @@ include ../layout/variables
       price: '',
       description: '',
       link: '#',
-      icon: 'lending.png',
+      icon: 'lending.webp',
       modal: 'lending',
     },
     {
@@ -66,16 +49,37 @@ include ../layout/variables
       price: '',
       description: 'Целевые посетители для вашего сайта из Яндекс.Директ и Google Ads',
       link: '#',
-      icon: 'context.png',
+      icon: 'context.webp',
       modal: 'context',
       select: "true",
     },
   ];
+  servicesBig = [
+    {
+      title: 'Таргетированная реклама ',
+      price: 'от 25 000₽',
+      description: 'Во всех популярных социальных сетях: ВКонтакте, Facebook и Instagram',
+      link: '/targeting',
+      //- icon: 'target.webp',
+      modal: 'target',
+      select: "true",
+      backGround: 'BGtarget.webp',
+    },
+    {
+      title: 'Комплексное продвижение бренда ',
+      price: 'от 50 000₽',
+      description: 'Когда нужно все и сразу',
+      link: '#',
+      icon: 'complex.webp',
+      modal: 'complex',
+      backGround: 'BGcomlex.webp',
+    },
+  ];
 
 mixin serviceCard(item)
-  -var bg = "background-image: url(./img/services/" + item.icon;
+  -var bg = "background-image: url(./img/services/" + item.icon + ")";
   li.services__item(style=bg)
-    h3.services__title= item.title
+    h3.services__subtitle= item.title
       span.services__price= item.price
     p.services__text= item.description
     .services__actions
@@ -83,8 +87,25 @@ mixin serviceCard(item)
       br
       a.services__link(href=item.link) Узнать подробнее
 
+mixin serviceCard_big(item)
+  -var bg = "background-image: url(./img/services/" + item.backGround + ")";
+  li.services__item.services-recomedation__item(style=bg)
+    h3.services__subtitle.services-recomedation__subtitle= item.title
+      span.services__price.services-recomedation__price= item.price
+    p.services__text.services-recomedation__text= item.description
+    .services__actions.services-recomedation__actions
+      button.services__button.services-recomedation__button(data-modal-select=item.select data-modal-type=item.modal data-goody-path="services" data-goody-animation="fadeInUp" data-goody-speed-in="300" data-goody-speed-out="300") Заказать
+      br
+      a.services__link.services-recomedation__link(href=item.link) Узнать подробнее
+
 section.section.services.container#services
-  h2.title.title--hidden Наши услуги
+  h2.title.services__title Рекомендуемые услуги
+  ul.services__list.services-recomedation__list
+    for item in servicesBig
+       +serviceCard_big(item)
   ul.services__list
     for item in services
        +serviceCard(item)
+
+
+

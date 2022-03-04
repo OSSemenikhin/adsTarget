@@ -63,7 +63,7 @@ const path = {
     pug: srcFolder + '/pug/**/index.pug',
     html: srcFolder + '/*.html',
     css: srcFolder + '/styles/**/*.scss',
-    js: srcFolder + '/js/**/*.js',
+    js: srcFolder + '/js/*.js',
     img: assetsFolder + '/img/**/*.{jpg, JPG, jpeg, svg, gif, ico, webp}',
     imgPng: assetsFolder + '/img/**/*.png',
     svg: assetsFolder + '/img/svg/**/*.svg',
@@ -111,6 +111,8 @@ const webpHtml = require('gulp-webp-html');
 const pug = require('gulp-pug');
 const ttf2woff = require('gulp-ttf2woff');
 const ttf2woff2 = require('gulp-ttf2woff2');
+
+const jsImport = require('gulp-js-import');
 
 
 // BROWSER SYNC
@@ -190,26 +192,52 @@ const scripts = () => {
   return src([
     path.src.js,
     // 'src/js/main.js',
+    // 'src/js/t.js',
   ])
+    .pipe(jsImport())
     .pipe(babel({
       presets: ['@babel/env']
     }))
-    .pipe(concat('app.js'))
+    // .pipe(concat('app.js'))
     .pipe(uglify({
       toplevel: true,
     }).on('error', notify.onError))
     .pipe(dest(path.dist.js))
 }
 const scriptsDev = () => {
+  [
+    "main.js",
+    "target.js"
+  ].forEach(item => {
+    return src([
+      `src/js/${item}`
+    ])
+      .pipe(jsImport())
+      // .pipe(sourcemaps.init())
+      .pipe(babel({
+        presets: ['@babel/env']
+      }))
+      // .pipe(concat('app.js'))
+      .pipe(uglify({
+        toplevel: true,
+      }).on('error', notify.onError()))
+      // .pipe(sourcemaps.write())
+      .pipe(dest(path.dev.js))
+      .pipe(browserSync.stream())
+  });
+}
+const scriptsDevMain = () => {
   return src([
-    path.src.js,
-    // 'src/js/main.js',
+    // path.src.js,
+    'src/js/main.js',
+    // 'src/js/t.js',
   ])
+    .pipe(jsImport())
     .pipe(sourcemaps.init())
     .pipe(babel({
       presets: ['@babel/env']
     }))
-    .pipe(concat('app.js'))
+    // .pipe(concat('app.js'))
     .pipe(uglify({
       toplevel: true,
     }).on('error', notify.onError()))
@@ -217,6 +245,42 @@ const scriptsDev = () => {
     .pipe(dest(path.dev.js))
     .pipe(browserSync.stream())
 }
+
+const scriptsDevTarget = () => {
+  return src([
+    'src/js/target.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    .pipe(babel({
+      presets: ['@babel/env']
+    }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dev.js))
+    .pipe(browserSync.stream())
+}
+
+// const scriptsDev1 = () => {
+//   return src([
+//     'src/js/t.js',
+//   ])
+//     .pipe(jsImport())
+//     // .pipe(sourcemaps.init())
+//     .pipe(babel({
+//       presets: ['@babel/env']
+//     }))
+//     // .pipe(concat('app.js'))
+//     .pipe(uglify({
+//       toplevel: true,
+//     }).on('error', notify.onError()))
+//     // .pipe(sourcemaps.write())
+//     .pipe(dest(path.dev.js))
+//     .pipe(browserSync.stream())
+// }
 
 
 // IMAGES
@@ -292,6 +356,14 @@ const imagesPngDev = () => {
 }
 
 // SVG SPRITES
+const svgDev = () => {
+  return src("src/assets/img/target/**/*.svg")
+    .pipe(dest("dev/img/target/"))
+}
+const svg = () => {
+  return src("src/assets/img/target/**/*.svg")
+    .pipe(dest("dist/img/target/"))
+}
 const svgSpritesDev = () => {
   return src(path.src.svg)
     .pipe(svgSprite({
@@ -305,14 +377,14 @@ const svgSpritesDev = () => {
 }
 const svgSprites = () => {
   return src(path.src.svg)
-  .pipe(svgSprite({
-    mode: {
-      stack: {
-        sprite: '../sprite.svg',
+    .pipe(svgSprite({
+      mode: {
+        stack: {
+          sprite: '../sprite.svg',
+        },
       },
-    },
-  }))
-  .pipe(dest(path.dist.svg))
+    }))
+    .pipe(dest(path.dist.svg))
 }
 // FEEDBACK BACKGROUND
 const bgFeedbackDev = () => {
@@ -387,10 +459,14 @@ const cleanDist = () => {
 const watchFiles = (opts) => {
   gulp.watch([path.watch.html], htmlMinifyDev);
   gulp.watch([path.watch.css], stylesDev);
-  gulp.watch([path.watch.js], scriptsDev);
+  // gulp.watch([path.watch.js], scriptsDev);
+  gulp.watch([path.watch.js], scriptsDevMain);
+  gulp.watch([path.watch.js], scriptsDevTarget);
+  // gulp.watch([path.watch.js], scriptsDev1);
   gulp.watch([path.watch.img], imagesDev);
   gulp.watch([path.watch.pug], pug2htmlDev);
   gulp.watch([path.watch.svg], svgSpritesDev);
+  gulp.watch([path.watch.svg], svgDev);
 };
 
 const dev = gulp.series(
@@ -400,8 +476,12 @@ const dev = gulp.series(
     imagesPngDev,
     imagesDev,
     svgSpritesDev,
+    svgDev,
     bgFeedbackDev,
-    scriptsDev,
+    // scriptsDev,
+    scriptsDevMain,
+    scriptsDevTarget,
+    // scriptsDev1,
     stylesDev,
     fontsDev,
     faviconDev,
@@ -416,6 +496,7 @@ const build = gulp.series(
     styles,
     scripts,
     svgSprites,
+    svg,
     bgFeedback,
     favicon,
     images,
@@ -434,9 +515,14 @@ exports.htmlMinifyDev = htmlMinifyDev;
 exports.styles = styles;
 exports.stylesDev = stylesDev;
 exports.scripts = scripts;
-exports.scriptsDev = scriptsDev;
+// exports.scriptsDev = scriptsDev;
+exports.scriptsDevMain = scriptsDevMain;
+exports.scriptsDevTarget = scriptsDevTarget;
+// exports.scriptsDev1 = scriptsDev1;
 exports.svgSprites = svgSprites;
 exports.svgSpritesDev = svgSpritesDev;
+exports.svg = svg;
+exports.svgDev = svgDev;
 exports.images = images;
 exports.imagesDev = imagesDev;
 exports.fonts = fonts;

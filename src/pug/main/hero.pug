@@ -1,9 +1,13 @@
-include ../layout/mixins
-include ../layout/variables
-
-section.hero.section
-  .hero__background
-  .hero-content.container
-    h2.hero-content__title Результативное продвижение бизнеса в социальных сетях
-    p.hero-content__text Настраиваем таргетированную рекламу и приводим целевых клиентов.
-    button.hero-content__button Заказать настройку
+-
+  var data = {
+    title: 'Результативное продвижение бизнеса в социальных сетях',
+    text: 'Настраиваем таргетированную рекламу и приводим целевых клиентов.',
+    button: 'Заказать настройку',
+  };
++heroBlock(data)
+//- section.hero.section
+//-   .hero__background
+//-   .hero-content.container
+//-     h2.hero-content__title
+//-     p.hero-content__text
+//-     button.hero-content__button

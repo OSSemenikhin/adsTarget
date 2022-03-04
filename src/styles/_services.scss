@@ -1,50 +1,52 @@
 .services {
+  &__title {
+    margin-bottom: 50px;
+  }
   &__list {
     margin: 0;
-    padding: 0;
+    padding: 0 25px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     column-gap: 20px;
     row-gap: 40px;
     list-style: none;
 
-    @media(max-width: 1300px) {
+    @media (max-width: 1300px) {
       max-width: 900px;
       margin: 0 auto;
       grid-template-columns: repeat(2, 1fr);
     }
-    @media(max-width: 512px) {
+    @media (max-width: 512px) {
       grid-template-columns: repeat(1, 1fr);
     }
   }
   &__item {
     position: relative;
-    min-height: 250px;
+    min-height: 200px;
     padding-bottom: 105px;
     background-repeat: no-repeat;
-    background-size: 35%;
-    background-position: 100% 100%;
+    background-size: 30%;
+    background-position: 70% 100%;
   }
-  &__title,
+  &__subtitle,
   &__text,
-  &__button  {
-    margin-bottom: 20px;
+  &__button {
+    margin-bottom: 15px;
 
-    @media(max-width: 1300px) {
+    @media (max-width: 1300px) {
       margin-bottom: 15px;
     }
   }
 
-  &__title {
+  &__subtitle {
     width: 95%;
     color: $colorPrimary_1;
     line-height: 1.65;
-    text-decoration: underline;
 
-    @media(max-width: 1300px) {
+    @media (max-width: 1300px) {
       font-size: 18px;
     }
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
       font-size: 16px;
     }
   }
@@ -52,14 +54,13 @@
     white-space: nowrap;
   }
   &__text {
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
       font-size: 14px;
     }
   }
   &__actions {
     position: absolute;
-    bottom: 0;
-    width: 60%;
+    bottom: 20px;
   }
   &__button,
   &__link {
@@ -67,26 +68,54 @@
     text-align: center;
   }
   &__button {
-    @include buttonPrimary('2');
-    height: 50px;
-    font-size: 18px;
+    @include buttonPrimary("4");
+    padding: 5px 50px;
+    font-size: 16px;
 
-    @media(max-width: 768px) {
-      height: 40px;
+    @media (max-width: 768px) {
       font-weight: 500;
       font-size: 16px;
     }
   }
   &__link {
-    @include buttonPrimary('3');
+    @include buttonPrimary("5");
     display: inline-block;
     padding: 5px 0;
-    color: $colorPrimary_1;
-    border-radius: 20px;
+    color: $colorGrey_2;
+    // border-radius: 20px;
     font-size: 14px;
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
       font-weight: 500;
       font-size: 12px;
     }
+  }
+}
+.services-recomedation {
+  &__list {
+    margin-bottom: 30px;
+    padding: 0;
+    grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  &__item {
+    padding-top: 30px;
+    padding-left: 250px;
+    padding-bottom: 140px;
+    background-size: cover;
+    // background-size: contain;
+    // background-size: 100% 100%;
+    border-radius: 25px;
+    @media (max-width: 1300px) {
+      padding-left: 200px;
+      background-position: 24% 100%;
+    }
+    @media (max-width: 1024px) {
+      padding-left: 250px;
+    }
+  }
+  &__actions {
+    bottom: 50px;
   }
 }

@@ -1,20 +1,6 @@
 
 section.modal.modal-call#modal
-  .modal__container(data-goody-target="call")
-    .modal__header
-      button.modal__close
-        svg.modal__icon-close(aria-hidden="true")
-          use(xlink:href="img/svg/sprite.svg#close")
-    .modal__content.modal-call__content
-      h2.modal-call__title Заказать звонок
-      p.modal-call__description Обычно, наш менеджеры перезванивают в течение двух часов в рабочее время
-      form.modal-call__form
-        input.modal-call__input(placeholder="Номер телефона")
-        button.modal-call__button Заказать звонок
-      p.modal-call__errors
-      p.modal-call__prevention Нажимая на кнопку «Заказать звонок» вы соглашаетесь с
-        a.modal-call__privacy(href="#")  правилами обработки персональных данных.
-
+  +callModal
   .modal__container(data-goody-target="services")
     .modal__header
       button.modal__close
