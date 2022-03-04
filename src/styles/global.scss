@@ -96,7 +96,9 @@ input {
     font-size: 30px;
   }
 }
-
+.section {
+  margin-bottom: 80px;
+}
 .choozzie {
   &__list {
     background-color: $colorLight;
