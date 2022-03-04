@@ -45,6 +45,7 @@ const path = {
     js: devFolder + '/js/',
     img: devFolder + '/img/',
     svg: devFolder + '/img/svg/',
+    iconsSvg: devFolder + '/img/iconsSvg/',
     fonts: devFolder + '/fonts/',
     favicon: devFolder + '/favicon/',
     bgFeedback: devFolder + '/img/feedback/',
@@ -55,6 +56,7 @@ const path = {
     js: distFolder + '/js/',
     img: distFolder + '/img/',
     svg: distFolder + '/img/svg/',
+    iconsSvg: distFolder + '/img/iconsSvg/',
     fonts: distFolder + '/fonts/',
     favicon: distFolder + '/favicon/',
     bgFeedback: distFolder + '/img/feedback/',
@@ -67,6 +69,7 @@ const path = {
     img: assetsFolder + '/img/**/*.{jpg, JPG, jpeg, svg, gif, ico, webp}',
     imgPng: assetsFolder + '/img/**/*.png',
     svg: assetsFolder + '/img/svg/**/*.svg',
+    iconsSvg: assetsFolder + '/img/iconsSvg/**/*.svg',
     fonts: assetsFolder + '/fonts/**/*.ttf',
     favicon: assetsFolder + '/favicon/*.ico',
     bgFeedback: backgroundFeedback,
@@ -78,6 +81,7 @@ const path = {
     js: srcFolder + '/js/**/*.js',
     img: assetsFolder + '/img/**/*.{jpg, JPG, jpeg, png, svg, gif, ico, webp}',
     svg: assetsFolder + '/img/svg/*.svg',
+    iconsSvg: assetsFolder + '/img/icons/**/*.svg',
     favicon: assetsFolder + '/favicon/*.ico',
   },
 };
@@ -357,12 +361,12 @@ const imagesPngDev = () => {
 
 // SVG SPRITES
 const svgDev = () => {
-  return src("src/assets/img/target/**/*.svg")
-    .pipe(dest("dev/img/target/"))
+  return src(path.src.iconsSvg)
+    .pipe(dest(path.dev.iconsSvg))
 }
 const svg = () => {
-  return src("src/assets/img/target/**/*.svg")
-    .pipe(dest("dist/img/target/"))
+  return src(path.src.iconsSvg)
+    .pipe(dest(path.dist.iconsSvg))
 }
 const svgSpritesDev = () => {
   return src(path.src.svg)

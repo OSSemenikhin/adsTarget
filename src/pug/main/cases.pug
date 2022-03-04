@@ -7,31 +7,27 @@ include ../layout/variables
       title: 'Поиск персонала',
       description: 'Соискатели по 144 руб. и объявления с рейтингом 9.9',
       image: '1.webp',
-      link: '#'
+      link: '#',
+      alt: 'Фотография девушки официанта',
     },
     {
       title: 'ТК «Китай Город»',
       description: 'Как сменить имидж бренда с помощью визуального контента',
       image: '2.webp',
-      link: '#'
+      link: '#',
+      alt: 'Фотография девушки в очках',
 
     },
     {
       title: 'Studio Context Диана Вишнёва',
       description: 'Как научить танцевать всю страну во время пандемии?',
       image: '3.webp',
-      link: '#'
+      link: '#',
+      alt: 'Фотография девушки в украшениях',
     }
   ];
 
-mixin caseItem(item, ind)
-  -var bg = "img/cases/" + item.image;
-  -var modClass = "cases__image--" + ind
-  article.cases__item
-    a.cases__link(href=item.link)
-    img.cases__image(class=modClass src=bg, alt="image: girl")
-    h3.cases__title= item.title
-    p.cases__text= item.description
+
 
 section.section.cases.container#cases
   h2.title.cases__title Наши кейсы
@@ -39,5 +35,5 @@ section.section.cases.container#cases
     -var ind = 0;
     for item in cases
       - ind++
-      +caseItem(item, ind)
+      +caseCard(item, ind, true)
   button.cases__button Все кейсы

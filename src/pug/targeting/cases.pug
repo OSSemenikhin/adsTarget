@@ -1,0 +1,33 @@
+-
+  var cases = [
+    {
+      title: 'Работа в Евразии',
+      description: 'Соискатели по 144 руб. и объявления с рейтингом 9.9',
+      image: '1.webp',
+      link: '#',
+      alt: '',
+    },
+    {
+      title: 'Ювелир Карат',
+      description: 'Улучшение показателей текущей рекламной кампании в 6 раз',
+      image: 'karat.webp',
+      link: '#',
+      alt: '',
+    },
+    {
+      title: 'Анимашки шоу',
+      description: 'Заявки по 158р на поздравления Деда Мороза и Снегурочки',
+      image: 'animashki.webp',
+      link: '#',
+      alt: '',
+    }
+  ];
+
+
+section.section.cases.container
+  h2.title.cases__title Кейсы по таргетированной рекламе
+  .cases__list
+    -var ind = 0;
+    for item in cases
+      - ind++
+      +caseCard(item, ind)

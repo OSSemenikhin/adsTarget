@@ -168,7 +168,7 @@
   @if $type== "5" {
     border: 2px solid $colorGrey_2;
     background-color: transparent;
-    color: $colorLight;
+    color: $colorGrey_2;
 
     &:focus {
       outline: none;
@@ -219,5 +219,21 @@
     @media(max-width: 1300px) {
       text-align: center;
     }
+  }
+}
+
+@mixin infoCard {
+  &__list {
+    display: grid;
+    list-style: none;
+  }
+  &__item {
+    background-repeat: no-repeat;
+    background-size: 60px;
+  }
+  &__subtitle {
+    padding: 20px 0;
+    padding-left: 80px;
+    margin-bottom: 10px;
   }
 }
