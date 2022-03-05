@@ -318,6 +318,23 @@ const scriptsDevProgrammatic = () => {
     .pipe(dest(path.dev.js))
     .pipe(browserSync.stream())
 }
+const scriptsDevContextual = () => {
+  return src([
+    'src/js/contextual.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    .pipe(babel({
+      presets: ['@babel/env']
+    }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dev.js))
+    .pipe(browserSync.stream())
+}
 
 // const scriptsDev1 = () => {
 //   return src([
@@ -520,6 +537,7 @@ const watchFiles = (opts) => {
   gulp.watch([path.watch.js], scriptsDevSmm);
   gulp.watch([path.watch.js], scriptsDevAdministration);
   gulp.watch([path.watch.js], scriptsDevProgrammatic);
+  gulp.watch([path.watch.js], scriptsDevContextual);
   // gulp.watch([path.watch.js], scriptsDev1);
   gulp.watch([path.watch.img], imagesDev);
   gulp.watch([path.watch.pug], pug2htmlDev);
@@ -542,6 +560,7 @@ const dev = gulp.series(
     scriptsDevSmm,
     scriptsDevAdministration,
     scriptsDevProgrammatic,
+    scriptsDevContextual,
     // scriptsDev1,
     stylesDev,
     fontsDev,
@@ -582,6 +601,7 @@ exports.scriptsDevTarget = scriptsDevTarget;
 exports.scriptsDevSmm = scriptsDevSmm;
 exports.scriptsDevAdministration = scriptsDevAdministration;
 exports.scriptsDevProgrammatic = scriptsDevProgrammatic;
+exports.scriptsDevContextual = scriptsDevContextual;
 // exports.scriptsDev1 = scriptsDev1;
 exports.svgSprites = svgSprites;
 exports.svgSpritesDev = svgSpritesDev;

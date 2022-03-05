@@ -1,0 +1,19 @@
+-
+  var cases = [
+    {
+      title: 'Работа в Евразии',
+      description: 'Соискатели по 144 руб. и объявления с рейтингом 9.9',
+      image: '1.webp',
+      link: '#',
+      alt: '',
+    },
+  ];
+
+
+section.section.cases.container
+  h2.title.cases__title Кейсы по контекстной рекламе
+  .cases__list
+    -var ind = 0;
+    for item in cases
+      - ind++
+      +caseCard(item, ind)

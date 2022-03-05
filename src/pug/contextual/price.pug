@@ -1,0 +1,43 @@
+-
+  var cards = [
+    {
+      title: 'Пакет: Быстрый старт',
+      price: '8000/мес.',
+      list: [
+        {title: 'Реклама на поиске в Яндекс или Google', color: "color1"},
+        {title: 'До 100 ключевых слов', color: "color1"},
+        {title: 'Без услуг ведения', color: "color1"},
+        {title: 'Старт до 5 дне', color: "color1"},
+      ],
+    },
+    {
+      title: 'Пакет Яндекс или Google',
+      price: '20000/мес.',
+      list: [
+        {title: 'Поиск + Сеть + Ремаркетинг', color: "color1"},
+        {title: 'До 500 ключевых слов', color: "color1"},
+        {title: 'Базовая настройка Google Analytics и Яндекс Метрики', color: "color1"},
+        {title: 'Старт до 7 дней ', color: "color1"},
+        {title: 'Ежемесячные отчеты', color: "color1"},
+      ],
+    },
+    {
+      title: 'Пакет Яндекс + Google',
+      price: '30000/мес.',
+      prePrice: 'от',
+      list: [
+        {title: 'Поиск + Сеть + Ремаркетинг', color: "color1"},
+        {title: 'До 1000 ключевых слов', color: "color1"},
+        {title: 'Базовая настройка Google Analytics и Яндекс Метрики', color: "color1"},
+        {title: 'Старт до 7 дней ', color: "color1"},
+        {title: 'Ежемесячные отчеты', color: "color1"},
+      ],
+    },
+  ];
+
+section.section.price.container
+  h2.title.price__title Стоимость
+  p.price__text Стоимость услуг рассчитывается индивидуально и зависит от ваших целей, бюджета и объёмов выполняемых работ.
+  ul.price__list
+    for item in cards
+      +priceCard(item, "price")
