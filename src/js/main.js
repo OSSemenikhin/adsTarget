@@ -1,5 +1,6 @@
 @import "./plugins/choozzie.js";
 @import "./plugins/modalGoody.js";
+@import "./scrollToAnchor.js";
 @import "./burger.js";
 
 
@@ -210,23 +211,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // NAV MENU
 
-  // Scroll to anchor
-  const links = document.querySelectorAll('.header-nav__link');
-  const header = document.querySelector('.header');
-  links.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const toSection = document.querySelector(link.hash);
-      const sectionPosY = window.pageYOffset + toSection.getBoundingClientRect().top;
-      const headerHeight = header.offsetHeight;
-      const scrollPosY = sectionPosY - headerHeight;
-      history.pushState(null, null, link.hash);
-      window.scrollTo({
-        top: scrollPosY,
-        behavior: "smooth"
-      });
-    });
-  });
+  // // Scroll to anchor
+  // const links = document.querySelectorAll('.header-nav__link');
+  // const header = document.querySelector('.header');
+  // links.forEach(link => {
+  //   link.addEventListener('click', e => {
+  //     e.preventDefault();
+  //     const toSection = document.querySelector(link.hash);
+  //     const sectionPosY = window.pageYOffset + toSection.getBoundingClientRect().top;
+  //     const headerHeight = header.offsetHeight;
+  //     const scrollPosY = sectionPosY - headerHeight;
+  //     history.pushState(null, null, link.hash);
+  //     window.scrollTo({
+  //       top: scrollPosY,
+  //       behavior: "smooth"
+  //     });
+  //   });
+  // });
 
   // Add active class when scroll
   const sections = ['services', 'cases', 'clients', 'responses', 'team',];

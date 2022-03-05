@@ -1,6 +1,17 @@
 include mixins
 include variables
 
+-
+  var navListItems = [
+    {name: 'Услуги', href: '#services', id: 'services_link',},
+    {name: 'Кейсы', href: '/cases', id: 'cases_link',},
+    {name: 'Клиенты', href: '#clients', mod: 'hidden-desktop', id: 'clients_link',},
+    {name: 'Отзывы', href: '#responses', id: 'responses_link',},
+    {name: 'Команда', href: '#team', mod: 'hidden-desktop', id: 'team_link',},
+    {name: 'Брифы', href: '/brief', id: 'brief_link',},
+  ];
+
+
 mixin headerLinkItem(obj, className)
   - var classNameItem = 'header-' + className + '__item'
   if obj.mod

@@ -65,7 +65,7 @@ mixin heroBlock(data)
     .hero-content.container
       h2.hero-content__title=data.title
       p.hero-content__text= data.text
-      button.hero-content__button= data.button
+      a.hero-content__button(href="#feedback")= data.button
 
 //- MODAL WINDOW GET CALL
 mixin callModal(path="main")
