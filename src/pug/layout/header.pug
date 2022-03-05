@@ -1,17 +1,6 @@
 include mixins
 include variables
 
--
-  var navListItems = [
-    {name: 'Услуги', href: '/#services', id: 'services_link',},
-    {name: 'Кейсы', href: '/cases', id: 'cases_link',},
-    {name: 'Клиенты', href: '/#clients', mod: 'hidden-desktop', id: 'clients_link',},
-    {name: 'Отзывы', href: '/#responses', id: 'responses_link',},
-    {name: 'Команда', href: '/#team', mod: 'hidden-desktop', id: 'team_link',},
-    {name: 'Брифы', href: '/brief', id: 'brief_link',},
-  ];
-
-
 mixin headerLinkItem(obj, className)
   - var classNameItem = 'header-' + className + '__item'
   if obj.mod
@@ -41,7 +30,7 @@ header.header.fix-block
           for link in navListItems
             +headerLinkItem(link, 'nav')
       .header-nav__socials
-        include socials
+        +socLink(socials, '../img/svg/sprite.svg#')
     .header-tel
       a.header-tel__link(href="tel:+7 (812) 956–42–99") +7 (812) 956–42–99
       button.header-tel__button(data-goody-path="call" data-goody-animation="fadeInUp" data-goody-speed-in="300" data-goody-speed-out="300") Заказать звонок

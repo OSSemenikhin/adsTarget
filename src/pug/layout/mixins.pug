@@ -166,8 +166,14 @@ mixin picture(obj, ind, type, ariaHidden = false)
       else
         img(class=obj.classNameImg loading="lazy" src=pathImg alt=obj.alt)
 
-
-
+mixin socLink(arr, path)
+  ul.socials
+    for link in arr
+      -var getPath = path + link.id;
+      li.socials__item
+        a.socials__link(href=link.link)
+          svg.socials__icon
+            use(xlink:href=getPath)
 
 
 
