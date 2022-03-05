@@ -22,12 +22,8 @@ mixin priceCard(item, className)
   - var classNameTitle = className + "__subtitle";
   - var classNamePrice = className + "__price";
   - var classNamePrePrice = className + "__preprice";
-  - var classNameListColor1 = className + "__sublist " + className + "__sublist--color1";
-  - var classNameListItemColor1 = className + "__subitem " + className + "__subitem--color1";
-  - var classNameListColor2 = className + "__sublist " + className + "__sublist--color2";
-  - var classNameListItemColor2 = className + "__subitem " + className + "__subitem--color2";
-  - var classNameListColor3 = className + "__sublist " + className + "__sublist--color3";
-  - var classNameListItemColor3 = className + "__subitem " + className + "__subitem--color3";
+  - var classNameList = className + "__sublist";
+  - var classNameListItem = className + "__subitem";
   - var classNameButton = className + "__button";
   - var classNameSvgBorder = className + "__border";
 
@@ -38,27 +34,16 @@ mixin priceCard(item, className)
   li(class=itemClassName style=bg)
     div(class=bgClassName)
       div(class=bgClassNameTop)
-      //-   svg(class=classNameSvgBorder)
-      //-     use(xlink:href='../img/svg/sprite.svg#priceBorder')
       div(class=bgClassNameBottom)
-      //-   svg(class=classNameSvgBorder)
-      //-     use(xlink:href='../img/svg/sprite.svg#priceBorder')
       h3(class=classNameTitle)= item.title
       p(class=classNamePrice)
         span(class=classNamePrePrice)= prePriceText
         |#{item.price}
-    if item.listColor1
-      ul(class=classNameListColor1)
-        for listitem in item.listColor1
-          li(class=classNameListItemColor1)= listitem
-    if item.listColor2
-      ul(class=classNameListColor2)
-        for listitem in item.listColor2
-          li(class=classNameListItemColor2)= listitem
-    if item.listColor3
-      ul(class=classNameListColor3)
-        for listitem in item.listColor3
-          li(class=classNameListItemColor3)= listitem
+    if item.list
+      ul(class=classNameList)
+        for listitem in item.list
+          - var fullClassName = classNameListItem + " " + classNameListItem + "--" + listitem.color
+          li(class=fullClassName)= listitem.title
     a(class=classNameButton href="#") Заказать
 
 

@@ -1,5 +1,161 @@
 @use "sass:math";
 
+@mixin descCardsWithIcons {
+  &__list {
+    display: grid;
+    list-style: none;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 512px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  &__item {
+    background-repeat: no-repeat;
+    background-size: 60px;
+  }
+  &__subtitle {
+    padding: 20px 0;
+    padding-left: 80px;
+    margin-bottom: 10px;
+    @media (max-width: 512px) {
+      font-size: 16px;
+    }
+  }
+  &__text {
+    @media (max-width: 512px) {
+      padding-right: 10px;
+      font-size: 14px;
+    }
+  }
+}
+
+@mixin priceCardWithBoard {
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 30px;
+    list-style: none;
+    @media (max-width: 960px) {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 50px;
+    }
+  }
+  &__item {
+    position: relative;
+    padding-bottom: 50px;
+    border: 1px solid $colorGrey_3;
+    @media (max-width: 960px) {
+      width: 60%;
+    }
+    @media (max-width: 670px) {
+      width: 70%;
+    }
+    @media (max-width: 512px) {
+      width: 296px;
+    }
+  }
+  &__bg {
+    position: relative;
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: 960px) {
+      height: 300px;
+    }
+    @media (max-width: 768px) {
+      height: 270px;
+    }
+    @media (max-width: 512px) {
+      height: 200px;
+    }
+  }
+  &__bg--top,
+  &__bg--bottom {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+  &__item:nth-child(odd) {
+    .price__bg--top {
+      background-image: url(../img/iconsSvg/priceBorder_1.svg);
+    }
+    .price__bg--bottom {
+      background-image: url(../img/iconsSvg/priceBorder_2.svg);
+    }
+  }
+  &__item:nth-child(even) {
+    .price__bg--top {
+      background-image: url(../img/iconsSvg/priceBorder_2.svg);
+    }
+    .price__bg--bottom {
+      background-image: url(../img/iconsSvg/priceBorder_1.svg);
+    }
+  }
+  &__bg--top {
+    top: 0;
+    left: 0;
+  }
+  &__bg--bottom {
+    bottom: 0;
+    left: 0;
+    transform: rotate(180deg);
+  }
+  &__border {
+    width: 100%;
+  }
+  &__subtitle {
+    margin-bottom: 10px;
+    padding: 0 20px;
+    font-size: 26px;
+    line-height: 1.23;
+    text-align: center;
+  }
+  &__price {
+    font-size: 20px;
+    line-height: 1.35;
+    font-weight: 600;
+  }
+  &__preprice {
+    margin-right: 5px;
+    color: $colorPrimary_2;
+  }
+  &__sublist {
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 0 35px;
+    list-style: none;
+    text-align: center;
+  }
+  &__subitem {
+    padding: 15px 0;
+    border-bottom: 1px solid $colorGrey_3;
+    &--color2 {
+      color: $colorPrimary_2;
+    }
+    &--color3 {
+      color: $colorPrimary_1;
+    }
+  }
+  &__button {
+    @include buttonPrimary("5");
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    padding: 5px 10px;
+    display: inline-block;
+    transform: translateX(-50%);
+  }
+}
+
 @mixin transition($prop) {
   transition-property: $prop;
   transition-timing-function: ease;
@@ -223,17 +379,5 @@
 }
 
 @mixin infoCard {
-  &__list {
-    display: grid;
-    list-style: none;
-  }
-  &__item {
-    background-repeat: no-repeat;
-    background-size: 60px;
-  }
-  &__subtitle {
-    padding: 20px 0;
-    padding-left: 80px;
-    margin-bottom: 10px;
-  }
+
 }
