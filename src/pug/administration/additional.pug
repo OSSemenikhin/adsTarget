@@ -1,0 +1,29 @@
+-
+  var list = [
+    {
+      text: 'Оформление сообщества facebook, ВКонтакте (с дизайном) ',
+      price: ' от 5 000 рублей'
+    },
+    {
+      text: 'Оформление аккаунта Instagram (с дизайном) ',
+      price: ' от 3 000 рублей'
+    },
+    {
+      text: 'Разработка стопмоушн и моушн-роликов для публикации в соцсетях (до 20 секунд) ',
+      price: ' от 4 000 рублей '
+    },
+    {
+      text: 'Проведение фотосъемки для социальных сетей ',
+      price: ' от 8 000 рублей'
+    },
+    {
+      text: 'Создание лендинга на Taplink для социальных сетей ',
+      price: ' от 10 000 рублей'
+    },
+  ];
+section.section.additional.container
+  h2.additional__title Дополнительные услуги:
+  for item in list
+    p.additional__text= item.text
+      | -
+      strong= item.price

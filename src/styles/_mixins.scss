@@ -145,6 +145,14 @@
       color: $colorPrimary_1;
     }
   }
+  &__additional {
+    &--color2 {
+      color: $colorPrimary_2;
+    }
+    &--color3 {
+      color: $colorPrimary_1;
+    }
+  }
   &__button {
     @include buttonPrimary("5");
     position: absolute;

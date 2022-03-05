@@ -1,0 +1,30 @@
+@import "mixins";
+@import "variables";
+@import "hero";
+@import "cases";
+@import "feedback";
+@import "modals";
+
+.info {
+  &__title {
+    margin-bottom: 50px;
+    @media (max-width: 512px) {
+      margin-bottom: 30px;
+    }
+  }
+  &__description {
+    margin-bottom: 50px;
+    font-size: 20px;
+    line-height: 1.55;
+    @media (max-width: 512px) {
+      font-size: 16px;
+    }
+  }
+}
+
+.cases {
+  &__image--2,
+  &__image--3 {
+    margin-bottom: 16px;
+  }
+}

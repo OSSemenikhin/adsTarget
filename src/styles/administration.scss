@@ -1,0 +1,81 @@
+@import "mixins";
+@import "variables";
+@import "hero";
+@import "cases";
+@import "feedback";
+@import "modals";
+
+.info {
+  &__title {
+    margin-bottom: 50px;
+  }
+
+  &__subtitle,
+  &__text {
+    margin-bottom: 30px;
+    padding: 0 15%;
+    @media(max-width: 1024px) {
+      margin-bottom: 20px;
+      padding: 0 0;
+    }
+  }
+
+  &__subtitle {
+    font-size: 24px;
+    font-weight: 800;
+    @media(max-width: 768px) {
+      font-size: 20px;
+    }
+  }
+  &__text {
+    font-size: 20px;
+    line-height: 1.55;
+    @media(max-width: 768px) {
+      font-size: 18px;
+    }
+  }
+}
+
+.price {
+  @include priceCardWithBoard;
+  &__title {
+    margin-bottom: 50px;
+  }
+  &__text {
+    margin-bottom: 50px;
+    padding: 0 26%;
+    font-size: 24px;
+    line-height: 1.5;
+    text-align: center;
+    @media (max-width: 1024px) {
+      padding: 0 18%;
+    }
+    @media (max-width: 768px) {
+      padding: 0 8%;
+    }
+    @media (max-width: 512px) {
+      padding: 0 0;
+    }
+  }
+}
+
+.additional {
+  padding: 0 10%;
+  @media (max-width: 512px) {
+    padding: 0 0;
+  }
+
+  &__title,
+  &__text {
+    margin-bottom: 30px;
+  }
+  &__title {
+    font-size: 28px;
+    line-height: 1.17;
+  }
+  &__text {
+    strong {
+      white-space: nowrap;
+    }
+  }
+}

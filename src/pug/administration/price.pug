@@ -1,0 +1,56 @@
+-
+  var cards = [
+    {
+      title: "Лайт",
+      price: "15000/мес. за 1 соцсеть",
+      list: [
+        {title: "Анализ имеющихся страниц", color: "color1"},
+        {title: "Общение с подписчиками", color: "color1"},
+        {title: "Копирайтинг (12 постов)", color: "color1"},
+        {title: "Постинг (12 постов, 20 историй) ", color: "color1"},
+        {title: "Удаление спама, создание обсуждений/опросов", color: "color1"},
+        {title: "Ежемесячные отчеты", color: "color1"},
+      ],
+    },
+    {
+      title: "Стандарт",
+      price: "35000/мес. за 1 соцсеть",
+      list: [
+        {title: "Гайдлайн (краткий анализ конкурентов, ЦА, позиционирование в социальных сетях)", color: "color2"},
+        {title: "Анализ имеющихся страниц", color: "color1"},
+        {title: "Общение с подписчиками", color: "color1"},
+        {title: "Копирайтинг", additional: "(18 постов)", additionalColor: "color2", color: "color1"},
+        {title: "Формирование визуального контента на базе предоставляемых клиентом материалов", color: "color2"},
+        {title: "Организация и проведение 1 конкурса в месяц", color: "color2"},
+        {title: "Постинг", additional: "(18 постов, 40 историй)", additionalColor: "color2", color: "color1"},
+        {title: "Удаление спама, создание обсуждений/опросов", color: "color1"},
+        {title: "Ежемесячные отчеты", color: "color1"},
+      ],
+    },
+    {
+      title: "Профи",
+      price: "65000/мес. Instagram/VK/Facebook",
+      list: [
+        {title: "SMM-cтратегия (анализ продукта и сегментирование ЦА, анализ конкурентов, разработка рубрикатора и контент-плана) ", color: "color3"},
+        {title: "Анализ имеющихся страниц", color: "color1"},
+        {title: "Общение с подписчиками", color: "color1"},
+        {title: "Копирайтинг (30 постов)", color: "color1"},
+
+        {titleStrong: true, title: "Формирование визуального контента", additional: "(до 1 съемки в месяц, разработка концепции фотосессии, организация процесса фотосъемки и постпродакш)", additionalColor: "color3", color: "color3"},
+
+        {title: "Дизайнерское оформление ленты", color: "color3"},
+        {title: "Организация и проведение 2 конкурсов в месяц", color: "color3"},
+
+        {title: "Кросспостинг", additional: "(30 постов, 60 историй)", additionalColor: "color3", color: "color3"},
+        {title: "Удаление спама, создание обсуждений/опросов", color: "color1"},
+        {title: "Ежемесячные отчеты", color: "color1"},
+      ],
+    },
+  ];
+
+section.section.price.container
+  h2.title.price__title Стоимость
+  p.price__text Стоимость услуг рассчитывается индивидуально и зависит от ваших целей, бюджета и объёмов выполняемых работ.
+  ul.price__list
+    for item in cards
+      +priceCard(item, "price")
