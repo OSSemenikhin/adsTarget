@@ -32,46 +32,7 @@
 }
 
 .purpose {
-  position: relative;
-  min-height: 470px;
-  background-image: url(../img/target/purpose/BGpurpose.webp);
-  background-repeat: no-repeat;
-  background-size: contain;
-  @media (max-width: 1024px) {
-    background-size: 53%;
-    background-position: -14% 50%;
-  }
-  @media (max-width: 512px) {
-    background-size: 100%;
-    background-position: 0% 0%;
-  }
-
-  &__title {
-    margin-bottom: 20px;
-    text-align: left;
-    @media (max-width: 512px) {
-      font-size: 20px;
-    }
-  }
-  &__wrapper {
-    position: absolute;
-    top: 50%;
-    padding-left: 55%;
-    transform: translateY(-50%);
-    @media (max-width: 1024px) {
-      padding-left: 43%;
-    }
-    @media (max-width: 512px) {
-      padding-left: 0;
-      padding-top: 316px;
-    }
-  }
-  &__text {
-    font-size: 18px;
-    @media (max-width: 512px) {
-      font-size: 16px;
-    }
-  }
+  @include purpose('../img/target/purpose/BGpurpose.webp');
 }
 
 .work {

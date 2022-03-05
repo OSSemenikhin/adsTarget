@@ -1,0 +1,27 @@
+extends ../layout/other
+
+block styles_plugins
+  link(rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css")
+  link(rel="stylesheet" href="../css/choozzie.css")
+  link(rel="stylesheet" href="../css/modalGoody.css")
+
+block styles
+  link(rel="stylesheet" href="../css/fonts.css")
+  link(rel="stylesheet" href="../css/global.css")
+  link(rel="stylesheet" href="../css/header.css")
+  link(rel="stylesheet" href="../css/footer.css")
+  link(rel="stylesheet" href="../css/programmatic.css")
+
+block scripts
+  script(defer src="../js/programmatic.js")
+
+block content
+  include hero
+  include info
+  include purpose
+//-   include work
+//-   include price
+//-   include cases
+
+block modals
+  include modals
