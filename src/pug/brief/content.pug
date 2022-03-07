@@ -1,0 +1,37 @@
+-
+  var briefList = [
+    {
+      title: 'Основной бриф на таргетированную рекламу',
+      description: 'Таргетированная реклама: ВКонтакте, Facebook, Instagram и других социальных сетях',
+      link: 'https://docs.google.com/forms/d/e/1FAIpQLSfG84IGx3o32GKqrv_O55zsaWk80UYiv7DnIYG9lKb_ZKQ-JQ/viewform?usp=sf_link',
+      icon: '1.webp',
+    },
+    {
+      title: 'Бриф. Ведение сообществ в социальных сетях',
+      description: 'Производство и публикация контента во всех пополуярных социальных сетях',
+      link: 'https://docs.google.com/forms/d/e/1FAIpQLSdDycWpz5BOmMbbR925nmTy0ZkyHx1LxqPvX5jG8GjmZPRzZg/viewform?usp=sf_link',
+      icon: '2.webp',
+    },
+    {
+      title: 'Бриф. Контекстная реклама',
+      description: 'Контекстная реклама в Яндекс.Директ и Google AdWords',
+      link: 'https://docs.google.com/forms/d/e/1FAIpQLSdoUW4c_Fmoxb1Hz1l1fZVLCJGHE-o-af485icaid-mwkyyCg/viewform?usp=sf_link',
+      icon: '3.webp',
+    },
+  ];
+
+mixin briefCard(item)
+  -var bg = "background-image: url(../img/briefPage/" + item.icon + ")";
+  li.content__item(style=bg)
+    h3.content__subtitle= item.title
+    p.content__description= item.description
+    button.content__button Заполнить
+    a.content__link(href=item.link)
+
+section.section.content
+  .container
+    h2.title.content__title Брифы AdsTarget
+    p.content__text Пожалуйста, заполните бриф подробно. На основе брифа мы рассчитаем стоимость продвижения и пришлем индивидуальное предложение.
+    ul.content__list
+      for item in briefList
+        +briefCard(item)

@@ -1,0 +1,19 @@
+@import "mixins";
+@import "variables";
+@import "hero";
+@import "cases";
+@import "responses";
+@import "feedback";
+@import "modals";
+
+.cases {
+  &__list {
+    column-gap: 80px;
+  }
+  &__image {
+    &--2,
+    &--3 {
+      margin-bottom: -9px;
+    }
+  }
+}

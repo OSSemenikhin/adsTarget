@@ -39,28 +39,29 @@ mixin priceCard(item, className)
       p(class=classNamePrice)
         span(class=classNamePrePrice)= prePriceText
         |#{item.price}
-    if item.list
-      ul(class=classNameList)
-        for listitem in item.list
-          - var fullClassName = classNameListItem + " " + classNameListItem + "--" + listitem.color;
-          if listitem.additional
-            - var additionalClassName = className + "__additional";
-            - var additionalClassNameFull = additionalClassName + " " +  className + "__additional" + "--" + listitem.additionalColor;
-            if listitem.titleStrong
-              li(class=fullClassName)
-                strong= listitem.title
-                span(class=additionalClassNameFull)= listitem.additional
-            else
-              li(class=fullClassName)= listitem.title
-                span(class=additionalClassNameFull)= listitem.additional
+    div(class=(className + '__wrapper'))
+      if item.list
+        ul(class=classNameList)
+          for listitem in item.list
+            - var fullClassName = classNameListItem + " " + classNameListItem + "--" + listitem.color;
+            if listitem.additional
+              - var additionalClassName = className + "__additional";
+              - var additionalClassNameFull = additionalClassName + " " +  className + "__additional" + "--" + listitem.additionalColor;
+              if listitem.titleStrong
+                li(class=fullClassName)
+                  strong= listitem.title
+                  span(class=additionalClassNameFull)= listitem.additional
+              else
+                li(class=fullClassName)= listitem.title
+                  span(class=additionalClassNameFull)= listitem.additional
 
-          else
-            if listitem.titleStrong
-              li(class=fullClassName)
-                strong= listitem.title
             else
-              li(class=fullClassName)= listitem.title
-    a(class=classNameButton href="#feedback") Заказать
+              if listitem.titleStrong
+                li(class=fullClassName)
+                  strong= listitem.title
+              else
+                li(class=fullClassName)= listitem.title
+      a(class=classNameButton href="#feedback") Заказать
 
 
 mixin infoCard(item, className)

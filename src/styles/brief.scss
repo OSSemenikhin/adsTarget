@@ -1,0 +1,67 @@
+@import "mixins";
+@import "variables";
+@import "feedback";
+@import "modals";
+
+.content {
+  margin-bottom: 30px;
+  padding-top: 130px;
+  padding-bottom: 100px;
+  background-color: $colorGrey_4;
+  &__title {
+    margin-bottom: 50px;
+  }
+  &__text {
+    margin-bottom: 50px;
+    padding: 0 26%;
+    font-size: 24px;
+    line-height: 1.5;
+    text-align: center;
+    @media (max-width: 1024px) {
+      padding: 0 18%;
+    }
+    @media (max-width: 768px) {
+      padding: 0 8%;
+    }
+    @media (max-width: 512px) {
+      padding: 0 0;
+    }
+  }
+  &__list {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    list-style: none;
+  }
+  &__item {
+    padding: 30px;
+    padding-left: 260px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: rgb(255, 255, 255);
+  }
+  &__subtitle,
+  &__description {
+    margin-bottom: 20px;
+  }
+  &__subtitle {
+    padding-right: 15px;
+    font-size: 20px;
+    line-height: 1.35;
+  }
+  &__description {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  &__button {
+    height: 35px;
+    padding: 0 15px;
+    font-size: 13px;
+    color: #ffffff;
+    background-color: #000000;
+    border: none;
+    border-radius: 5px;
+  }
+}

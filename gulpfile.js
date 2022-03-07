@@ -335,6 +335,40 @@ const scriptsDevContextual = () => {
     .pipe(dest(path.dev.js))
     .pipe(browserSync.stream())
 }
+const scriptsDevCases = () => {
+  return src([
+    'src/js/cases.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    .pipe(babel({
+      presets: ['@babel/env']
+    }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dev.js))
+    .pipe(browserSync.stream())
+}
+const scriptsDevBrief = () => {
+  return src([
+    'src/js/brief.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    .pipe(babel({
+      presets: ['@babel/env']
+    }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dev.js))
+    .pipe(browserSync.stream())
+}
 
 // const scriptsDev1 = () => {
 //   return src([
@@ -538,6 +572,8 @@ const watchFiles = (opts) => {
   gulp.watch([path.watch.js], scriptsDevAdministration);
   gulp.watch([path.watch.js], scriptsDevProgrammatic);
   gulp.watch([path.watch.js], scriptsDevContextual);
+  gulp.watch([path.watch.js], scriptsDevCases);
+  gulp.watch([path.watch.js], scriptsDevBrief);
   // gulp.watch([path.watch.js], scriptsDev1);
   gulp.watch([path.watch.img], imagesDev);
   gulp.watch([path.watch.pug], pug2htmlDev);
@@ -561,6 +597,8 @@ const dev = gulp.series(
     scriptsDevAdministration,
     scriptsDevProgrammatic,
     scriptsDevContextual,
+    scriptsDevCases,
+    scriptsDevBrief,
     // scriptsDev1,
     stylesDev,
     fontsDev,
@@ -602,6 +640,8 @@ exports.scriptsDevSmm = scriptsDevSmm;
 exports.scriptsDevAdministration = scriptsDevAdministration;
 exports.scriptsDevProgrammatic = scriptsDevProgrammatic;
 exports.scriptsDevContextual = scriptsDevContextual;
+exports.scriptsDevCases = scriptsDevCases;
+exports.scriptsDevBrief = scriptsDevBrief;
 // exports.scriptsDev1 = scriptsDev1;
 exports.svgSprites = svgSprites;
 exports.svgSpritesDev = svgSpritesDev;

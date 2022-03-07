@@ -1,0 +1,108 @@
+include ../layout/mixins
+include ../layout/variables
+
+-
+  var cases = [
+    {
+      title: 'Работа в Евразии',
+      description: 'Соискатели по 144 руб. и объявления с рейтингом 9.9',
+      image: 'evrasia.webp',
+      link: '#',
+      alt: 'Фотография девушки официанта',
+    },
+    {
+      title: 'Ювелир Карат',
+      description: 'Улучшение показателей текущей рекламной кампании в 6 раз',
+      image: 'karat.webp',
+      link: '#',
+      alt: 'Фотография девушки в очках',
+
+    },
+    {
+      title: 'Анимашки шоу',
+      description: 'Заявки по 158 руб. на поздравления Деда Мороза и Снегурочки',
+      image: 'animashki.webp',
+      link: '#',
+      alt: 'Фотография девушки в украшениях',
+    },
+    {
+      title: 'Новогодняя ночь',
+      description: 'Билеты в рестораны «Евразия» по 150 руб. за заявку',
+      image: 'newYearNight.webp',
+      link: '#',
+      alt: 'Фотография девушки в украшениях',
+    },
+    {
+      title: 'Букеты из клубники',
+      description: '1 млн.руб. на продаже букетов',
+      image: 'klubnika.webp',
+      link: '#',
+      alt: 'Фотография девушки в украшениях',
+    },
+    {
+      title: 'Studio Context Диана Вишнёва',
+      description: 'Как научить танцевать всю страну во время пандемии?',
+      image: 'context.webp',
+      link: '#',
+      alt: 'Фотография девушки в украшениях',
+    },
+    {
+      title: 'ТК «Китай Город»',
+      description: 'Как сменить имидж бренда с помощью визуального контента',
+      image: 'chinaTown.webp',
+      link: '#',
+      alt: 'Фотография девушки в украшениях',
+    },
+    {
+      title: 'Магазин одежды',
+      description: '386 продаж более чем на 5 млн. руб',
+      image: 'dressShop.webp',
+      link: '#',
+      alt: 'Фотография девушки в украшениях',
+    },
+    {
+      title: 'Глэмпинг на Алтае',
+      description: 'Как за 2 месяца сделать 100% бронь на всё лето',
+      image: 'glamping.webp',
+      link: '#',
+      alt: 'Фотография девушки в украшениях',
+    },
+    {
+      title: 'Новогодний подарок фотографу',
+      description: 'Как получить заявки на фотосессии, увеличить количество подписчиков сообщества.',
+      image: 'present.webp',
+      link: '#',
+      alt: 'Фотография девушки в украшениях',
+    },
+    {
+      title: 'Отель в центре Санкт-Петербурга',
+      description: 'Как увеличить количество бронирований в отеле на 40% в не сезон и при ограничениях',
+      image: 'hotel.webp',
+      link: '#',
+      alt: 'Фотография девушки в украшениях',
+    },
+    {
+      title: 'Отель в центре Санкт-Петербурга',
+      description: 'Как мы прокачали аккаунт в Амазон',
+      image: 'amazon.webp',
+      link: '#',
+      alt: 'Фотография девушки в украшениях',
+    },
+  ];
+
+mixin caseCardPage(item, ind)
+  -var bg = "../img/casesPage/" + item.image;
+  -var modClass = "cases__image--" + ind
+  article.cases__item
+    a.cases__link(href=item.link)
+    img.cases__image(class=modClass src=bg, alt=item.alt)
+    h3.cases__title= item.title
+    p.cases__text= item.description
+
+section.section.cases.container#cases
+  h2.title.cases__title Наши кейсы
+  .cases__list
+    -var ind = 0;
+    for item in cases
+      - ind++
+      +caseCardPage(item, ind)
