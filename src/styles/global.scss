@@ -79,6 +79,9 @@ input {
   }
 
   @media(max-width: 512px) {
+    &.header-logo {
+      text-align: left;
+    }
     &__link {
       width: 160px;
     }

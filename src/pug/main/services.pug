@@ -89,6 +89,7 @@ mixin serviceCard(item)
 
 mixin serviceCard_big(item)
   -var bg = "background-image: url(./img/services/" + item.backGround + ")";
+  //- li.services__item.services-recomedation__item
   li.services__item.services-recomedation__item(style=bg)
     h3.services__subtitle.services-recomedation__subtitle= item.title
       span.services__price.services-recomedation__price= item.price
