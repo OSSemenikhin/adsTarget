@@ -36,20 +36,20 @@ input {
 }
 
 .container {
-  width: $containerWidth320;
+  width: $containerWidth1024;
+  max-width: $containerDesktop;
   margin: auto;
 
-  @media (min-width: 768px) {
+  @media (max-width: 768px) {
+    width: $containerWidth320;
+  }
+
+  @media (max-width: 1024px) {
     width: $containerWidth768;
   }
 
-  @media (min-width: 1024px) {
+  @media (max-width: 1300px) {
     width: $containerWidth1024;
-  }
-
-  @media (min-width: 1300px) {
-    width: $containerWidth1024;
-    max-width: $containerDesktop;
   }
 }
 

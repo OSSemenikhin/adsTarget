@@ -76,13 +76,16 @@ mixin infoCard(item, className)
 
 //- HERO BLOCK
 mixin heroBlock(data)
-  -
-  section.hero.section
-    .hero__background
+  - var bg = "background-image: url(" + data.bg + ")";
+  section.hero.section(style=bg)
+    .hero__mobilebackground
     .hero-content.container
-      h2.hero-content__title=data.title
-      p.hero-content__text= data.text
-      a.hero-content__button(href="#feedback")= data.button
+      .hero-content__wrapper
+        h2.hero-content__title=data.title
+        p.hero-content__text= data.text
+        a.hero-content__button(href="#feedback")= data.button
+    //- .hero__background
+    //-   img(src=data.bg, alt="dsfsdf")
 
 //- MODAL WINDOW GET CALL
 mixin callModal(path="main")
@@ -191,106 +194,3 @@ mixin socLink(arr, path)
         a.socials__link(href=link.link)
           svg.socials__icon
             use(xlink:href=getPath)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-mixin itemMerchCard(card, path, ind)
-  -
-    var classNameArticle = card.className + '-article';
-    var classNameArticleUnique = classNameArticle + '--' + ind;
-    var classNameArticleBig = card.big ? classNameArticle + '--big' : '';
-    var classNameArticleFull = classNameArticle + ' ' + classNameArticleUnique + ' ' + classNameArticleBig;
-
-    var classNameSale = classNameArticle + '-sale';
-    var classNameSaleBig =  card.big ? classNameSale + '--big' : '';
-    var classNameSaleFull = classNameSale + ' ' + classNameSaleBig;
-
-    var classNameRating = classNameArticle + '-rating';
-    var classNameRatingBig =  card.big ? classNameRating + '--big' : '';
-    var classNameRatingFull = classNameRating + ' ' + classNameRatingBig;
-
-    var classNameText = classNameArticle + '__text';
-    var classNameTextBig =  card.big ? classNameText + '--big' : '';
-    var classNameTextFull = classNameText + ' ' + classNameTextBig;
-
-    var classNameTitle = classNameArticle + '__title';
-    var classNameTitleBig =  card.big ? classNameTitle + '--big' : '';
-    var classNameTitleFull = classNameTitle + ' ' + classNameTitleBig;
-
-    var classNameButton = classNameArticle + '__button';
-    var classNameButtonBig =  card.big ? classNameButton + '--big' : '';
-    var classNameButtonFull = classNameButton + ' ' + classNameButtonBig;
-
-
-  if card.breakPoints
-    -
-      var pic = {
-        name: card.name,
-        classNamePicture: classNameArticle + '__picture',
-        classNameImg: card.big ? classNameArticle + '__img' + ' ' + classNameArticle + '__img--big' : classNameArticle + '__img',
-        path: path,
-        breakPoints: card.breakPoints,
-        mod: card.big ? classNameArticle + '__picture--big' : '',
-        alt: card.alt ? card.alt : '',
-      }
-  else
-    -
-      var pic = {
-        name: card.name,
-        classNamePicture: classNameArticle + '__picture',
-        classNameImg: card.big ? classNameArticle + '__img' + ' ' + classNameArticle + '__img--big' : classNameArticle + '__img',
-        path: path,
-        mod: card.big ? classNameArticle + '__picture--big' : '',
-        alt: card.alt ? card.alt : '',
-      }
-
-  article(class=classNameArticleFull)
-    if card.offerSale
-      div(class=classNameSaleFull)
-        div(class=classNameArticle + '-sale__bacground' + ' ' + classNameArticle + '-sale__bacground--square')
-          span(class=classNameArticle + '-sale__sum' aria-label="Скидка")= card.offerSale
-    else if card.rating
-      div(class=classNameRatingFull)
-          span(class=classNameArticle + '-rating__icon')
-            svg(aria-hidden="true")
-              use(xlink:href="img/svg/sprite.svg#star")
-          span(class=classNameArticle + '-rating__indicator' aria-label="Рэйтинг")= card.rating
-    +picture(pic, ind, 'png')
-    div(class=classNameTextFull)
-      h3(class=classNameTitleFull)
-        a(class=classNameArticle + '__link' href='#')
-          span(class=classNameArticle + '__name')=card.title
-          if card.model
-            span(class=classNameArticle + '__model')=card.model
-      p(class=classNameArticle + '__price' + ' ' + classNameArticle + '__price--relevant' aria-label="Актуальная цена")= card.relevant + ' руб'
-      if card.oldPrice
-        p(class=classNameArticle + '__price' + ' ' + classNameArticle + '__price--old' aria-label="Старая цена")= card.oldPrice + ' руб'
-    a(class=classNameButtonFull href='#') Купить
