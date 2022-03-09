@@ -1,4 +1,3 @@
-
 /*
 
 npm i browser-sync
@@ -12,10 +11,12 @@ npm i --save-dev gulp-sass
 npm i --save-dev sass
 npm i --save-dev gulp-sourcemaps
 npm i --save-dev gulp-group-css-media-queries
+
 npm i --save-dev gulp-babel
 npm i --save-dev @babel/core
 npm i --save-dev @babel/preset-env
 npm i --save-dev babel-loader
+
 npm i --save-dev gulp-uglify-es
 npm i --save-dev gulp-notify
 npm i --save-dev gulp-svg-sprite
@@ -49,6 +50,8 @@ const path = {
     fonts: devFolder + '/fonts/',
     favicon: devFolder + '/favicon/',
     bgFeedback: devFolder + '/img/feedback/',
+    PHPMailer: devFolder + '/PHPMailer',
+    sendmail: devFolder,
   },
   dist: {
     html: distFolder + '/',
@@ -60,6 +63,8 @@ const path = {
     fonts: distFolder + '/fonts/',
     favicon: distFolder + '/favicon/',
     bgFeedback: distFolder + '/img/feedback/',
+    PHPMailer: distFolder + '/PHPMailer',
+    sendmail: distFolder,
   },
   src: {
     pug: srcFolder + '/pug/**/index.pug',
@@ -73,6 +78,8 @@ const path = {
     fonts: assetsFolder + '/fonts/**/*.ttf',
     favicon: assetsFolder + '/favicon/*.ico',
     bgFeedback: backgroundFeedback,
+    PHPMailer: srcFolder + '/PHPMailer/**/*.*',
+    sendmail: srcFolder + '/sendmail.php',
   },
   watch: {
     pug: srcFolder + '/pug/**/*.pug',
@@ -85,6 +92,7 @@ const path = {
     favicon: assetsFolder + '/favicon/*.ico',
   },
 };
+
 
 const {
   src,
@@ -199,37 +207,16 @@ const scripts = () => {
     // 'src/js/t.js',
   ])
     .pipe(jsImport())
-    .pipe(babel({
-      presets: ['@babel/env']
-    }))
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
     // .pipe(concat('app.js'))
     .pipe(uglify({
       toplevel: true,
     }).on('error', notify.onError))
     .pipe(dest(path.dist.js))
 }
-const scriptsDev = () => {
-  [
-    "main.js",
-    "target.js"
-  ].forEach(item => {
-    return src([
-      `src/js/${item}`
-    ])
-      .pipe(jsImport())
-      // .pipe(sourcemaps.init())
-      .pipe(babel({
-        presets: ['@babel/env']
-      }))
-      // .pipe(concat('app.js'))
-      .pipe(uglify({
-        toplevel: true,
-      }).on('error', notify.onError()))
-      // .pipe(sourcemaps.write())
-      .pipe(dest(path.dev.js))
-      .pipe(browserSync.stream())
-  });
-}
+
 const scriptsDevMain = () => {
   return src([
     // path.src.js,
@@ -238,9 +225,9 @@ const scriptsDevMain = () => {
   ])
     .pipe(jsImport())
     .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['@babel/env']
-    }))
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
     // .pipe(concat('app.js'))
     .pipe(uglify({
       toplevel: true,
@@ -249,6 +236,22 @@ const scriptsDevMain = () => {
     .pipe(dest(path.dev.js))
     .pipe(browserSync.stream())
 }
+const scriptsMain = () => {
+  return src([
+    // path.src.js,
+    'src/js/main.js',
+    // 'src/js/t.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    .pipe(dest(path.dist.js))
+}
 
 const scriptsDevTarget = () => {
   return src([
@@ -256,9 +259,9 @@ const scriptsDevTarget = () => {
   ])
     .pipe(jsImport())
     // .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['@babel/env']
-    }))
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
     // .pipe(concat('app.js'))
     .pipe(uglify({
       toplevel: true,
@@ -267,15 +270,32 @@ const scriptsDevTarget = () => {
     .pipe(dest(path.dev.js))
     .pipe(browserSync.stream())
 }
+const scriptsTarget = () => {
+  return src([
+    'src/js/target.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dist.js))
+}
+
 const scriptsDevSmm = () => {
   return src([
     'src/js/smm.js',
   ])
     .pipe(jsImport())
     // .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['@babel/env']
-    }))
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
     // .pipe(concat('app.js'))
     .pipe(uglify({
       toplevel: true,
@@ -284,15 +304,32 @@ const scriptsDevSmm = () => {
     .pipe(dest(path.dev.js))
     .pipe(browserSync.stream())
 }
+const scriptsSmm = () => {
+  return src([
+    'src/js/smm.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dist.js))
+}
+
 const scriptsDevAdministration = () => {
   return src([
     'src/js/administration.js',
   ])
     .pipe(jsImport())
     // .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['@babel/env']
-    }))
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
     // .pipe(concat('app.js'))
     .pipe(uglify({
       toplevel: true,
@@ -301,15 +338,32 @@ const scriptsDevAdministration = () => {
     .pipe(dest(path.dev.js))
     .pipe(browserSync.stream())
 }
+const scriptsAdministration = () => {
+  return src([
+    'src/js/administration.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dist.js))
+}
+
 const scriptsDevProgrammatic = () => {
   return src([
     'src/js/programmatic.js',
   ])
     .pipe(jsImport())
     // .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['@babel/env']
-    }))
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
     // .pipe(concat('app.js'))
     .pipe(uglify({
       toplevel: true,
@@ -318,15 +372,32 @@ const scriptsDevProgrammatic = () => {
     .pipe(dest(path.dev.js))
     .pipe(browserSync.stream())
 }
+const scriptsProgrammatic = () => {
+  return src([
+    'src/js/programmatic.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dist.js))
+}
+
 const scriptsDevContextual = () => {
   return src([
     'src/js/contextual.js',
   ])
     .pipe(jsImport())
     // .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['@babel/env']
-    }))
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
     // .pipe(concat('app.js'))
     .pipe(uglify({
       toplevel: true,
@@ -335,15 +406,32 @@ const scriptsDevContextual = () => {
     .pipe(dest(path.dev.js))
     .pipe(browserSync.stream())
 }
+const scriptsContextual = () => {
+  return src([
+    'src/js/contextual.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dist.js))
+}
+
 const scriptsDevCases = () => {
   return src([
     'src/js/cases.js',
   ])
     .pipe(jsImport())
     // .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['@babel/env']
-    }))
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
     // .pipe(concat('app.js'))
     .pipe(uglify({
       toplevel: true,
@@ -352,15 +440,32 @@ const scriptsDevCases = () => {
     .pipe(dest(path.dev.js))
     .pipe(browserSync.stream())
 }
+const scriptsCases = () => {
+  return src([
+    'src/js/cases.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dist.js))
+}
+
 const scriptsDevBrief = () => {
   return src([
     'src/js/brief.js',
   ])
     .pipe(jsImport())
     // .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['@babel/env']
-    }))
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
     // .pipe(concat('app.js'))
     .pipe(uglify({
       toplevel: true,
@@ -368,6 +473,56 @@ const scriptsDevBrief = () => {
     // .pipe(sourcemaps.write())
     .pipe(dest(path.dev.js))
     .pipe(browserSync.stream())
+}
+const scriptsBrief = () => {
+  return src([
+    'src/js/brief.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dist.js))
+}
+
+const scriptsDevFeedbackForm = () => {
+  return src([
+    'src/js/feedbackForm.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dev.js))
+    .pipe(browserSync.stream())
+}
+const scriptsFeedbackForm = () => {
+  return src([
+    'src/js/feedbackForm.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dist.js))
 }
 
 // const scriptsDev1 = () => {
@@ -377,7 +532,7 @@ const scriptsDevBrief = () => {
 //     .pipe(jsImport())
 //     // .pipe(sourcemaps.init())
 //     .pipe(babel({
-//       presets: ['@babel/env']
+//       presets: [ "es2015", "stage-0" ]
 //     }))
 //     // .pipe(concat('app.js'))
 //     .pipe(uglify({
@@ -510,6 +665,30 @@ const favicon = () => {
   return src(path.src.favicon)
     .pipe(dest(path.dist.favicon))
 }
+const loadingGifDev = () => {
+  return src('./src/assets/img/loading.gif')
+    .pipe(dest(path.dev.img))
+}
+const loadingGif = () => {
+  return src('./src/assets/img/loading.gif')
+    .pipe(dest(path.dist.img))
+}
+const phpMailerDev = () => {
+  return src(path.src.PHPMailer)
+    .pipe(dest((path.dev.PHPMailer)))
+}
+const phpMailer = () => {
+  return src(path.src.PHPMailer)
+    .pipe(dest(path.dist.PHPMailer))
+}
+const sendmail = () => {
+  return src(path.src.sendmail)
+    .pipe(dest(path.dist.sendmail))
+}
+const sendmailDev = () => {
+  return src(path.src.sendmail)
+    .pipe(dest(path.dev.sendmail))
+}
 
 
 // FONTS
@@ -574,7 +753,9 @@ const watchFiles = (opts) => {
   gulp.watch([path.watch.js], scriptsDevContextual);
   gulp.watch([path.watch.js], scriptsDevCases);
   gulp.watch([path.watch.js], scriptsDevBrief);
+  gulp.watch([path.watch.js], scriptsDevFeedbackForm);
   // gulp.watch([path.watch.js], scriptsDev1);
+  gulp.watch([path.watch.js], loadingGifDev);
   gulp.watch([path.watch.img], imagesDev);
   gulp.watch([path.watch.pug], pug2htmlDev);
   gulp.watch([path.watch.svg], svgSpritesDev);
@@ -599,11 +780,15 @@ const dev = gulp.series(
     scriptsDevContextual,
     scriptsDevCases,
     scriptsDevBrief,
+    scriptsDevFeedbackForm,
     // scriptsDev1,
     stylesDev,
+    loadingGifDev,
     fontsDev,
     faviconDev,
     pug2htmlDev,
+    phpMailerDev,
+    sendmailDev,
   )
 );
 
@@ -612,15 +797,28 @@ const build = gulp.series(
   gulp.parallel(
     htmlMinify,
     styles,
-    scripts,
+    // scripts,
+    scriptsMain,
+    scriptsTarget,
+    scriptsSmm,
+    scriptsAdministration,
+    scriptsProgrammatic,
+    scriptsContextual,
+    scriptsCases,
+    scriptsBrief,
+    scriptsFeedbackForm,
+    // scripts,
     svgSprites,
     svg,
     bgFeedback,
     favicon,
+    loadingGif,
     images,
     pug2html,
     fonts,
-    imagesPng
+    imagesPng,
+    phpMailer,
+    sendmail,
   )
 );
 
@@ -642,7 +840,18 @@ exports.scriptsDevProgrammatic = scriptsDevProgrammatic;
 exports.scriptsDevContextual = scriptsDevContextual;
 exports.scriptsDevCases = scriptsDevCases;
 exports.scriptsDevBrief = scriptsDevBrief;
+exports.scriptsDevFeedbackForm = scriptsDevFeedbackForm;
+exports.scriptsMain = scriptsMain;
+exports.scriptsTarget = scriptsTarget;
+exports.scriptsSmm = scriptsSmm;
+exports.scriptsAdministration = scriptsAdministration;
+exports.scriptsProgrammatic = scriptsProgrammatic;
+exports.scriptsContextual = scriptsContextual;
+exports.scriptsCases = scriptsCases;
+exports.scriptsBrief = scriptsBrief;
+exports.scriptsFeedbackForm = scriptsFeedbackForm;
 // exports.scriptsDev1 = scriptsDev1;
+exports.loadingGifDev = loadingGifDev;
 exports.svgSprites = svgSprites;
 exports.svgSpritesDev = svgSpritesDev;
 exports.svg = svg;
@@ -652,6 +861,8 @@ exports.imagesDev = imagesDev;
 exports.fonts = fonts;
 exports.fontsDev = fontsDev;
 exports.imagesPngDev = imagesPngDev;
+exports.sendmailDev = sendmailDev;
+exports.sendmail = sendmail;
 exports.build = build;
 exports.dev = dev;
 exports.watch = watch;

@@ -1,6 +1,5 @@
   // Scroll to anchor
   const links = document.querySelectorAll('[href^="#"]');
-  console.log(links);
   const header = document.querySelector('.header');
   links.forEach(link => {
     link.addEventListener('click', e => {

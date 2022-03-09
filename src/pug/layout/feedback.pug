@@ -1,18 +1,18 @@
-section.feedback(id="feedback")
+section.feedback#feedback
   .container
-    form.feedback__form
+    form.feedback__form#feedback_form(action="sendmail.php" name="form" method="POST")
       label.feedback__label
-        |Ваше имя
+        span Ваше имя
         br
-        input.feedback__input(type="text" placeholder="Как к Вам обращаться?")
+        input.feedback__input._name._require(name="name" type="text" placeholder="Как к Вам обращаться?")
       label.feedback__label
-        |Ваш номер телефона
+        span Ваш номер телефона
         br
-        input.feedback__input(type="text" placeholder="Как с Вами связаться?")
+        input.feedback__input._phone._require(name="phone" type="text" placeholder="Как с Вами связаться?")
       label.feedback__label
-        |Что будем продвигать?
+        span Что будем продвигать?
         br
-        input.feedback__input(type="text" placeholder="Ссылка на сайт или сообщество")
+        input.feedback__input._target._require(name="target" type="text" placeholder="Ссылка на сайт или сообщество")
       button.feedback__button(type="submit") Рассчитать стоимость
     p.feedback__prevention Нажимая «Рассчитать стоимость» вы подтверждаете своё согласие&#160;
       a.feedback__privacy-policy.feedback__link(href="#") на обработку персональных данных

@@ -226,3 +226,8 @@ input {
     @include svgIcon;
   }
 }
+#vk_community_messages:focus,
+#vk_community_messages:focus-visible,
+#vk_community_messages > iframe {
+  outline: none;
+}

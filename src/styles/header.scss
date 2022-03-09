@@ -155,6 +155,12 @@ $burgerTransition: 0.3s;
     font-weight: 600;
     &.active {
       color: $colorPrimary_2;
+      @media(max-width: 1024px) {
+        color: inherit;
+        &:hover {
+          color: $colorPrimary_1;
+        }
+      }
     }
   }
   &__socials {
