@@ -14,10 +14,14 @@ require 'PHPMailer/SMTP.php';
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
-$body = '<h1>Рассчитать стоимость</h1>';
+$body = '<h1>Услуга</h1>';
+if (isset($_POST["type"])) {
+  $body .= '<p><strong>Что продвигать:</strong> '.$_POST["type"].'</p>';
+}
+$body .= '<p><strong>Что продвигать:</strong> '.$_POST["description"].'</p>';
 $body .= '<p><strong>Имя:</strong> '.$_POST["name"].'</p>';
 $body .= '<p><strong>Телефон:</strong> '.$_POST["phone"].'</p>';
-$body .= '<p><strong>Что продвигать:</strong> '.$_POST["target"].'</p>';
+$body .= '<p><strong>Что продвигать:</strong> '.$_POST["socials"].'</p>';
 
 try {
   //Server settings
@@ -37,7 +41,7 @@ try {
 
   //Content
   $mail->isHTML(true);                                  //Set email format to HTML
-  $mail->Subject = 'Рассчитать стоимость';
+  $mail->Subject = 'Услуга';
   $mail->Body    = $body;
   $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 

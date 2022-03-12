@@ -52,6 +52,8 @@ const path = {
     bgFeedback: devFolder + '/img/feedback/',
     PHPMailer: devFolder + '/PHPMailer',
     sendmail: devFolder,
+    callme: devFolder,
+    servicesForm: devFolder,
   },
   dist: {
     html: distFolder + '/',
@@ -65,6 +67,8 @@ const path = {
     bgFeedback: distFolder + '/img/feedback/',
     PHPMailer: distFolder + '/PHPMailer',
     sendmail: distFolder,
+    callme: distFolder,
+    servicesForm: distFolder,
   },
   src: {
     pug: srcFolder + '/pug/**/index.pug',
@@ -80,6 +84,8 @@ const path = {
     bgFeedback: backgroundFeedback,
     PHPMailer: srcFolder + '/PHPMailer/**/*.*',
     sendmail: srcFolder + '/sendmail.php',
+    callme: srcFolder + '/callme.php',
+    servicesForm: srcFolder + '/servicesForm.php',
   },
   watch: {
     pug: srcFolder + '/pug/**/*.pug',
@@ -724,6 +730,22 @@ const sendmailDev = () => {
   return src(path.src.sendmail)
     .pipe(dest(path.dev.sendmail))
 }
+const callme = () => {
+  return src(path.src.callme)
+    .pipe(dest(path.dist.callme))
+}
+const callmeDev = () => {
+  return src(path.src.callme)
+    .pipe(dest(path.dev.callme))
+}
+const servicesForm = () => {
+  return src(path.src.servicesForm)
+    .pipe(dest(path.dist.servicesForm))
+}
+const servicesFormDev = () => {
+  return src(path.src.servicesForm)
+    .pipe(dest(path.dev.servicesForm))
+}
 
 
 // FONTS
@@ -798,6 +820,8 @@ const watchFiles = (opts) => {
   gulp.watch([path.watch.svg], svgSpritesDev);
   gulp.watch([path.watch.svg], svgDev);
   gulp.watch([path.watch.php], phpMailerDev);
+  gulp.watch([path.watch.php], callmeDev);
+  gulp.watch([path.watch.php], servicesFormDev);
 };
 
 const dev = gulp.series(
@@ -828,6 +852,8 @@ const dev = gulp.series(
     pug2htmlDev,
     phpMailerDev,
     sendmailDev,
+    callmeDev,
+    servicesFormDev,
   )
 );
 
@@ -859,6 +885,8 @@ const build = gulp.series(
     imagesPng,
     phpMailer,
     sendmail,
+    callme,
+    servicesForm,
   )
 );
 
@@ -904,6 +932,10 @@ exports.fontsDev = fontsDev;
 exports.imagesPngDev = imagesPngDev;
 exports.sendmailDev = sendmailDev;
 exports.sendmail = sendmail;
+exports.callmeDev = callmeDev;
+exports.callme = callme;
+exports.servicesFormDev = servicesFormDev;
+exports.servicesForm = servicesForm;
 exports.build = build;
 exports.dev = dev;
 exports.watch = watch;

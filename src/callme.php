@@ -1,4 +1,5 @@
 <?php
+var_dump($_POST);
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -14,10 +15,8 @@ require 'PHPMailer/SMTP.php';
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
-$body = '<h1>Рассчитать стоимость</h1>';
-$body .= '<p><strong>Имя:</strong> '.$_POST["name"].'</p>';
+$body = '<h1>Перезвоните мне!</h1>';
 $body .= '<p><strong>Телефон:</strong> '.$_POST["phone"].'</p>';
-$body .= '<p><strong>Что продвигать:</strong> '.$_POST["target"].'</p>';
 
 try {
   //Server settings
@@ -37,7 +36,7 @@ try {
 
   //Content
   $mail->isHTML(true);                                  //Set email format to HTML
-  $mail->Subject = 'Рассчитать стоимость';
+  $mail->Subject = 'Here is the subject';
   $mail->Body    = $body;
   $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 

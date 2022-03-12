@@ -26,10 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   }
   const targetItems = [
-    { name: "Инстаграм от 35тр", secondName: 'instagram' },
-    { name: "ФБ от 35тр", secondName: 'fb' },
-    { name: "ВК от 25тр", secondName: 'vk' },
-    { name: "Тикток от 25тр", secondName: 'tikTok' },
+    { name: "Инстаграм от 35 000руб.", secondName: 'instagram' },
+    { name: "ФБ от 35 000руб.", secondName: 'fb' },
+    { name: "ВК от 25 000руб.", secondName: 'vk' },
+    { name: "Тикток от 25 000руб.", secondName: 'tikTok' },
   ];
   const contentItems = [
     { name: "Ведение сообществ в соцсетеях", secondName: 'socials' },
@@ -42,8 +42,26 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "Яндекс + Google", secondName: 'yandexAndGoogle' },
   ];
 
+
+  const selectMenuInput = document.getElementById('type_input');
+  const selectType = (e) => {
+    console.log(e.textContent.trim());
+    selectMenuInput.value = e.textContent.trim();
+  }
+
+  [
+    targetItems,
+    contentItems,
+    contextItems
+  ].forEach(items => {
+    items.forEach(item => {
+      item.onClick = selectType;
+    });
+  });
+
   const selectLable = document.getElementById('modalSelectMenuLabel');
   const selectElement = document.getElementById('modalSelectMenu');
+
   // Модальное окно
   const modal = new ModalGoody({
     isOpen: (modal) => {
@@ -63,6 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         const targetSelect = $$.choozzie.create(selectOpt);
         modal.selectMenu = targetSelect;
+        console.log(targetSelect);
+        selectMenuInput.value = targetSelect.opt.items[targetSelect.opt.current - 1].name;
       }
     },
     isClose: (modal) => {
