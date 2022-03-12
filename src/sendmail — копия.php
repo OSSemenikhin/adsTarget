@@ -23,7 +23,7 @@ try {
   $mail->SMTPAuth   = true;                                    //Enable SMTP authentication
   $mail->Username   = 'semenikhinoleg777@yandex.ru';                     //SMTP username
   $mail->Password   = 'xtlbrsaqaijcelcu';                               //SMTP password
-  $mail->SMTPSecure = 'SSL';            //Enable implicit TLS encryption
+  $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
   $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
   //Recipients
@@ -33,12 +33,8 @@ try {
 
   //Content
   $mail->isHTML(true);                                  //Set email format to HTML
-  $body = '<h1> Рассчитать стоимость </h1>';
-  $body .= '<p><strong>Имя:</strong> '.$_POST['name'].'</p>';
-  $body .= '<p><strong>Телефон:</strong> '.$_POST['phone'].'</p>';
-  $body .= '<p><strong>Что продвигать:</strong> '.$_POST['target'].'</p>';
-  $mail->Subject = 'Рассчитать стоимость';
-  $mail->Body    = $body;
+  $mail->Subject = 'Here is the subject';
+  $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
   $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
   $mail->send();

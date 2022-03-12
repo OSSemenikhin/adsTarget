@@ -34,7 +34,41 @@
     }
   }
 }
+.hero {
+  background-size: 1500px;
+  background-position: 80% 50%;
+  .hero__mobilebackground {
+    display: none;
+    @media(max-width: 768px) {
+      display: block;
+    }
+  }
 
+  @media (max-width: 1300px) {
+    background-size: 1300px;
+    background-position: 50% 50%;
+  }
+
+  @media (max-width: 1024px) {
+    background-size: 1000px;
+    background-position: 33% 50%;
+  }
+  @media (max-width: 768px) {
+    background-size: 1000px;
+    background-position: 74% 50%;
+  }
+  @media (max-width: 512px) {
+    background-size: 1000px;
+    background-position: 74% 50%;
+  }
+
+  & .hero-content__title,
+  & .hero-content__text {
+    @media (max-width: 1024px) {
+      width: 521px;
+    }
+  }
+}
 .purpose {
   @include purpose("../img/contextual/BGpurpose.webp");
 }

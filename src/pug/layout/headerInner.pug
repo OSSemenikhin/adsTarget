@@ -1,0 +1,47 @@
+include mixins
+include variables
+
+-
+  var navListItems = [
+    {name: 'Услуги', href: '/#services', id: 'services_link',},
+    {name: 'Кейсы', href: '/cases', id: 'cases_link',},
+    {name: 'Клиенты', href: '/#clients', mod: 'hidden-desktop', id: 'clients_link',},
+    {name: 'Отзывы', href: '/#responses', id: 'responses_link',},
+    {name: 'Команда', href: '/#team', mod: 'hidden-desktop', id: 'team_link',},
+    {name: 'Брифы', href: '/brief', id: 'brief_link',},
+  ];
+
+
+mixin headerLinkItem(obj, className)
+  - var classNameItem = 'header-' + className + '__item'
+  if obj.mod
+    - var classNameMod = ' ' + classNameItem + '--' + obj.mod;
+  else
+    - var classNameMod = '';
+  -
+    var classNameItemFull = 'header-' + className + '__item' + classNameMod;
+    var classNameLink = 'header-' + className + '__link';
+
+
+
+  li(class=classNameItemFull)
+    a(id=obj.id class=classNameLink, href= obj.href)= obj.name
+
+
+header.header.fix-block
+  .header__wrapper
+    +logo('header', 'otherInner')
+    .header-burger#burger
+      .header-burger__background#burger_background
+      button.header-burger__button
+        span.header-burger__icon#burger_icon
+    .header-nav#nav
+      nav.header-nav__nav
+        ul.header-nav__list
+          for link in navListItems
+            +headerLinkItem(link, 'nav')
+      .header-nav__socials
+        +socLink(socials, '../../img/svg/sprite.svg#')
+    .header-tel
+      a.header-tel__link(href="tel:+7 (812) 956–42–99") +7 (812) 956–42–99
+      button.header-tel__button(data-goody-path="call" data-goody-animation="fadeInUp" data-goody-speed-in="300" data-goody-speed-out="300") Заказать звонок

@@ -97,6 +97,8 @@ mixin callModal(path="main")
             use(xlink:href="img/svg/sprite.svg#close")
           if path =="other"
             use(xlink:href="../img/svg/sprite.svg#close")
+          if path =="otherInner"
+            use(xlink:href="../../img/svg/sprite.svg#close")
     .modal__content.modal-call__content
       h2.modal-call__title Заказать звонок
       p.modal-call__description Обычно, наш менеджеры перезванивают в течение двух часов в рабочее время
@@ -124,6 +126,8 @@ mixin logo(blockClass, path = "main", mod = '')
       a(class=classNameLink href="#" aria-label="Главная")
         if path == "main"
           img(class=classNameLogoImage loading="lazy" src="./img/logo.webp" alt="Ads Target")
+        if path == "otherInner"
+          img(class=classNameLogoImage loading="lazy" src="../../img/logo.webp" alt="Ads Target")
         else
           img(class=classNameLogoImage loading="lazy" src="../img/logo.webp" alt="Ads Target")
   else
@@ -131,6 +135,8 @@ mixin logo(blockClass, path = "main", mod = '')
       a(class=classNameLink href="/" aria-label="Главная")
         if path == "main"
           img(class=classNameLogoImage loading="lazy" src="./img/logo.webp" alt="Ads Target")
+        if path == "otherInner"
+          img(class=classNameLogoImage loading="lazy" src="../../img/logo.webp" alt="Ads Target")
         else
           img(class=classNameLogoImage loading="lazy" src="../img/logo.webp" alt="Ads Target")
           //- img(class=classNameLogoImage loading="lazy" src=srcPath alt="Ads Target")

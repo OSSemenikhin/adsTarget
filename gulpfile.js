@@ -87,9 +87,11 @@ const path = {
     css: srcFolder + '/styles/**/*.scss',
     js: srcFolder + '/js/**/*.js',
     img: assetsFolder + '/img/**/*.{jpg, JPG, jpeg, png, svg, gif, ico, webp}',
+    imgPng: assetsFolder + '/img/**/*.png',
     svg: assetsFolder + '/img/svg/*.svg',
     iconsSvg: assetsFolder + '/img/icons/**/*.svg',
     favicon: assetsFolder + '/favicon/*.ico',
+    php: assetsFolder + '/**/*.php'
   },
 };
 
@@ -490,6 +492,39 @@ const scriptsBrief = () => {
     // .pipe(sourcemaps.write())
     .pipe(dest(path.dist.js))
 }
+const scriptsDevCasesGeneral = () => {
+  return src([
+    'src/js/casesGeneral.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dev.js))
+    .pipe(browserSync.stream())
+}
+const scriptsCasesGeneral = () => {
+  return src([
+    'src/js/casesGeneral.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dist.js))
+}
 
 const scriptsDevFeedbackForm = () => {
   return src([
@@ -754,12 +789,15 @@ const watchFiles = (opts) => {
   gulp.watch([path.watch.js], scriptsDevCases);
   gulp.watch([path.watch.js], scriptsDevBrief);
   gulp.watch([path.watch.js], scriptsDevFeedbackForm);
+  gulp.watch([path.watch.js], scriptsDevCasesGeneral);
   // gulp.watch([path.watch.js], scriptsDev1);
   gulp.watch([path.watch.js], loadingGifDev);
   gulp.watch([path.watch.img], imagesDev);
+  gulp.watch([path.watch.imgPng], imagesPngDev);
   gulp.watch([path.watch.pug], pug2htmlDev);
   gulp.watch([path.watch.svg], svgSpritesDev);
   gulp.watch([path.watch.svg], svgDev);
+  gulp.watch([path.watch.php], phpMailerDev);
 };
 
 const dev = gulp.series(
@@ -781,6 +819,7 @@ const dev = gulp.series(
     scriptsDevCases,
     scriptsDevBrief,
     scriptsDevFeedbackForm,
+    scriptsDevCasesGeneral,
     // scriptsDev1,
     stylesDev,
     loadingGifDev,
@@ -807,6 +846,7 @@ const build = gulp.series(
     scriptsCases,
     scriptsBrief,
     scriptsFeedbackForm,
+    scriptsCasesGeneral,
     // scripts,
     svgSprites,
     svg,
@@ -850,6 +890,7 @@ exports.scriptsContextual = scriptsContextual;
 exports.scriptsCases = scriptsCases;
 exports.scriptsBrief = scriptsBrief;
 exports.scriptsFeedbackForm = scriptsFeedbackForm;
+exports.scriptsDevCasesGeneral = scriptsDevCasesGeneral;
 // exports.scriptsDev1 = scriptsDev1;
 exports.loadingGifDev = loadingGifDev;
 exports.svgSprites = svgSprites;

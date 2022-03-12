@@ -1,0 +1,22 @@
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title AdsTarget
+    link(rel="shortcut icon", href="/favicon/favicon.ico", type="image/svg+xml")
+    script(type="text/javascript" src="https://vk.com/js/api/openapi.js?169")
+    block styles_plugins
+    block styles
+
+  body.body
+    h1.title.title--hidden Ads Target
+    include headerInner
+    main
+      block content
+      include feedback
+    include footerInner
+    block modals
+    include vkWidget
+    block scripts
