@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     icon: document.getElementById('burger_icon'),
     links: document.querySelectorAll('.header-nav__link'),
     linksSocials: document.querySelectorAll('.socials__link'),
+    vkWidget: document.getElementById('vk_community_messages'),
 
     open() {
       [
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       [...this.links, ...this.linksSocials].forEach(link => {
         link.addEventListener('click', e => this.close());
       });
+      this.vkWidget.style.opacity = 0;
     },
     close() {
       [
@@ -34,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
       [...this.links, ...this.linksSocials].forEach(link => {
         link.removeEventListener('click', e => this.close());
       });
+      this.vkWidget.style.opacity = 1;
     },
     addListeners() {
       this.button.addEventListener('click', e => {

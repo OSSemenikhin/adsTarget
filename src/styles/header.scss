@@ -169,13 +169,13 @@ $burgerTransition: 0.3s;
 }
 
 .header-tel {
-  width: 370px;
+  width: 390px;
   text-align: right;
 
   &__link {
     @include transition(color);
     @include linkStates("");
-    margin-right: 10px;
+    margin-right: 30px;
     padding: 5px 0;
     font-weight: 800;
   }
@@ -208,6 +208,7 @@ $burgerTransition: 0.3s;
     width: 300px;
     height: 100vh;
     padding: 68px 40px 38px;
+    padding-bottom: 100px;
     display: flex;
     flex-direction: column;
     background-color: $colorLight;
