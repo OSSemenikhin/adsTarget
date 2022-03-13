@@ -1,5 +1,4 @@
 "use strict";
-
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('feedback_form');
   const formReq = document.querySelectorAll('._require');
@@ -10,39 +9,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // form.addEventListener('submit', formSend);
+  form.addEventListener('submit', formSend);
 
-  // async function formSend (e) {
-  //   // e.preventDefault();
-  //   let error = formValidate(form);
-  //   console.log(error)
-  //   if (error === 0) {
-  //     form.classList.add('_sending');
-  //     const data1 = new FormData(form);
-  //     console.log(data1)
-  //     const data = {};
-  //     inputs.forEach(input => {
-  //       data[input.name] = input.value;
-  //     });
-  //     console.log(data);
-  //     let response = await fetch('sendmail.php', {
-  //       method: 'POST',
-  //       body: data1,
-  //     });
-  //     console.log(response)
-  //     if (response.ok) {
-  //       // let result = await response.json();
-  //       // alert(result.message);
-  //       form.reset();
-  //     } else {
-  //       alert('Ошибка');
-  //     }
-  //     form.classList.remove('_sending');
-  //     console.log(form)
-  //   } else {
-
-  //   }
-  // }
+  async function formSend (e) {
+    e.preventDefault();
+    let error = formValidate(form);
+    console.log(error)
+    if (error === 0) {
+      form.classList.add('_sending');
+      const data = new FormData(form);
+      let response = await fetch('calculateForm.php', {
+        method: 'POST',
+        body: data,
+      });
+      console.log(response)
+      if (response.ok) {
+        alert('Заявка принята. Мы свяжемся с вами в ближайшее время!');
+        form.reset();
+      } else {
+        alert('Ошибка');
+      }
+      form.classList.remove('_sending');
+      // console.log(form)
+    }
+  }
 
   const formValidate = () => {
     let error = 0;

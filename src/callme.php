@@ -14,6 +14,7 @@ require 'PHPMailer/SMTP.php';
 
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
+$mail->CharSet = 'UTF-8';
 
 $body = '<h1>Перезвоните мне!</h1>';
 $body .= '<p><strong>Телефон:</strong> '.$_POST["phone"].'</p>';

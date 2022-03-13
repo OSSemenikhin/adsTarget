@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const selectLable = document.getElementById('modalSelectMenuLabel');
   const selectElement = document.getElementById('modalSelectMenu');
+  const socialsChecked = document.getElementById('socials_checked');
 
   // Модальное окно
   const modal = new ModalGoody({
@@ -84,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(targetSelect);
         selectMenuInput.value = targetSelect.opt.items[targetSelect.opt.current - 1].name;
       }
+      socialsChecked.checked = true;
     },
     isClose: (modal) => {
       if (modal.selectMenu) {

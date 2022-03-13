@@ -149,6 +149,11 @@ $servicesInputborderRadius: 10px;
       color: $colorDark;
       opacity: 0.5;
     }
+    &--hidden {
+      position: absolute;
+      visibility: hidden;
+      opacity: 0;
+    }
   }
   &__button {
     @include buttonPrimary('2');

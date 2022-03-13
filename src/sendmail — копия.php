@@ -8,6 +8,7 @@ require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/SMTP.php';
 
 $mail = new PHPMailer(true);
+$mail->CharSet = 'UTF-8';
 
 try {
   $mail->isSMTP();

@@ -54,6 +54,8 @@ const path = {
     sendmail: devFolder,
     callme: devFolder,
     servicesForm: devFolder,
+    calculateForm: devFolder,
+    admin: devFolder + '/admin/',
   },
   dist: {
     html: distFolder + '/',
@@ -69,6 +71,8 @@ const path = {
     sendmail: distFolder,
     callme: distFolder,
     servicesForm: distFolder,
+    calculateForm: distFolder,
+    admin: distFolder + '/admin/',
   },
   src: {
     pug: srcFolder + '/pug/**/index.pug',
@@ -86,6 +90,8 @@ const path = {
     sendmail: srcFolder + '/sendmail.php',
     callme: srcFolder + '/callme.php',
     servicesForm: srcFolder + '/servicesForm.php',
+    calculateForm: srcFolder + '/calculateForm.php',
+    admin: srcFolder + '/pug/admin/*.php',
   },
   watch: {
     pug: srcFolder + '/pug/**/*.pug',
@@ -97,7 +103,7 @@ const path = {
     svg: assetsFolder + '/img/svg/*.svg',
     iconsSvg: assetsFolder + '/img/icons/**/*.svg',
     favicon: assetsFolder + '/favicon/*.ico',
-    php: assetsFolder + '/**/*.php'
+    php: srcFolder + '/**/*.php'
   },
 };
 
@@ -748,6 +754,27 @@ const servicesFormDev = () => {
 }
 
 
+const calculateForm = () => {
+  return src(path.src.calculateForm)
+    .pipe(dest(path.dist.calculateForm))
+}
+const calculateFormDev = () => {
+  return src(path.src.calculateForm)
+    .pipe(dest(path.dev.calculateForm))
+}
+
+
+
+const admin = () => {
+  return src(path.src.admin)
+    .pipe(dest(path.dist.admin))
+}
+const adminDev = () => {
+  return src(path.src.admin)
+    .pipe(dest(path.dev.admin))
+}
+
+
 // FONTS
 const fonts = () => {
   src(path.src.fonts)
@@ -822,6 +849,10 @@ const watchFiles = (opts) => {
   gulp.watch([path.watch.php], phpMailerDev);
   gulp.watch([path.watch.php], callmeDev);
   gulp.watch([path.watch.php], servicesFormDev);
+
+  gulp.watch([path.watch.php], calculateFormDev);
+
+  gulp.watch([path.watch.php], adminDev);
 };
 
 const dev = gulp.series(
@@ -854,6 +885,10 @@ const dev = gulp.series(
     sendmailDev,
     callmeDev,
     servicesFormDev,
+
+    calculateFormDev,
+
+    adminDev,
   )
 );
 
@@ -887,6 +922,10 @@ const build = gulp.series(
     sendmail,
     callme,
     servicesForm,
+
+    calculateForm,
+
+    admin,
   )
 );
 
@@ -936,6 +975,12 @@ exports.callmeDev = callmeDev;
 exports.callme = callme;
 exports.servicesFormDev = servicesFormDev;
 exports.servicesForm = servicesForm;
+
+exports.calculateFormDev = calculateFormDev;
+exports.calculateForm = calculateForm;
+
+exports.adminDev = adminDev;
+exports.admin = admin;
 exports.build = build;
 exports.dev = dev;
 exports.watch = watch;
