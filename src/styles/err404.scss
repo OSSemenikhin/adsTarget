@@ -1,0 +1,41 @@
+@import "mixins";
+@import "variables";
+@import "hero";
+@import "feedback";
+@import "modals";
+
+.hero {
+  background-position: right center;
+
+  @media (max-width: 1300px) {
+    background-size: 745px;
+    background-position: center;
+  }
+  @media (max-width: 1024px) {
+    // height: 600px;
+    background-size: 700px;
+    background-position: center;
+  }
+  @media (max-width: 768px) {
+    background-position: center;
+  }
+  @media (max-width: 512px) {
+    background-size: 500px;
+    background-position: center;
+  }
+  &-content__button {
+    display: none;
+  }
+
+}
+
+.back-button {
+  padding: 0;
+  border: none;
+  color: black;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 600;
+  transition: color 2s;
+}

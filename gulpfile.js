@@ -478,7 +478,7 @@ const scriptsDevBrief = () => {
     .pipe(jsImport())
     // .pipe(sourcemaps.init())
     // .pipe(babel({
-    //   presets: [ "es2015", "stage-0" ]
+      //   presets: [ "es2015", "stage-0" ]
     // }))
     // .pipe(concat('app.js'))
     .pipe(uglify({
@@ -492,7 +492,7 @@ const scriptsBrief = () => {
   return src([
     'src/js/brief.js',
   ])
-    .pipe(jsImport())
+  .pipe(jsImport())
     // .pipe(sourcemaps.init())
     // .pipe(babel({
     //   presets: [ "es2015", "stage-0" ]
@@ -503,9 +503,44 @@ const scriptsBrief = () => {
     }).on('error', notify.onError()))
     // .pipe(sourcemaps.write())
     .pipe(dest(path.dist.js))
-}
-const scriptsDevCasesGeneral = () => {
-  return src([
+  }
+
+  const scriptsDevErr404 = () => {
+    return src([
+      'src/js/err404.js',
+    ])
+      .pipe(jsImport())
+      // .pipe(sourcemaps.init())
+      // .pipe(babel({
+      //   presets: [ "es2015", "stage-0" ]
+      // }))
+      // .pipe(concat('app.js'))
+      .pipe(uglify({
+        toplevel: true,
+      }).on('error', notify.onError()))
+      // .pipe(sourcemaps.write())
+      .pipe(dest(path.dev.js))
+      .pipe(browserSync.stream())
+  }
+  const scriptsErr404 = () => {
+    return src([
+      'src/js/err404.js',
+    ])
+      .pipe(jsImport())
+      // .pipe(sourcemaps.init())
+      // .pipe(babel({
+      //   presets: [ "es2015", "stage-0" ]
+      // }))
+      // .pipe(concat('app.js'))
+      .pipe(uglify({
+        toplevel: true,
+      }).on('error', notify.onError()))
+      // .pipe(sourcemaps.write())
+      .pipe(dest(path.dist.js))
+  }
+
+  const scriptsDevCasesGeneral = () => {
+    return src([
     'src/js/casesGeneral.js',
   ])
     .pipe(jsImport())
@@ -907,6 +942,7 @@ const watchFiles = (opts) => {
   gulp.watch([path.watch.js], scriptsDevFeedbackForm);
   gulp.watch([path.watch.js], scriptsDevCasesGeneral);
   gulp.watch([path.watch.js], scriptsDevServicesForm);
+  gulp.watch([path.watch.js], scriptsDevErr404);
   // gulp.watch([path.watch.js], scriptsDev1);
   gulp.watch([path.watch.js], loadingGifDev);
   gulp.watch([path.watch.img], imagesDev);
@@ -946,6 +982,7 @@ const dev = gulp.series(
     scriptsDevCasesGeneral,
     scriptsDevServicesForm,
     scriptsDevCallMeForm,
+    scriptsDevErr404,
     // scriptsDev1,
     stylesDev,
     loadingGifDev,
@@ -981,6 +1018,7 @@ const build = gulp.series(
     scriptsCasesGeneral,
     scriptsServicesForm,
     scriptsCallMeForm,
+    scriptsErr404,
     // scripts,
     svgSprites,
     svg,
@@ -1035,6 +1073,8 @@ exports.scriptsDevServicesForm = scriptsDevServicesForm;
 exports.scriptsServicesForm = scriptsServicesForm;
 exports.scriptsCallMeForm = scriptsCallMeForm;
 exports.scriptsDevCallMeForm = scriptsDevCallMeForm;
+exports.scriptsDevErr404 = scriptsDevErr404;
+exports.scriptsErr404 = scriptsErr404;
 // exports.scriptsDev1 = scriptsDev1;
 exports.loadingGifDev = loadingGifDev;
 exports.svgSprites = svgSprites;

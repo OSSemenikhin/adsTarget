@@ -258,6 +258,7 @@
 }
 
 @mixin linkStates($type) {
+  cursor: pointer;
   @if $type== "" {
     &:hover {
       color: $colorPrimary_1;
