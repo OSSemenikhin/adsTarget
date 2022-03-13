@@ -2,15 +2,15 @@
 
 
 <?php
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+// ini_set('error_reporting', E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
 
-session_start();
-var_dump($_POST);
-var_dump($_SESSION);
+// session_start();
+// // var_dump($_POST);
+// // var_dump($_SESSION);
 
-// $_SESSION['login'] = false;
+// // $_SESSION['login'] = false;
 $login = false;
 if (isset($_SESSION['login'])) $login = $_SESSION['login'];
 
@@ -39,16 +39,27 @@ if (isset($_POST['logout'])) {
   }
 }
 // var_dump($_SESSION);
-if (isset($_SESSION["login"])) var_dump($_SESSION["login"]);
+// if (isset($_SESSION["login"])) var_dump($_SESSION["login"]);
 // var_dump($_COOKIE);
 
 
 
-$filename = '../d41d8cd98f00b204e9800998ecf8427e.txt';
-$data = file_get_contents($filename);
-//$bookshelf = json_decode($data, TRUE); // Если нет TRUE то получает объект, а не массив.
-$calculateArr = unserialize($data);
-var_dump($calculateArr);
+$filenameCalculate = '../d41d8cd98f00b204e9800998ecf8427e.txt';
+$dataCalculate = file_get_contents($filenameCalculate);
+$calculateArr = unserialize($dataCalculate);
+// var_dump($calculateArr);
+
+
+$filenameServises = '../289dff07669d7a23de0ef88d2f7129e7.txt';
+$dataServises = file_get_contents($filenameServises);
+$servicesArr = unserialize($dataServises);
+// var_dump($servicesArr);
+
+
+$filenameCallMe = '../0dcb3b5471a8f8d3b5149429896cb409.txt';
+$dataCallMe = file_get_contents($filenameCallMe);
+$callMeArr = unserialize($dataCallMe);
+// var_dump($servicesArr);
 ?>
 
 </pre>
@@ -74,8 +85,21 @@ var_dump($calculateArr);
       /* justify-content: center; */
       align-items: center;
     }
+
     .table {
       width: 100%;
+    }
+
+    td {
+      padding: 5px;
+      border: 1px solid black;
+      border-spacing: 0px;
+      border-collapse: collapse;
+    }
+
+    .form__input,
+    .form__button {
+      padding: 5px;
     }
   </style>
 </head>
@@ -96,6 +120,7 @@ var_dump($calculateArr);
         <input class="form__button" type="submit" name="logout" value="Выйти">
       </form>
       <div class=<?= $login ? "table" : "table hidden" ?>>
+
         <?php if (!empty($calculateArr)) : ?>
           <h1>Рассчитать стоимость</h1>
           <table class="table">
@@ -109,6 +134,50 @@ var_dump($calculateArr);
               <tr>
                 <td><?= $key ?></td>
                 <?php foreach ($calculateArr[$key] as $value) : ?>
+                  <td>
+                    <?= $value ?>
+                  </td>
+                <?php endforeach ?>
+              </tr>
+            <?php endforeach ?>
+          </table>
+        <?php endif ?>
+
+        <?php if (!empty($servicesArr)) : ?>
+          <h1>Услуги</h1>
+          <table class="table">
+            <tr>
+              <td><strong>Дата обращения</strong></td>
+              <td><strong>Тип услуги</strong></td>
+              <td><strong>Описание</strong></td>
+              <td><strong>Имя</strong></td>
+              <td><strong>Телефон</strong></td>
+              <td><strong>Социальная сеть для связи</strong></td>
+            </tr>
+            <?php foreach ($servicesArr as $key => $value) : ?>
+              <tr>
+                <td><?= $key ?></td>
+                <?php foreach ($servicesArr[$key] as $value) : ?>
+                  <td>
+                    <?= $value ?>
+                  </td>
+                <?php endforeach ?>
+              </tr>
+            <?php endforeach ?>
+          </table>
+        <?php endif ?>
+
+        <?php if (!empty($callMeArr)) : ?>
+          <h1>Позвоните мне</h1>
+          <table class="table">
+            <tr>
+              <td><strong>Дата обращения</strong></td>
+              <td><strong>Телефон</strong></td>
+            </tr>
+            <?php foreach ($callMeArr as $key => $value) : ?>
+              <tr>
+                <td><?= $key ?></td>
+                <?php foreach ($callMeArr[$key] as $value) : ?>
                   <td>
                     <?= $value ?>
                   </td>

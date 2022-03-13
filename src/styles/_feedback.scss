@@ -54,9 +54,6 @@
       opacity: 0.5;
     }
 
-    &._error {
-      box-shadow: 0 0 15px red;
-    }
   }
   &__button {
     @include buttonPrimary('1');

@@ -31,9 +31,19 @@ a {
   color: inherit;
 }
 
-input {
+input,
+textarea {
   font-family: inherit;
+  &:focus {
+    outline: none;
+    border: 1px solid $colorPrimary_2 !important;
+  }
+  &:focus-visible {
+    outline: none;
+    border: 1px solid $colorPrimary_2 !important;
+  }
 }
+
 
 .container {
   width: $containerWidth1024;
@@ -55,6 +65,10 @@ input {
 
 .body {
   margin: 0;
+}
+
+._error {
+  border: 1px solid red !important;
 }
 
 .title--hidden {

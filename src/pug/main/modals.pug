@@ -9,18 +9,18 @@ section.modal.modal-call#modal
     .modal__content.modal-services__content
       .modal-services__label.modal-services-select__label#modalSelectMenuLabel Укажите тип услуги
       .modal-services-select#modalSelectMenu
-      form.modal-services__form(action="servicesForm.php" method="POST" name="form")
+      form#services_form.modal-services__form(action="#" name="form")
         label.modal-services__label
-          input#type_input.modal-services__input.modal-services__input--hidden(type="text" name="type")
+          input#type_input.modal-services__input.modal-services__input--hidden(type="hidden" name="type" value="Выбор услуги")
         label.modal-services__label Опишите нишу и прикрепите ссылки наваши соц. сети и/или сайт
           br
-          textarea.modal-services__input.modal-services__input--textarea(name="description" placeholder="Опишите ваш ситуацию...")
+          textarea.modal-services__input.modal-services__input--textarea._require(name="description" placeholder="Опишите ваш ситуацию...")
         label.modal-services__label Ваше имя
           br
-          input.modal-services__input(name="name" placeholder="Иван Смирнов")
+          input.modal-services__input._require(name="name" placeholder="Иван Смирнов")
         label.modal-services__label Ваш телефон
           br
-          input.modal-services__input(name="phone" placeholder="+7 (999) 999-99-99")
+          input.modal-services__input._require(name="phone" placeholder="+7 (999) 999-99-99")
         .modal-services-socials
           p.modal-services-socials__title Выберите способ связи
           .modal-services-socials__wrapper
@@ -45,5 +45,5 @@ section.modal.modal-call#modal
                   use(xlink:href="img/svg/sprite.svg#vk")
               br
               |Vk
-        button.modal-services__button Заказать
+        button.modal-services__button(type="submit") Заказать
 

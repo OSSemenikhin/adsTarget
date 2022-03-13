@@ -571,6 +571,73 @@ const scriptsFeedbackForm = () => {
     // .pipe(sourcemaps.write())
     .pipe(dest(path.dist.js))
 }
+const scriptsDevServicesForm = () => {
+  return src([
+    'src/js/servicesForm.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dev.js))
+    .pipe(browserSync.stream())
+}
+const scriptsServicesForm = () => {
+  return src([
+    'src/js/servicesForm.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dist.js))
+}
+
+const scriptsDevCallMeForm = () => {
+  return src([
+    'src/js/callMeForm.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dev.js))
+    .pipe(browserSync.stream())
+}
+const scriptsCallMeForm = () => {
+  return src([
+    'src/js/callMeForm.js',
+  ])
+    .pipe(jsImport())
+    // .pipe(sourcemaps.init())
+    // .pipe(babel({
+    //   presets: [ "es2015", "stage-0" ]
+    // }))
+    // .pipe(concat('app.js'))
+    .pipe(uglify({
+      toplevel: true,
+    }).on('error', notify.onError()))
+    // .pipe(sourcemaps.write())
+    .pipe(dest(path.dist.js))
+}
 
 // const scriptsDev1 = () => {
 //   return src([
@@ -839,6 +906,7 @@ const watchFiles = (opts) => {
   gulp.watch([path.watch.js], scriptsDevBrief);
   gulp.watch([path.watch.js], scriptsDevFeedbackForm);
   gulp.watch([path.watch.js], scriptsDevCasesGeneral);
+  gulp.watch([path.watch.js], scriptsDevServicesForm);
   // gulp.watch([path.watch.js], scriptsDev1);
   gulp.watch([path.watch.js], loadingGifDev);
   gulp.watch([path.watch.img], imagesDev);
@@ -849,6 +917,7 @@ const watchFiles = (opts) => {
   gulp.watch([path.watch.php], phpMailerDev);
   gulp.watch([path.watch.php], callmeDev);
   gulp.watch([path.watch.php], servicesFormDev);
+  gulp.watch([path.watch.php], scriptsDevCallMeForm);
 
   gulp.watch([path.watch.php], calculateFormDev);
 
@@ -875,6 +944,8 @@ const dev = gulp.series(
     scriptsDevBrief,
     scriptsDevFeedbackForm,
     scriptsDevCasesGeneral,
+    scriptsDevServicesForm,
+    scriptsDevCallMeForm,
     // scriptsDev1,
     stylesDev,
     loadingGifDev,
@@ -908,6 +979,8 @@ const build = gulp.series(
     scriptsBrief,
     scriptsFeedbackForm,
     scriptsCasesGeneral,
+    scriptsServicesForm,
+    scriptsCallMeForm,
     // scripts,
     svgSprites,
     svg,
@@ -958,6 +1031,10 @@ exports.scriptsCases = scriptsCases;
 exports.scriptsBrief = scriptsBrief;
 exports.scriptsFeedbackForm = scriptsFeedbackForm;
 exports.scriptsDevCasesGeneral = scriptsDevCasesGeneral;
+exports.scriptsDevServicesForm = scriptsDevServicesForm;
+exports.scriptsServicesForm = scriptsServicesForm;
+exports.scriptsCallMeForm = scriptsCallMeForm;
+exports.scriptsDevCallMeForm = scriptsDevCallMeForm;
 // exports.scriptsDev1 = scriptsDev1;
 exports.loadingGifDev = loadingGifDev;
 exports.svgSprites = svgSprites;

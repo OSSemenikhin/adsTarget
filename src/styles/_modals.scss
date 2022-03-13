@@ -166,6 +166,12 @@ $servicesInputborderRadius: 10px;
   }
 }
 
+#type_input {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+}
+
 .modal-services-select,
 .modal-services-select__label {
   display: none;

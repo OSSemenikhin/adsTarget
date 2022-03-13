@@ -2,5 +2,6 @@
 @import "./burger.js";
 @import "./scrollToAnchor.js";
 @import "./feedbackForm.js";
+@import "./callMeForm.js";
 
 const modal = new ModalGoody();

@@ -1,5 +1,5 @@
 <?php
-  $message = 'Произошла ошибка, пожалуйста сообщите нам об этом <a href="mailto:adstarget@adstarget.ru">adstarget@adstarget.ru</a>';
+  $message = 'Произошла ошибка, пожалуйста сообщите нам об этом adstarget@adstarget.ru';
   if (!empty($_POST)) {
     $filename = 'd41d8cd98f00b204e9800998ecf8427e.txt';
     $getData = file_get_contents($filename);

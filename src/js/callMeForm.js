@@ -1,6 +1,6 @@
 "use strict";
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('feedback_form');
+  const form = document.getElementById('callMe');
   const formReq = form.querySelectorAll('._require');
   const inputs = form.querySelectorAll('input');
   formReq.forEach(input => {
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (error === 0) {
       form.classList.add('_sending');
       const data = new FormData(form);
-      let response = await fetch('calculateForm.php', {
+      let response = await fetch('callme.php', {
         method: 'POST',
         body: data,
       });

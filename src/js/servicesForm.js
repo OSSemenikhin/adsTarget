@@ -1,8 +1,7 @@
 "use strict";
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('feedback_form');
+  const form = document.getElementById('services_form');
   const formReq = form.querySelectorAll('._require');
-  const inputs = form.querySelectorAll('input');
   formReq.forEach(input => {
     input.addEventListener('input', () => {
       if (input.classList.contains('_error')) formRemoveError(input);
@@ -13,12 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function formSend (e) {
     e.preventDefault();
+    console.log(234234234);
     let error = formValidate(form);
     console.log(error)
     if (error === 0) {
       form.classList.add('_sending');
       const data = new FormData(form);
-      let response = await fetch('calculateForm.php', {
+      let response = await fetch('servicesForm.php', {
         method: 'POST',
         body: data,
       });
