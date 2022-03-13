@@ -7,6 +7,7 @@
     position: absolute;
     top: 20px;
     right: 20px;
+    z-index: 11;
   }
 
   &__close {
@@ -37,6 +38,7 @@
 
 .modal-call {
   &__content {
+    @include formSending;
     width: 560px;
     padding: 340px 45px 45px 45px;
     background-image: url(../img/call.webp);
@@ -106,6 +108,7 @@ $servicesInputborderRadius: 10px;
 
 .modal-services{
   &__content {
+    @include formSending;
     padding: 60px;
     @media(max-width:1024px) {
       padding: 35px;

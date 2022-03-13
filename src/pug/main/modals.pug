@@ -6,9 +6,9 @@ section.modal.modal-call#modal
       button.modal__close
         svg.modal__icon-close(aria-hidden="true")
           use(xlink:href="img/svg/sprite.svg#close")
-    .modal__content.modal-services__content
-      .modal-services__label.modal-services-select__label#modalSelectMenuLabel Укажите тип услуги
-      .modal-services-select#modalSelectMenu
+    #modal_content.modal__content.modal-services__content
+      #modalSelectMenuLabel.modal-services__label.modal-services-select__label Укажите тип услуги
+      #modalSelectMenu.modal-services-select
       form#services_form.modal-services__form(action="#" name="form")
         label.modal-services__label
           input#type_input.modal-services__input.modal-services__input--hidden(type="hidden" name="type" value="Выбор услуги")
@@ -25,25 +25,25 @@ section.modal.modal-call#modal
           p.modal-services-socials__title Выберите способ связи
           .modal-services-socials__wrapper
             label.modal-services-socials__label(tabindex="0")
-              input.modal-services-socials__input(type="radio" name="socials" value="WhatsApp" tabindex="-1")
+              input#socials_checked.modal-services-socials__input(type="radio" name="socials" value="Vk" tabindex="-1")
               .modal-services-socials__icon
                 svg.modal-services-socials__svg(aria-hidden="true")
-                  use(xlink:href="img/svg/sprite.svg#whatsapp")
+                  use(xlink:href="img/svg/sprite.svg#vk")
               br
-              |WhatsApp
+              |Vk
             label.modal-services-socials__label(tabindex="0")
-              input#socials_checked.modal-services-socials__input(type="radio" name="socials" value="Telegramm" tabindex="-1" checked="true")
+              input.modal-services-socials__input(type="radio" name="socials" value="Telegramm" tabindex="-1" checked="true")
               .modal-services-socials__icon
                 svg.modal-services-socials__svg(aria-hidden="true")
                   use(xlink:href="img/svg/sprite.svg#telegram")
               br
               |Telegramm
             label.modal-services-socials__label(tabindex="0")
-              input.modal-services-socials__input(type="radio" name="socials" value="Vk" tabindex="-1")
+              input.modal-services-socials__input(type="radio" name="socials" value="WhatsApp" tabindex="-1")
               .modal-services-socials__icon
                 svg.modal-services-socials__svg(aria-hidden="true")
-                  use(xlink:href="img/svg/sprite.svg#vk")
+                  use(xlink:href="img/svg/sprite.svg#whatsapp")
               br
-              |Vk
+              |WhatsApp
         button.modal-services__button(type="submit") Заказать
 

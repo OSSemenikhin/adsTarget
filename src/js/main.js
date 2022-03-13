@@ -28,10 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   }
   const targetItems = [
-    { name: "Инстаграм от 35 000руб.", secondName: 'instagram' },
-    { name: "ФБ от 35 000руб.", secondName: 'fb' },
     { name: "ВК от 25 000руб.", secondName: 'vk' },
     { name: "Тикток от 25 000руб.", secondName: 'tikTok' },
+    { name: "Инстаграм от 35 000руб.", secondName: 'instagram' },
+    { name: "ФБ от 35 000руб.", secondName: 'fb' },
   ];
   const contentItems = [
     { name: "Ведение сообществ в соцсетеях", secondName: 'socials' },
@@ -47,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const selectMenuInput = document.getElementById('type_input');
   const selectType = (e) => {
-    console.log(e.textContent.trim());
     selectMenuInput.value = e.textContent.trim();
   }
 
@@ -61,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  const modalContent = document.getElementById('modal_content');
   const selectLable = document.getElementById('modalSelectMenuLabel');
   const selectElement = document.getElementById('modalSelectMenu');
   const socialsChecked = document.getElementById('socials_checked');
@@ -84,7 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         const targetSelect = $$.choozzie.create(selectOpt);
         modal.selectMenu = targetSelect;
-        console.log(targetSelect);
         selectMenuInput.value = targetSelect.opt.items[targetSelect.opt.current - 1].name;
       }
       socialsChecked.checked = true;

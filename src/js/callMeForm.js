@@ -1,5 +1,6 @@
 "use strict";
 document.addEventListener('DOMContentLoaded', () => {
+  const modalContent = document.getElementById('callModal');
   const form = document.getElementById('callMe');
   const formReq = form.querySelectorAll('._require');
   const inputs = form.querySelectorAll('input');
@@ -14,23 +15,24 @@ document.addEventListener('DOMContentLoaded', () => {
   async function formSend (e) {
     e.preventDefault();
     let error = formValidate(form);
-    console.log(error)
     if (error === 0) {
-      form.classList.add('_sending');
+      modalContent.classList.add('_sending');
       const data = new FormData(form);
       let response = await fetch('callme.php', {
         method: 'POST',
         body: data,
       });
-      console.log(response)
       if (response.ok) {
-        alert('Заявка принята. Мы свяжемся с вами в ближайшее время!');
         form.reset();
+        modalContent.classList.add('_good');
+        const delClass = () => modalContent.classList.remove('_good');
+        setTimeout(delClass, 2000);
       } else {
-        alert('Ошибка');
+        modalContent.classList.add('_bad');
+        const delClass = () => modalContent.classList.remove('_bad');
+        setTimeout(delClass, 2000);
       }
-      form.classList.remove('_sending');
-      // console.log(form)
+      modalContent.classList.remove('_sending');
     }
   }
 

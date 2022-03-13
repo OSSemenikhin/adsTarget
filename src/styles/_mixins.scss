@@ -43,6 +43,49 @@
   }
 }
 
+@mixin formSending {
+  &::after {
+    content: '';
+    background-image: url(../img/loading.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: $colorLightOpacity;
+    opacity: 0;
+    visibility: hidden;
+  }
+  &._sending::after {
+    opacity: 1;
+    visibility: visible;
+  }
+  &._bad::before {
+    content: 'Произошла ошибка!';
+  }
+  &._good::before {
+    content: 'Спасибо!  Мы скоро свяжемся с вами.';
+  }
+  &::after,
+  &._bad::before,
+  &._good::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.2s;
+    z-index: 10;
+  }
+  &._bad::before,
+  &._good::before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $colorLight;
+    font-size: 32px;
+    font-family: inherit;
+    font-weight: 800;
+    opacity: 1;
+  }
+}
 @mixin descCardsWithIcons {
   &__list {
     display: grid;

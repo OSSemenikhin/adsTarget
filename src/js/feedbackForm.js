@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
   async function formSend (e) {
     e.preventDefault();
     let error = formValidate(form);
-    console.log(error)
     if (error === 0) {
       form.classList.add('_sending');
       const data = new FormData(form);
@@ -22,14 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
         method: 'POST',
         body: data,
       });
-      console.log(response)
       if (response.ok) {
-        alert('Заявка принята. Мы свяжемся с вами в ближайшее время!');
         form.reset();
+        form.classList.add('_good');
+        const delClass = () => form.classList.remove('_good');
+        setTimeout(delClass, 3000);
       } else {
-        alert('Ошибка');
+        form.classList.add('_bad');
+        const delClass = () => form.classList.remove('_bad');
+        setTimeout(delClass, 3000);
       }
       form.classList.remove('_sending');
+      // form.classList.add('_sending--done');
       // console.log(form)
     }
   }
