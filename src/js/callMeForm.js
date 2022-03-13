@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('callMe');
   const formReq = form.querySelectorAll('._require');
   const inputs = form.querySelectorAll('input');
+  const closeModalButton = document.querySelector('.modal__close');
   formReq.forEach(input => {
     input.addEventListener('input', () => {
       if (input.classList.contains('_error')) formRemoveError(input);
@@ -25,11 +26,17 @@ document.addEventListener('DOMContentLoaded', () => {
       if (response.ok) {
         form.reset();
         modalContent.classList.add('_good');
-        const delClass = () => modalContent.classList.remove('_good');
+        const delClass = () => {
+          modalContent.classList.remove('_good');
+          closeModalButton.click();
+        }
         setTimeout(delClass, 2000);
       } else {
         modalContent.classList.add('_bad');
-        const delClass = () => modalContent.classList.remove('_bad');
+        const delClass = () => {
+          modalContent.classList.remove('_bad');
+          closeModalButton.click();
+        }
         setTimeout(delClass, 2000);
       }
       modalContent.classList.remove('_sending');
